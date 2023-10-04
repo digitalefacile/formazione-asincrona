@@ -1,5 +1,5 @@
 ---
-name: Template generale
+name: Issue template
 about: Compila questo modello per aprire una nuova issue
 title: 'Nome pagina - Nome componente: descrizione sintetica del problema'
 labels: ''
