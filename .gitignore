@@ -1,0 +1,12 @@
+!/mnt/
+/mnt/*
+!/mnt/.gitkeep
+
+/secrets/*
+!/secrets/examples/
+
+!/log/
+/log/*
+
+#hooks/.gitkeep
+#/example

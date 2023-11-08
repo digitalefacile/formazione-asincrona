@@ -1,0 +1,12 @@
+.git
+src/.gitkeep
+
+/secrets/
+/mnt/
+/log/
+
+#hooks/.gitkeep
+#/example
+
+/README.md
+
