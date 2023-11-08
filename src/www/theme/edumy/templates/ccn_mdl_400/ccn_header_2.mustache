@@ -1,0 +1,68 @@
+<div class=" home2">
+  <div class="container-fluid test-top-header">
+    <div>
+      <h4  style="color:white !important;margin-top: 7px;">Dipartimento per la trasformazione digitale</h4>
+    </div>
+    {{^isloggedin}}
+      <div class="color-icon-user login-button-container">
+           <a class="login-button" aria-label="Accedi al sito" href="./login">Accedi</a>
+      </div>
+    {{/isloggedin}}
+    {{#isloggedin}}
+      <div class="color-icon-user">
+         <nav>
+             <ul id="respMenu " class="ace-responsive-menu" data-menu-style="horizontal">
+                {{> theme_edumy/ccn_navbar_user }}
+              </ul>
+
+              <ul class="sign_up_btn pull-right dn-smd mt20">
+              {{> theme_edumy/ccn_navbar_user_popup }}
+              </ul>
+          </nav>
+      </div>
+      {{/isloggedin}}
+  </div>
+</div>
+
+<div class="header_top home2" style="    min-height: 100px;">
+  <div class="container-fluid test-middle-header">
+    <div >
+      {{#logo}}
+        <a href="{{{ ccnLogoUrl }}}" class="">
+          {{#logo_image}}<img class="img-fluid" src="{{{headerlogo1}}}" alt="{{{sitename}}}" {{#logo_styles}} style="{{{logo_styles}}} " {{/logo_styles}}>{{/logo_image}}
+          {{#logotype}}<span>{{{ sitename }}}</span>{{/logotype}}
+        </a>
+      {{/logo}}
+    </div>
+
+    <div style="height: 74px; width: 74px;    margin-left: 14px;" >
+      {{#logo}}
+        <a href="{{{ ccnLogoUrl }}}" class="" >
+          {{#logo_image}}<img class="img-fluid" src="{{{headerlogo3}}}" alt="{{{sitename}}}" {{#logo_styles}} style="{{{logo_styles}}}" {{/logo_styles}}>{{/logo_image}}
+          {{#logotype}}<span>{{{ sitename }}}</span>{{/logotype}}
+        </a>
+      {{/logo}}
+    </div>
+
+    <div style="margin-left:14px;">
+      <h2  style="color:white;    margin-bottom: 0;">Formazione per la facilitazione digitale</h2>
+      <h5  style="color:white ">Piattaforma di e-learning per facilitatori e volontari</h5>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header Nav -->
+{{#isloggedin}}
+	{{!  - Se non è una pagina quiz stampa il menu }}
+	{{^isquiz}}
+<header class="ccnHeader2 header-nav home2 style_one navbar-scrolltofixed main-menu">
+  <div class="container-fluid">
+    <nav>
+      <ul  class="ace-responsive-menu "  data-menu-style="horizontal">
+        {{{ output.custom_menu }}}
+      </ul>
+    </nav>
+  </div>
+</header>
+	{{/isquiz}}
+{{/isloggedin}}

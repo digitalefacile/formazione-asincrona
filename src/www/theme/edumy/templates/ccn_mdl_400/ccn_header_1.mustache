@@ -1,0 +1,50 @@
+<header class="ccnHeader1 header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu">
+  <div class="container-fluid">
+    <!-- Ace Responsive Menu -->
+  
+    <nav class="ccn_nav_group add">
+      <!-- Menu Toggle btn-->
+      <div class="menu-toggle">
+        <img class="nav_logo_img img-fluid" src="{{{headerlogo1}}}{{!output.get_logo_url}}" alt="{{sitename}}">
+        <button type="button" id="menu-btn">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      {{#logo}}
+        <a href="{{{ ccnLogoUrl }}}" class="navbar_brand float-left dn-smd">
+          {{#logo_image}}<img class="logo1 img-fluid" src="{{{headerlogo1}}}{{!output.get_logo_url}}" alt="{{sitename}}" {{#logo_styles}} style="{{{logo_styles}}}" {{/logo_styles}}>{{/logo_image}}
+          {{#logo_image}}<img class="logo2 img-fluid" src="{{{headerlogo2}}}{{!output.get_logo_url}}" alt="{{sitename}}" {{#logo_styles}} style="{{{logo_styles}}}" {{/logo_styles}}>{{/logo_image}}
+          {{#logotype}}<span>{{{ sitename }}}</span>{{/logotype}}
+        </a>
+      {{/logo}}
+      
+     
+      <nav class="navbar navbar-expand" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+        {{#primarymoremenu}}
+          <div class="primary-navigation">
+            {{> theme_edumy/ccn_mdl_400/moremenu}}
+          </div>
+        {{/primarymoremenu}}
+        <ul class="navbar-nav d-none d-md-flex my-1 px-1">
+          <!-- page_heading_menu -->
+          {{{ output.page_heading_menu }}}
+        </ul>
+      </nav>
+
+
+      <ul id="respMenu" class="" data-menu-style="horizontal">
+        {{> theme_edumy/ccn_navbar_user }}
+      </ul>
+      <ul class="sign_up_btn pull-right dn-smd mt20">
+        {{> theme_edumy/ccn_navbar_user_popup }}
+        {{#header_search_icon}}
+          <li class="list-inline-item list_s">
+            {{> theme_edumy/ccn_navbar_search_icon }}
+          </li>
+        {{/header_search_icon}}
+      </ul><!-- Button trigger modal -->
+    </nav>
+  </div>
+</header>

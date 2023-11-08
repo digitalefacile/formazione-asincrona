@@ -1,0 +1,72 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_myoverview/view-summary
+
+    This template renders the list view for the myoverview block.
+
+    Example context (json):
+    {
+        "courses": [
+            {
+                "name": "Assignment due 1",
+                "viewurl": "https://moodlesite/course/view.php?id=2",
+                "courseimage": "https://moodlesite/pluginfile/123/course/overviewfiles/123.jpg",
+                "fullname": "course 3",
+                "summary": "This course is about assignments",
+                "hasprogress": true,
+                "progress": 10,
+                "coursecategory": "Miscellaneous"
+            }
+        ]
+    }
+}}
+<div class="my_course_content_list " role="list">
+  {{#courses}}
+    <div class="mc_content_list card-custom" role="listitem" data-region="course-content">
+          <img
+              class="card-img-top card-image-top-custom"
+              src="{{{courseimage}}}"
+              alt="Card image cap"
+            />
+
+            <div class="details">
+                    <div class="tc_content">
+                      <div class="container_cip_category" style="margin-top: 16px;">
+                        <div class="cip_category">
+                         {{{coursecategory}}}
+                        </div>
+                      </div>
+                      <div class="content_title_card_slider">
+                        {{{fullname}}}
+                      </div>
+                      <div class="container-fluid" style="    text-align: center;
+    position: relative;">
+                        {{> block_myoverview/progress-bar}}
+                        {{$progress}}{{/progress}}
+                      </div>
+                    </div>
+              </div>
+      
+              <div class="footer_card_slider" style="padding: 40px  0 28px!important; ">
+                <a href="{{viewurl}}" class="btn btn-primary btn-lg" aria-label="Torna al corso {{{fullname}}}">Torna al corso </a>
+              </div>
+           
+            </div>
+    </div>
+  {{/courses}}
+</div>

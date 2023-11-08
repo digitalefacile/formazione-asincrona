@@ -1,0 +1,11 @@
+@font-face { /* where FontName and fontname represents the name of the font you want to add */
+    font-family: 'Titillium Web';
+    src: url([[font:theme|Titillium Web.eot]]);
+    src: url([[font:theme|Titillium Web.eot]]) format('embedded-opentype'),
+         url([[font:theme|Titillium Web.woff]]) format('woff'),
+         url([[font:theme|Titillium Web.woff2]]) format('woff2'),
+         url([[font:theme|Titillium Web.ttf]]) format('truetype'),
+         url([[font:theme|Titillium Web.svg]]) format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
