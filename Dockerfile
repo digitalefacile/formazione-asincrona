@@ -7,5 +7,6 @@ COPY --chown=root:root --chmod=755 scripts/cron-run.sh /opt/bitnami/scripts/mood
 
 ## Copy Source Code
 ## --chown=1001:1
-COPY --chown=daemon:root --chmod=755 src/www/ /opt/bitnami/moodle/
+## --chown=daemon:root
+COPY --chown=1001:daemon --chmod=755 src/www/ /opt/bitnami/moodle/
 
