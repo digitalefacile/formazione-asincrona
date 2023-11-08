@@ -28,7 +28,7 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 }
 $CFG->dataroot  = '/bitnami/moodledata';
 $CFG->admin     = 'admin';
-
+$CFG->customstringmanager = 'local_string_override_manager';
 $CFG->directorypermissions = 02775;
 
 require_once(__DIR__ . '/lib/setup.php');
