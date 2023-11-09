@@ -35,7 +35,7 @@ services:
       # MOODLE_HOST: '127.0.0.1:8080'
       MOODLE_SKIP_BOOTSTRAP: "yes"
       MOODLE_USERNAME: user
-      MOODLE_PASSWORD_FILE: '/run/secrets/db_password'
+      MOODLE_PASSWORD_FILE: '/run/secrets/app_password'
       MOODLE_SITE_NAME: Moodle Local Dev
       MOODLE_EMAIL: user@example.com
       PHP_UPLOAD_MAX_FILESIZE: 400M
