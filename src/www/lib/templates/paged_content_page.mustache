@@ -27,7 +27,9 @@
         "content": "<p>Some page content</p>"
     }
 }}
-<div data-region="paged-content-page" data-page="{{page}}" class="{{^active}}hidden{{/active}} {{$classes}}{{/classes}}">
+<div data-region="paged-content-page"
+     data-page="{{page}}"
+     class="{{^active}}hidden{{/active}} {{$classes}}{{/classes}}">
     {{$content}}
         {{{content}}}
     {{/content}}

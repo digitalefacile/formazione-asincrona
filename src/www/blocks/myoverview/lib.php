@@ -108,8 +108,8 @@ function block_myoverview_user_preferences(): array {
         'default' => BLOCK_MYOVERVIEW_SORTING_LASTACCESSED,
         'type' => PARAM_ALPHA,
         'choices' => array(
-            BLOCK_MYOVERVIEW_SORTING_LASTACCESSED,
             BLOCK_MYOVERVIEW_SORTING_TITLE,
+            BLOCK_MYOVERVIEW_SORTING_LASTACCESSED,
             BLOCK_MYOVERVIEW_SORTING_SHORTNAME
         ),
         'permissioncallback' => [core_user::class, 'is_current_user'],

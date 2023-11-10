@@ -1,7 +1,0 @@
-# Ignore all directories, and all sub-directories, and it's contents:
-/config.php
-
-# ignore general file
-.Ds_Store
-node_modules
-node_modules/

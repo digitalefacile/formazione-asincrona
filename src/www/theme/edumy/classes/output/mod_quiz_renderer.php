@@ -551,7 +551,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         $output .= html_writer::start_tag('div', array('class' => 'submitbtns'));
         if ($page > 0 && $navmethod == 'free') {
-            # MODIFIED  11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
+            # MODIFIED BY MAINLAB 11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
             $output .= html_writer::start_tag('button', array('type' => 'submit', 'name' => 'previous',
                     'value' => get_string('navigateprevious', 'quiz'), 'class' => 'mod_quiz-prev-nav btn btn-secondary',
                     'id' => 'mod_quiz-prev-nav'));
@@ -569,7 +569,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             <path d="M9.26667 3.33301L8.8 3.79967L12.3333 7.39967L2 7.39967V8.06634H12.3333L8.8 11.6663L9.26667 12.133L13.6667 7.73301L9.26667 3.33301Z" fill="white"/>
             </svg>&nbsp;';
         }
-        # MODIFIED  11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
+        # MODIFIED BY MAINLAB 11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
         $output .= html_writer::start_tag('button', array('type' => 'submit', 'name' => 'next',
         'value' =>get_string('navigatenext', 'quiz'), 'class' => 'mod_quiz-next-nav btn btn-primary',
         'id' => 'mod_quiz-next-nav'));

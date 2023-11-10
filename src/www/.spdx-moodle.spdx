@@ -2,23 +2,23 @@
     "SPDXID": "SPDXRef-moodle",
     "spdxVersion": "SPDX-2.3",
     "creationInfo": {
-        "created": "2023-07-24T19:13:14.612Z",
+        "created": "2023-08-18T22:33:10.824Z",
         "creators": [
             "Organization: VMware, Inc."
         ]
     },
-    "name": "SPDX document for Moodle 4.2.1",
+    "name": "SPDX document for Moodle 4.1.5",
     "dataLicense": "CC0-1.0",
     "documentDescribes": [
         "SPDXRef-moodle"
     ],
-    "documentNamespace": "moodle-4.2.1",
+    "documentNamespace": "moodle-4.1.5",
     "packages": [
         {
             "SPDXID": "SPDXRef-moodle",
             "name": "Moodle",
-            "versionInfo": "4.2.1",
-            "downloadLocation": "https://download.moodle.org/download.php/direct/stable402/moodle-4.2.1.tgz",
+            "versionInfo": "4.1.5",
+            "downloadLocation": "https://download.moodle.org/download.php/direct/stable401/moodle-4.1.5.tgz",
             "licenseConcluded": "GPL-2.0-only",
             "licenseDeclared": "GPL-2.0-only",
             "filesAnalyzed": false,
@@ -26,14 +26,15 @@
                 {
                     "referenceCategory": "SECURITY",
                     "referenceType": "cpe23Type",
-                    "referenceLocator": "cpe:2.3:*:moodle:moodle:4.2.1:*:*:*:*:*:*:*"
+                    "referenceLocator": "cpe:2.3:*:moodle:moodle:4.1.5:*:*:*:*:*:*:*"
                 },
                 {
-                    "referenceCategory": "PACKAGE-MANAGER",
+                    "referenceCategory": "PACKAGE_MANAGER",
                     "referenceType": "purl",
-                    "referenceLocator": "pkg:bitnami/moodle@4.2.1?arch=amd64"
+                    "referenceLocator": "pkg:bitnami/moodle@4.1.5?arch=amd64"
                 }
-            ]
+            ],
+            "copyrightText": "NOASSERTION"
         }
     ],
     "files": [],

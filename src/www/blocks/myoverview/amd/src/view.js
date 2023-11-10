@@ -31,7 +31,7 @@ import * as CourseEvents from 'core_course/events';
 import SELECTORS from 'block_myoverview/selectors';
 import * as PagedContentEvents from 'core/paged_content_events';
 import * as Aria from 'core/aria';
-import { debounce } from 'core/utils';
+import {debounce} from 'core/utils';
 
 const TEMPLATES = {
     COURSES_CARDS: 'block_myoverview/view-cards',
@@ -96,7 +96,6 @@ const DEFAULT_PAGED_CONTENT_CONFIG = {
  * @return {promise} Resolved with an array of courses.
  */
 const getMyCourses = (filters, limit) => {
-    limit = 10;
     return Repository.getEnrolledCoursesByTimeline({
         offset: courseOffset,
         limit: limit,
@@ -116,7 +115,6 @@ const getMyCourses = (filters, limit) => {
  * @return {promise} Resolved with an array of courses.
  */
 const getSearchMyCourses = (filters, limit, searchValue) => {
-    limit = 10;
     return Repository.getEnrolledCoursesByTimeline({
         offset: courseOffset,
         limit: limit,
@@ -578,7 +576,7 @@ const pageBuilder = (coursesData, currentPage, pageData, actions, activeSearch =
         const currentPageLength = pageCourses.length;
         if (currentPageLength < pageData.limit) {
             nextPageStart = pageData.limit - currentPageLength;
-            pageCourses = { ...loadedPages[currentPage].courses, ...courses.slice(0, nextPageStart) };
+            pageCourses = {...loadedPages[currentPage].courses, ...courses.slice(0, nextPageStart)};
         }
     } else {
         // When the page limit is zero, there is only one page of courses, no start for next page.
@@ -676,7 +674,7 @@ const initializePagedContent = (root, promiseFunction, inputValue = null) => {
     let itemsPerPage = itemsPerPageFunc(pagingLimit, root);
 
     const filters = getFilterValues(root);
-    const config = { ...{}, ...DEFAULT_PAGED_CONTENT_CONFIG };
+    const config = {...{}, ...DEFAULT_PAGED_CONTENT_CONFIG};
     config.eventNamespace = namespace;
 
     const pagedContentPromise = PagedContentFactory.createWithLimit(

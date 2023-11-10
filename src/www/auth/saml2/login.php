@@ -34,7 +34,6 @@ require_once(__DIR__ . '/../../config.php');
 require('setup.php');
 
 $wantsurl = optional_param('wantsurl', '', PARAM_LOCALURL); // Overrides $SESSION->wantsurl if given.
-var_dump($wantsurlm,"want url");
 if ($wantsurl !== '') {
     // This is later used in core_login_get_return_url().
     $SESSION->wantsurl = (new moodle_url($wantsurl))->out(false);

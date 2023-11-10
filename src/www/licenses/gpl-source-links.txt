@@ -1,1 +1,1 @@
-moodle-4.2.1,GPL-2.0-only,https://download.moodle.org/download.php/direct/stable402/moodle-4.2.1.tgz
+moodle-4.1.5,GPL-2.0-only,https://download.moodle.org/download.php/direct/stable401/moodle-4.1.5.tgz

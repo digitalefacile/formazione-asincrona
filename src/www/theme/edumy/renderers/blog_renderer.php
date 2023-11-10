@@ -66,7 +66,7 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
 
       $day = userdate($entry->created, '%d', 0);
       $month = userdate($entry->created, '%B', 0);
-      //  9/10/23 - MODIFICA ESTRAZIONE ANNO
+      // MAINLAB 9/10/23 - MODIFICA ESTRAZIONE ANNO
 	  $year = userdate($entry->created, '%Y', 0);
 
       // Adding external blog link.
@@ -329,7 +329,7 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
                 </div>';
                 }
 
-                #### MODIFIED BY 9/10/23 - Code and style for author's initials taken from theme/edumy/ccn/ccn_themehandler_context.php
+                #### MODIFIED BY MAINLAB 9/10/23 - Code and style for author's initials taken from theme/edumy/ccn/ccn_themehandler_context.php
 	          $o .= '
 				<div class="card">
 					<div class="card-header">

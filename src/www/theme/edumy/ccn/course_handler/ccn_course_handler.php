@@ -740,7 +740,7 @@ class ccnCourseHandler {
 
     // todo: we DONT want site context, so we're avoiding it with limitfrom1.
     $ccnCourses = $DB->get_records('course', array(), $sort='', $fields='*', $limitfrom=1, $limitnum=$maxNum);
-    
+
     $ccnReturn = array();
     foreach ($ccnCourses as $ccnCourse) {
       $ccnReturn[] = $this->ccnGetCourseDetails($ccnCourse->id);

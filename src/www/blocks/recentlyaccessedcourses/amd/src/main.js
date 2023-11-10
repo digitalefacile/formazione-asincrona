@@ -33,7 +33,7 @@ define(
         'core_course/repository',
         'core/aria',
     ],
-    function (
+    function(
         $,
         CustomEvents,
         Notification,
@@ -64,14 +64,14 @@ define(
         var visibleCoursesId = null;
         var cardWidth = null;
         var viewIndex = 0;
-        var availableVisibleCards = 7;
+        var availableVisibleCards = 1;
 
         /**
          * Show the empty message when no course are found.
          *
          * @param {object} root The root element for the courses view.
          */
-        var showEmptyMessage = function (root) {
+        var showEmptyMessage = function(root) {
             root.find(SELECTORS.EMPTY_MESSAGE).removeClass('hidden');
             root.find(SELECTORS.LOADING_PLACEHOLDER).addClass('hidden');
             root.find(SELECTORS.CONTENT).addClass('hidden');
@@ -82,7 +82,7 @@ define(
          *
          * @param {object} root The root element for the courses view.
          */
-        var showContent = function (root) {
+        var showContent = function(root) {
             root.find(SELECTORS.CONTENT).removeClass('hidden');
             root.find(SELECTORS.EMPTY_MESSAGE).addClass('hidden');
             root.find(SELECTORS.LOADING_PLACEHOLDER).addClass('hidden');
@@ -93,7 +93,7 @@ define(
          *
          * @param {object} root The root element for the courses view.
          */
-        var showPagingBar = function (root) {
+        var showPagingBar = function(root) {
             var pagingBar = root.find(SELECTORS.PAGING_BAR);
             pagingBar.css('opacity', 1);
             pagingBar.css('visibility', 'visible');
@@ -105,7 +105,7 @@ define(
          *
          * @param {object} root The root element for the courses view.
          */
-        var hidePagingBar = function (root) {
+        var hidePagingBar = function(root) {
             var pagingBar = root.find(SELECTORS.PAGING_BAR);
             pagingBar.css('opacity', 0);
             pagingBar.css('visibility', 'hidden');
@@ -118,8 +118,8 @@ define(
          * @param {object} root The root element for the courses view.
          * @param {number} courseId The id of the course to be favourited.
          */
-        var favouriteCourse = function (root, courseId) {
-            allCourses.forEach(function (course) {
+        var favouriteCourse = function(root, courseId) {
+            allCourses.forEach(function(course) {
                 if (course.attr('data-course-id') == courseId) {
                     course.find(SELECTORS.COURSE_IS_FAVOURITE).removeClass('hidden');
                 }
@@ -132,8 +132,8 @@ define(
          * @param {object} root The root element for the courses view.
          * @param {number} courseId The id of the course to be unfavourited.
          */
-        var unfavouriteCourse = function (root, courseId) {
-            allCourses.forEach(function (course) {
+        var unfavouriteCourse = function(root, courseId) {
+            allCourses.forEach(function(course) {
                 if (course.attr('data-course-id') == courseId) {
                     course.find(SELECTORS.COURSE_IS_FAVOURITE).addClass('hidden');
                 }
@@ -146,22 +146,22 @@ define(
          * @param {array} courses containing array of courses.
          * @return {promise} Resolved with list of rendered courses as jQuery objects.
          */
-        var renderAllCourses = function (courses) {
+        var renderAllCourses = function(courses) {
             var showcoursecategory = $(SELECTORS.BLOCK_CONTAINER).data('displaycoursecategory');
-            var promises = courses.map(function (course) {
+            var promises = courses.map(function(course) {
                 course.showcoursecategory = showcoursecategory;
                 return Templates.render('block_recentlyaccessedcourses/course-card', course);
             });
 
-            return $.when.apply(null, promises).then(function () {
+            return $.when.apply(null, promises).then(function() {
                 var renderedCourses = [];
 
-                promises.forEach(function (promise) {
-                    promise.then(function (html) {
+                promises.forEach(function(promise) {
+                    promise.then(function(html) {
                         renderedCourses.push($(html));
                         return;
                     })
-                        .catch(Notification.exception);
+                    .catch(Notification.exception);
                 });
 
                 return renderedCourses;
@@ -174,9 +174,9 @@ define(
          * @param {int} userid User whose courses will be shown
          * @returns {promise} The updated content for the block.
          */
-        var loadContent = function (userid) {
+        var loadContent = function(userid) {
             return CoursesRepository.getLastAccessedCourses(userid, NUM_COURSES_TOTAL)
-                .then(function (courses) {
+                .then(function(courses) {
                     return renderAllCourses(courses);
                 });
         };
@@ -186,9 +186,9 @@ define(
          *
          * @param {object} root The root element for the courses view.
          */
-        var recalculateVisibleCourses = function (root) {
+        var recalculateVisibleCourses = function(root) {
             var container = root.find(SELECTORS.CONTENT).find(SELECTORS.CARD_CONTAINER);
-            // var availableWidth = parseFloat(root.css('width'));
+            var availableWidth = parseFloat(root.css('width'));
             var numberOfCourses = allCourses.length;
             var start = 0;
 
@@ -199,8 +199,8 @@ define(
                 cardWidth = allCourses[0].outerWidth(true);
             }
 
-            // availableVisibleCards = Math.floor(availableWidth / cardWidth);
-            availableVisibleCards = 7;
+            availableVisibleCards = Math.floor(availableWidth / cardWidth);
+
             if (viewIndex + availableVisibleCards < numberOfCourses) {
                 start = viewIndex;
             } else {
@@ -216,7 +216,7 @@ define(
 
             var coursesToShow = allCourses.slice(start, start + availableVisibleCards);
             // Create an id for the list of courses we expect to be displayed.
-            var newVisibleCoursesId = coursesToShow.reduce(function (carry, course) {
+            var newVisibleCoursesId = coursesToShow.reduce(function(carry, course) {
                 return carry + course.attr('data-course-id');
             }, '');
 
@@ -260,19 +260,19 @@ define(
          *
          * @param {object} root The root element for the recentlyaccessedcourses block.
          */
-        var registerEventListeners = function (root) {
+        var registerEventListeners = function(root) {
             var resizeTimeout = null;
             var drawerToggling = false;
 
-            PubSub.subscribe(CourseEvents.favourited, function (courseId) {
+            PubSub.subscribe(CourseEvents.favourited, function(courseId) {
                 favouriteCourse(root, courseId);
             });
 
-            PubSub.subscribe(CourseEvents.unfavorited, function (courseId) {
+            PubSub.subscribe(CourseEvents.unfavorited, function(courseId) {
                 unfavouriteCourse(root, courseId);
             });
 
-            PubSub.subscribe('nav-drawer-toggle-start', function () {
+            PubSub.subscribe('nav-drawer-toggle-start', function() {
                 if (!contentLoaded || !allCourses.length || drawerToggling) {
                     // Nothing to recalculate.
                     return;
@@ -282,8 +282,8 @@ define(
                 var recalculationCount = 0;
                 // This function is going to recalculate the number of courses while
                 // the nav drawer is opening or closes (up to a maximum of 5 recalcs).
-                var doRecalculation = function () {
-                    setTimeout(function () {
+                var doRecalculation = function() {
+                    setTimeout(function() {
                         recalculateVisibleCourses(root);
                         recalculationCount++;
 
@@ -299,11 +299,11 @@ define(
                 doRecalculation(root);
             });
 
-            PubSub.subscribe('nav-drawer-toggle-end', function () {
+            PubSub.subscribe('nav-drawer-toggle-end', function() {
                 drawerToggling = false;
             });
 
-            $(window).on('resize', function () {
+            $(window).on('resize', function() {
                 if (!contentLoaded || !allCourses.length) {
                     // Nothing to reclculate.
                     return;
@@ -312,16 +312,16 @@ define(
                 // Resize events fire rapidly so recalculating the visible courses each
                 // time can be expensive. Let's debounce them,
                 if (!resizeTimeout) {
-                    resizeTimeout = setTimeout(function () {
+                    resizeTimeout = setTimeout(function() {
                         resizeTimeout = null;
                         recalculateVisibleCourses(root);
-                        // The recalculateVisibleCourses function will execute at a rate of 15fps.
+                    // The recalculateVisibleCourses function will execute at a rate of 15fps.
                     }, 66);
                 }
             });
 
             CustomEvents.define(root, [CustomEvents.events.activate]);
-            root.on(CustomEvents.events.activate, SELECTORS.PAGING_BAR_NEXT, function (e, data) {
+            root.on(CustomEvents.events.activate, SELECTORS.PAGING_BAR_NEXT, function(e, data) {
                 var button = $(e.target).closest(SELECTORS.PAGING_BAR_NEXT);
                 if (!button.hasClass('disabled')) {
                     viewIndex = viewIndex + availableVisibleCards;
@@ -331,7 +331,7 @@ define(
                 data.originalEvent.preventDefault();
             });
 
-            root.on(CustomEvents.events.activate, SELECTORS.PAGING_BAR_PREVIOUS, function (e, data) {
+            root.on(CustomEvents.events.activate, SELECTORS.PAGING_BAR_PREVIOUS, function(e, data) {
                 var button = $(e.target).closest(SELECTORS.PAGING_BAR_PREVIOUS);
                 if (!button.hasClass('disabled')) {
                     viewIndex = viewIndex - availableVisibleCards;
@@ -349,14 +349,15 @@ define(
          * @param {int} userid User from which the courses will be obtained
          * @param {object} root The root element for the recentlyaccessedcourses block.
          */
-        var init = function (userid, root) {
-
+        var init = function(userid, root) {
             root = $(root);
+
             registerEventListeners(root);
             loadContent(userid)
-                .then(function (renderedCourses) {
+                .then(function(renderedCourses) {
                     allCourses = renderedCourses;
                     contentLoaded = true;
+
                     if (allCourses.length) {
                         showContent(root);
                         recalculateVisibleCourses(root);

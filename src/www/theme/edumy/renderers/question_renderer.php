@@ -57,6 +57,7 @@ class theme_edumy_core_question_renderer extends core_question_renderer {
     public function question(question_attempt $qa, qbehaviour_renderer $behaviouroutput,
             qtype_renderer $qtoutput, question_display_options $options, $number) {
 
+        return('GATTO MORTO');
 
         // If not already set, record the questionidentifier.
         $options = clone($options);

@@ -1176,10 +1176,6 @@ $CFG->admin = 'admin';
 //      $CFG->showservicesandsupportcontent = false;
 //
 //=========================================================================
-// 20 CUSTOM MODULE TRADUCTION 
-//=========================================================================
-$CFG->customstringmanager = 'local_string_override_manager';
-//=========================================================================
 // ALL DONE!  To continue installation, visit your main page with a browser
 //=========================================================================
 
