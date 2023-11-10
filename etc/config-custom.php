@@ -16,6 +16,8 @@ $CFG->customstringmanager = 'local_string_override_manager';
 // server administration web interface.
 $CFG->disableupdateautodeploy = true;
 
+// S3
+$CFG->alternative_file_system_class = '\tool_objectfs\s3_file_system';
 
 // There is no php closing tag in this file,
 // it is intentional because it prevents trailing whitespace problems!
