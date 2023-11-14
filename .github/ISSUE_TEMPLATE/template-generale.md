@@ -1,9 +1,9 @@
 ---
 name: Template generale
 about: Compila questo modello per aprire una nuova issue
-title: 'Nome pagina - Nome componente: descrizione sintetica del problema'
+title: '[VAL/PROD] Nome pagina - Nome componente: descrizione sintetica del problema'
 labels: ''
-assignees: sarapiritore
+assignees: bertuccia93
 
 ---
 
