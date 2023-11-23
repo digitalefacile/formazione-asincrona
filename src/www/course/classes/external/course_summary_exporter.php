@@ -66,12 +66,20 @@ class course_summary_exporter extends \core\external\exporter {
         }
         $progress = floor($progress ?? 0);
         $coursecategory = \core_course_category::get($this->data->category, MUST_EXIST, true);
+        $progressionCustomCard=0;
+        if($progress>=1){
+            $progressionCustomCard=true;
+        }else{
+            $progressionCustomCard=false;
+
+        }
+
         return array(
             'fullnamedisplay' => get_course_display_name_for_list($this->data),
             'viewurl' => (new moodle_url('/course/view.php', array('id' => $this->data->id)))->out(false),
             'courseimage' => $courseimage,
             'progress' => $progress,
-            'hasprogress' => $hasprogress,
+            'hasprogress' =>  $progressionCustomCard,
             'isfavourite' => $this->related['isfavourite'],
             'hidden' => boolval(get_user_preferences('block_myoverview_hidden_course_' . $this->data->id, 0)),
             'showshortname' => $CFG->courselistshortnames ? true : false,
