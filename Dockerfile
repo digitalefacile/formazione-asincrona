@@ -2,6 +2,22 @@ ARG BASE_IMAGE="bitnami/moodle"
 
 FROM "${BASE_IMAGE}" AS base
 
+ARG PHPREDIS_VERSION="6.0.2"
+
+RUN apt-get update && \
+    apt-get install -y autoconf build-essential wget && \
+    wget "https://pecl.php.net/get/redis-${PHPREDIS_VERSION}.tgz" && \
+    tar xzf "redis-${PHPREDIS_VERSION}.tgz" && \
+    cd "redis-${PHPREDIS_VERSION}" && \
+    phpize && \
+    ./configure && \
+    make && \
+    make install && \
+    cd .. && rm -rf "redis-${PHPREDIS_VERSION}/" "redis-${PHPREDIS_VERSION}.tgz" && \
+    apt purge wget build-essential autoconf ; apt autoremove --purge -y ; apt autoclean -y ; apt clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/* && \
+    echo "extension = redis" >> /opt/bitnami/php/lib/php.ini
+
 # Fix: start just crond in a dedicated Pod
 COPY --chown=root:root --chmod=755 scripts/cron-run.sh /opt/bitnami/scripts/moodle/run.sh
 
