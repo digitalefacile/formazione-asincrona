@@ -202,6 +202,76 @@ if(get_config('theme_edumy', 'course_single_style') == 1) { // v2
 //   $PAGE->set_pagelayout('admin');
 // }
 
+// override output->navbar with custom breadcrumbs
+
+// delete all nodes from navbar
+$PAGE->navbar->ignore_active();
+
+// home node needs to be removed using custom css  // .inner_page_breadcrumb .breadcrumb-item:first-of-type { display: none; }
+// .inner_page_breadcrumb .breadcrumb-item:nth-of-type(2):before { content: ""; }
+
+// in a course page, show just my courses and the course name
+if (str_starts_with($PAGE->pagetype,'course-view-')) {
+
+  // add a node for my courses page
+  $PAGE->navbar->add(get_string('mycourses'), new moodle_url('/my/courses.php'));
+
+  // add a node for the current course with the course name and no link
+  $PAGE->navbar->add($PAGE->course->fullname, null, navigation_node::TYPE_CUSTOM);
+
+}
+
+// in a scorm page, show course name, activity name and activity title
+if (str_starts_with($PAGE->pagetype,'mod-scorm-')) {
+
+  // get the url for current course
+  $course_url = new moodle_url('/course/view.php', array('id' => $PAGE->course->id));
+
+    // Get course module ID
+    $cmid = optional_param('id', 0, PARAM_INT);
+
+// Verifica che il modulo del corso esista
+if (!$DB->record_exists('course_modules', array('id' => $cmid))) {
+    die('invalidcoursemodule');
+}
+  //$cmid = $PAGE->activityrecord->course; 
+
+  // Load course module object  
+  $cm = get_coursemodule_from_id('', $cmid, 0, false, MUST_EXIST);
+
+  // Load section object
+  $section = $DB->get_record('course_sections', array('id' => $cm->section), '*', MUST_EXIST);
+
+  // Get section URL
+  $sectionurl = course_get_url($cm->course, $sectionid);
+
+  // add a node to $PAGE->navbar for the current course with the course name
+  $PAGE->navbar->add($PAGE->course->fullname, $course_url, navigation_node::TYPE_CUSTOM);
+
+  // add a node to $PAGE->navbar for the current subsection
+  $PAGE->navbar->add($section->name, $sectionurl, navigation_node::TYPE_CUSTOM);
+
+  // add a node to $PAGE->navbar for the current activity with the activity name
+  $PAGE->navbar->add($PAGE->activityrecord->name, null, navigation_node::TYPE_CUSTOM);
+
+}
+
+// in a course blog page, show course name and blog name
+if (str_starts_with($PAGE->pagetype,'mod-page-view') && $PAGE->course->format == 'flexsections') {
+
+  // get the url for current course
+  $course_url = new moodle_url('/course/view.php', array('id' => $PAGE->course->id));
+
+  // add a node to $PAGE->navbar for the current course with the course name
+  $PAGE->navbar->add($PAGE->course->fullname, $course_url, navigation_node::TYPE_CUSTOM);
+
+  // add a node to $PAGE->navbar with a label "Informazioni sul corso" and no link
+  $PAGE->navbar->add("Informazioni sul corso", null, navigation_node::TYPE_CUSTOM);
+
+}
+
+
+
 $ccnHook_userNotifIcon = '';
 $ccnHook_userMesseIcon = '';
 $ccnHook_custMenAuth = '';
@@ -674,7 +744,7 @@ if(class_exists('core\navigation\output\primary')) {
 }
 
 
-// In modalità page view, mostra il bottone di ritorno all pag. del corso
+// In modalità page view, mostra il bottone di ritorno alla pag. del corso
 $back2coursePagetypes = ['mod-page-view','mod-scorm-view','mod-quiz-attempt','mod-quiz-view','mod-quiz-review'];
 $back2CourseBtn = '';
 if(in_array($PAGE->pagetype,$back2coursePagetypes)) {

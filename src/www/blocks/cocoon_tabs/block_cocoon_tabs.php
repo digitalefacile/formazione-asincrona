@@ -127,7 +127,14 @@ class block_cocoon_tabs extends block_base {
                                        font-style: normal;
                                        font-weight: 700;
                                        line-height: 24px;"';
-                        $inputButton='';
+                        $inputButton='
+                                       <div class="find-out-more">
+                                       <a id="scopriDipiùTab"  aria-label="Scopri di più" class="text_3_tabs" >Scopri di più 
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="margin-left: 5px;"viewBox="0 0 24 24" fill="none">
+                                       <path d="M13.9 5L13.2 5.7L18.5 11.1H3V12.1H18.5L13.2 17.5L13.9 18.2L20.5 11.6L13.9 5Z" fill="#0066CC"/>
+                                     </svg>
+                                     </a>
+                                   </div> ';
                       }else if( $ccnTabBody =='text2'){
                         $titleOfAccordion='Consulta il forum annunci';
                         $inputButton='
