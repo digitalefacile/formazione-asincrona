@@ -22,7 +22,7 @@ $ccnUserHandler = new ccnUserHandler();
 $ccnIsCourseCreator = $ccnUserHandler->ccnCheckRoleIsCourseCreatorAnywhere($USER->id);
 $ccnIsManager = $ccnUserHandler->ccnCheckRoleIsManagerAnywhere($USER->id);
 $ccnCurrentUserIsAuthenticated = $ccnUserHandler->ccnCurrentUserIsAuthenticated();
-
+$test  = $ccnUserHandler->ccnGetUserDetails($USER->id);
 $ccnPageHandler = new ccnPageHandler();
 $pageheading = $ccnPageHandler->ccnGetPageTitle();
 
@@ -228,7 +228,7 @@ if (str_starts_with($PAGE->pagetype,'mod-scorm-')) {
   $course_url = new moodle_url('/course/view.php', array('id' => $PAGE->course->id));
 
     // Get course module ID
-  $cmid = optional_param('id', 0, PARAM_INT);
+    // $cmid = optional_param('id', 0, PARAM_INT);
 
 // Verifica che il modulo del corso esista
 // if (!$DB->record_exists('course_modules', array('id' => $cmid))) {
@@ -237,19 +237,19 @@ if (str_starts_with($PAGE->pagetype,'mod-scorm-')) {
   //$cmid = $PAGE->activityrecord->course; 
 
   // Load course module object  
-  $cm = get_coursemodule_from_id('', $cmid, 0, false, MUST_EXIST);
+  // $cm = get_coursemodule_from_id('', $cmid, 0, false, MUST_EXIST);
 
   // Load section object
-  $section = $DB->get_record('course_sections', array('id' => $cm->section), '*', MUST_EXIST);
+  // $section = $DB->get_record('course_sections', array('id' => $cm->section), '*', MUST_EXIST);
 
   // Get section URL
-  $sectionurl = course_get_url($cm->course, $sectionid);
+  // $sectionurl = course_get_url($cm->course, $sectionid);
 
   // add a node to $PAGE->navbar for the current course with the course name
   $PAGE->navbar->add($PAGE->course->fullname, $course_url, navigation_node::TYPE_CUSTOM);
 
   // add a node to $PAGE->navbar for the current subsection
-  $PAGE->navbar->add($section->name, $sectionurl, navigation_node::TYPE_CUSTOM);
+  // $PAGE->navbar->add($section->name, $sectionurl, navigation_node::TYPE_CUSTOM);
 
   // add a node to $PAGE->navbar for the current activity with the activity name
   $PAGE->navbar->add($PAGE->activityrecord->name, null, navigation_node::TYPE_CUSTOM);
@@ -270,7 +270,6 @@ if (str_starts_with($PAGE->pagetype,'mod-page-view') && $PAGE->course->format ==
 
 }
 
-
 if (str_starts_with($PAGE->pagetype,'mod-page-view') && $PAGE->course->format == 'singleactivity') {
 
   // get the url for current course
@@ -288,10 +287,7 @@ if (str_starts_with($PAGE->pagetype,'mod-page-view') && $PAGE->course->format ==
   }
 
 
-
 }
-
-
 
 $ccnHook_userNotifIcon = '';
 $ccnHook_userMesseIcon = '';
@@ -737,8 +733,10 @@ if(!empty($USER->lang)){$USER->lang = $USER->lang;}else{$USER->lang = '';}
 
 $secondarynavigation = false;
 $overflow = '';
+ $customRole = current(get_user_roles(context_system::instance(), $USER->id))->name;
 if (method_exists($PAGE, 'has_secondary_navigation') && $PAGE->has_secondary_navigation()) {
-  if(is_siteadmin() || $ccnIsManager || $ccnIsCourseCreator){
+  if(is_siteadmin() || $ccnIsManager || $ccnIsCourseCreator || $customRole == 'Tutor'){
+  
     $tablistnav = $PAGE->has_tablist_secondary_navigation();
     $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
     $secondarynavigation = $moremenu->export_for_template($OUTPUT);
