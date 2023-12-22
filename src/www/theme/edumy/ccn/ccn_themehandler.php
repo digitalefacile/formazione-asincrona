@@ -764,7 +764,7 @@ if(class_exists('core\navigation\output\primary')) {
 
 
 // In modalità page view, mostra il bottone di ritorno alla pag. del corso
-$back2coursePagetypes = ['mod-page-view','mod-scorm-view','mod-quiz-attempt','mod-quiz-view','mod-quiz-review'];
+$back2coursePagetypes = [];
 $back2CourseBtn = '';
 if(in_array($PAGE->pagetype,$back2coursePagetypes)) {
 	$arialabel = 'Torna al corso ' . $coursefullname;
