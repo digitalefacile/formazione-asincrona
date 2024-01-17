@@ -33,7 +33,22 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
       }
       // END additions
 
-      global $CFG, $PAGE;
+	  // Pulizia lista tag dai ruoli (tutti, Facilitatore, Volontario) ed estrazione primo tag rimanente per categoria
+	  // Oppure default a Senza categoria
+
+	  foreach ( $currentTags as $id => $current_tag ) {
+		  if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' ) {
+			  unset( $currentTags[ $id ] );
+		  }
+	  }
+
+	  if ( empty( $currentTags ) ) {
+		  $currentCategory = array( 'Senza categoria' );
+	  } else {
+		  $currentCategory = array_slice( $currentTags, 0, 1 );
+	  }
+
+	  global $CFG, $PAGE;
 
       $ccnBlogHandler = new ccnBlogHandler();
       $ccnGetPostDetails = $ccnBlogHandler->ccnGetPostDetails($entry->id);
@@ -65,8 +80,8 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
       // $o .= $this->output->container(get_string('bynameondate', 'forum', $by), 'author');
 
       $day = userdate($entry->created, '%d', 0);
-      $month = userdate($entry->created, '%B', 0);
-      // MAINLAB 9/10/23 - MODIFICA ESTRAZIONE ANNO
+      $month = userdate($entry->created, '%m', 0);
+      //  9/10/23 - MODIFICA ESTRAZIONE ANNO
 	  $year = userdate($entry->created, '%Y', 0);
 
       // Adding external blog link.
@@ -329,29 +344,18 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
                 </div>';
                 }
 
-                #### MODIFIED BY MAINLAB 9/10/23 - Code and style for author's initials taken from theme/edumy/ccn/ccn_themehandler_context.php
+	          #### MODIFIED BY 9/10/23 - Code and style for author's initials taken from theme/edumy/ccn/ccn_themehandler_context.php
 	          $o .= '
-				<div class="card">
+				<div class="card" id="card-' . $entry->id . '">
 					<div class="card-header">
-	                    <div class="details pt-0 d-flex flex-row">
-		                    <div class="pull-left rounded-circle name-circle">' # ADDED AUTHOR'S INITIALS
-			                . substr( $entry->renderable->user->firstname, 0, 1 )
-			                . substr( $entry->renderable->user->lastname, 0, 1 )
-			                . '</div> <!-- end name-circle -->'
-	                . /*'<a href="'.$entryurl.'">*/
-	                '
-		                
-		                    <div class="details-data pl-2">
-		                    <span id="entry-subject">' . format_text(
-								$entry->subject,
-								FORMAT_HTML,
-								array( 'filter' => true ) ) . '</span> ' /*' </a> // LINK REMOVED */
-	          ;
+	                    <div class="details pt-0">
+							<div class="details-data d-flex flex-row">';
+
+	          // Stampa categoria del post
+	          $o .= '<div class="category badge badge-secondary">' . $currentCategory[0] . '</div><!-- end category -->';
 
 	          if ( $PAGE->theme->settings->blog_post_author != 1 ) {
-		          $o .=/*'<li><span class="flaticon-profile"></span></li>*/
-			          '<br><span id="author-fullname">di&nbsp;' . $fullname . '</span>'; # AUTHOR ICON REMOVED; ADDED "di"
-               
+		          $o .= '<div class="metadata">' . $fullname;
 	          }
 
 	          if ( ! empty( $entry->renderable->comment ) ) {
@@ -361,23 +365,55 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
 	          }
 
 	          if ( $PAGE->theme->settings->blog_post_date != 1 ) { # ADDED POST DATE
-		          $o .= ' &ndash; <span id="post-date" class="post-date">' . $day . ' ' . $month . ' ' . $year . '';
+		          $o .= ' &dash; <span id="post-date" class="post-date">' . $day . '/' . $month . '/' . $year .
+		          '</span>
+                    </div><!-- end metadata -->';
 	          }
 
+	          $o .= '</div><!-- end details-data -->
+				   </div> <!-- end details -->';
+
+
+	          $o .= '
+							<div class="entry-title details-data">
+								<span id="entry-subject">' .
+	                format_text(
+			          $entry->subject,
+			          FORMAT_HTML,
+			          array( 'filter' => true )
+	                ) .
+	                '          </span>';
+
+
 	          if ( $entry->renderable->usercanedit ) {
-		          $o .= '<div class="ccn-commands">' . $ccn_commands . '</div>';
+		          $o .= '<div class="ccn-commands">' . $ccn_commands . '</div> <!-- end commands -->';
 	          }
 
 	          $o .= '
 						</div> <!-- end details-data -->
                    </div> <!-- end details -->
-                 </div>' . /* '</a>' */ '
+                 <!-- </div> -->
                  <div class="card-body">
-                   <p>' .
-	                /* substr( format_string( $entry->summary, $striplinks = true, $options = null ), 0, 300 ) . '... */
-	                format_string( $entry->summary, $striplinks = true, $options = null ) . '
-                   </p>
-                 </div>';
+                   ';
+
+	          $o .= '
+	            <div class="content-preview">
+	                <!-- Show only a portion of the content -->
+	                <p>' .
+	                substr( format_string( $entry->summary, $striplinks = true, $options = null ), 0, 300 ) . '
+					</p>
+				</div>
+				<div class="content-full" style="display: none;">
+				<!-- The full content -->' .
+					format_text( $entry->summary, FORMAT_HTML ) . '
+				</div>
+	          ';
+
+              $o .= '</div>
+				<div class="card-footer">
+					<a href="#" id="toggle-' . $entry->id . '" class="expand-link" data-target-id="' . $entry->id . '" data-status="expand">Mostra di più</a>
+				</div>';
+
 
 	          $o .= '
 			</div></div></div>';

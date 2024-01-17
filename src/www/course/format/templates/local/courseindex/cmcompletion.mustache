@@ -30,12 +30,18 @@
 }}
 {{#iscomplete}}
     <span class="completioninfo completion_complete" data-for="cm_completion" data-value="{{state}}">
-        {{#pix}} t/completion_complete, moodle, {{#str}} done, completion {{/str}} {{/pix}}
+        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="11.5" cy="12.2966" rx="10.5" ry="10.4807" fill="#7DA866"/>
+        <path d="M9.81621 16.4231L5.75 12.3634L7.10508 11.0108L9.81621 13.716L15.2365 8.30469L16.5926 9.65823L9.81621 16.4212V16.4231Z" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.958252 12.2967C0.958252 6.48551 5.67804 1.77441 11.4999 1.77441C17.3218 1.77441 22.0416 6.48551 22.0416 12.2967C22.0416 18.1078 17.3218 22.8189 11.4999 22.8189C5.67804 22.8189 0.958252 18.1078 0.958252 12.2967ZM11.4999 20.9058C10.3673 20.9058 9.24571 20.6831 8.19927 20.2505C7.15284 19.8178 6.20203 19.1837 5.40112 18.3842C4.60022 17.5848 3.9649 16.6357 3.53146 15.5912C3.09801 14.5467 2.87492 13.4272 2.87492 12.2967C2.87492 11.1661 3.09801 10.0466 3.53146 9.0021C3.9649 7.95759 4.60022 7.00853 5.40112 6.2091C6.20203 5.40967 7.15284 4.77553 8.19927 4.34288C9.24571 3.91023 10.3673 3.68755 11.4999 3.68755C13.7874 3.68755 15.9812 4.59458 17.5987 6.2091C19.2162 7.82362 20.1249 10.0134 20.1249 12.2967C20.1249 14.5799 19.2162 16.7697 17.5987 18.3842C15.9812 19.9988 13.7874 20.9058 11.4999 20.9058Z" fill="white"/>
+        </svg>
     </span>
 {{/iscomplete}}
 {{#isincomplete}}
     <span class="completioninfo completion_incomplete" data-for="cm_completion" data-value="{{state}}">
-        {{#pix}} t/completion_incomplete, moodle, {{#str}} todo, completion {{/str}} {{/pix}}
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 8.48435C16 12.6161 12.6439 15.9687 8.5 15.9687C4.35613 15.9687 1 12.6161 1 8.48435C1 4.35259 4.35613 1 8.5 1C12.6439 1 16 4.35259 16 8.48435Z" stroke="#0065CC" stroke-width="2"/>
+        </svg>
     </span>
 {{/isincomplete}}
 {{#isfail}}
@@ -44,5 +50,9 @@
     </span>
 {{/isfail}}
 {{^hasstate}}
-    <span class="completioninfo completion_none" data-for="cm_completion" data-value="{{state}}"></span>
+    <span class="completioninfo completion_none" data-for="cm_completion" data-value="{{state}}">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 8.48435C16 12.6161 12.6439 15.9687 8.5 15.9687C4.35613 15.9687 1 12.6161 1 8.48435C1 4.35259 4.35613 1 8.5 1C12.6439 1 16 4.35259 16 8.48435Z" stroke="#0065CC" stroke-width="2"/>
+        </svg>
+    </span>
 {{/hasstate}}

@@ -270,10 +270,20 @@ $templatecontext = [
 
     'has_back2course_btn' => !empty($back2CourseBtn),
     'back2course_btn' => $back2CourseBtn,
-	// Aggiunta due variabili una per tipo di pagina (non usata, solo per debug) ed
+
+    // Aggiunta due variabili una per tipo di pagina (non usata, solo per debug) ed
 	// una per indicare se siamo su una pagina quiz
 	'pagetype' => $PAGE->pagetype,
 	'isquiz' => ( in_array( $PAGE->pagetype, [ 'mod-quiz-view', 'mod-quiz-attempt' ] ) ),
+	'isblog' => ( $PAGE->pagetype == 'blog-index' ),
+
+  // Aggiunte variabili per replicare l'indice del corso laterale di boost
+  'courseindex' => $courseindex,
+  'courseindexopen' => $courseindexopen,
+  'blockdraweropen' => $blockdraweropen,
+  'forceblockdraweropen' => $forceblockdraweropen,
+  'hasprogress' => $hasprogress,
+  'progress' => floor($progress ?? 0),
 ];
 
 if((int)$ccnMdlVersion >= 400) {

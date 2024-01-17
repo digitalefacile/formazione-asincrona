@@ -222,7 +222,7 @@ if (str_starts_with($PAGE->pagetype,'course-view-')) {
 }
 
 // in a scorm page, show course name, activity name and activity title
-if (str_starts_with($PAGE->pagetype,'mod-scorm-')) {
+if ( str_starts_with($PAGE->pagetype,'mod-scorm-view') ||  str_starts_with($PAGE->pagetype,'mod-scorm-player') ) {
 
   // get the url for current course
   $course_url = new moodle_url('/course/view.php', array('id' => $PAGE->course->id));
@@ -342,7 +342,22 @@ $sidebar_single_right = ($hasblocks && !$hasleftblocks);
 $sidebar_double = ($hasblocks && $hasleftblocks);
 $sidebar_none = (!$hasblocks && !$hasleftblocks);
 
-
+// Custom for boost course index sidebar in edumy theme
+$courseindex_pagetypes = ['course-view-flexsections','mod-scorm-player'];
+$courseindex = false;
+if(in_array($PAGE->pagetype, $courseindex_pagetypes)) {  
+  $courseindex = core_course_drawer();
+  if (isloggedin()) {
+    $courseindexopen = (get_user_preferences('drawer-open-index', true) == true);
+    $blockdraweropen = (get_user_preferences('drawer-open-block') == true);
+  } else {
+    $courseindexopen = false;
+    $blockdraweropen = false;
+  }
+  $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
+}
+$progress = \core_course\external\course_summary_exporter::get_course_progress($COURSE);
+$hasprogress = !empty($progress);
 
 $blocks_user_notifications = $OUTPUT->blocks('user-notif');
 $blocks_user_messages = $OUTPUT->blocks('user-messages');
