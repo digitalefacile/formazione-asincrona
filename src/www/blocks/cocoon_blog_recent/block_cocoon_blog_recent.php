@@ -111,7 +111,7 @@ $this->content->text .= '
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="justify-content: center;">
       <!--div class="col-lg-6 col-xl-6">
       <div class="blog_slider_home1 ccn-blog-slider-thumb">';
             $i = 0;
@@ -166,6 +166,7 @@ $i++;
 $this->content->text .='</div>
 				</div-->';
         $j = 0;
+		$printed_entry = 0;
         foreach ($entries as $entryid => $entry) {
           if($j >= 0 && $j <= 2) {
             //$viewblogurl->param('entryid', $entryid);
@@ -180,8 +181,44 @@ $this->content->text .='</div>
             $tags = $OUTPUT->tag_list(core_tag_tag::get_item_tags('core', 'post', $entry->id));
             // print_object($tags);
 
+	          // Filter blog entry by tag
+	          $currentTags = core_tag_tag::get_item_tags_array( 'core', 'post', $entry->id );
 
-            // $this->content->text .= '
+	          // retrieve current user's roles
+	          global $USER;
+	          $currentRoleNames = [];
+	          $context          = context_system::instance();
+	          $currentRoles     = get_user_roles( $context, $USER->id, true );
+	          foreach ( $currentRoles as $currentRole ) {
+		          $currentRoleNames[] = $currentRole->name;
+	          }
+
+	          // match roles with post tags
+	          if ( ! in_array( 'tutti', $currentTags )  // non c'è il tag tutti
+	               && empty( array_intersect( $currentRoleNames,
+	                                          $currentTags ) )   // non c'è il tag corrispondente al ruolo
+	               && ! is_siteadmin() ) {  // l'utente non può editare il post
+		          continue;
+	          }
+	          // END additions
+
+	          // Pulizia lista tag dai ruoli (tutti, Facilitatore, Volontario) ed estrazione primo tag rimanente per categoria
+	          // Oppure default a Senza categoria
+
+	          foreach ( $currentTags as $id => $current_tag ) {
+		          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' ) {
+			          unset( $currentTags[ $id ] );
+		          }
+	          }
+
+	          if ( empty( $currentTags ) ) {
+		          $currentCategory = array( 'Senza categoria' );
+	          } else {
+		          $currentCategory = array_slice( $currentTags, 0, 1 );
+	          }
+
+
+	          // $this->content->text .= '
             // <div class="col-md-6 col-lg-4 col-xl-4">
             //   <!--div class="blog_post ccn-blog-featured-thumb">
             //     <a href="'.$viewblogurl.'"><div class="thumb">
@@ -196,14 +233,21 @@ $this->content->text .='</div>
             //       <a href="'.$viewblogurl.'"><h4>'. $entry->subject.'</h4></a>
             //     </div>
             //   </div-->
-              
+
               $this->content->text .= '
               <div class="col-md-6 col-lg-4 col-xl-4">
               <div class="blog_recent_card">
               <div class="blog_recent_card_inside">
                   <div class="blog_recent_card_info">
                   ';
-              
+
+	          if ( ! empty( $currentCategory ) ) {
+		          $this->content->text .= '
+                    <div style="padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; background: #5C6F82; border-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                    <div style="color: white; font-size: 14px; font-family: Titillium Web; font-weight: 700; line-height: 16px; word-wrap: break-word">
+                          ' . $currentCategory[0] . '
+                          </div></div>';
+	          }
                   /* SEGNAPOSTO PER TAGS, eventualmente da sistemare come stile
                   if(!empty($tags)) {
                     $this->content->text .= '
@@ -259,7 +303,7 @@ $this->content->text .='</div>
                   </div>
                   <div style="align-self: stretch; height: 160px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
                   <div style="align-self: stretch; color: #0066CC; font-size: 20px; font-family: Titillium Web; font-weight: 600; line-height: 24px; word-wrap: break-word">
-                  '.$entry->subject.' 
+                  '.$entry->subject.'
                   </div>
                   <div style="align-self: stretch; color: #2F475E; font-size: 16px; font-family: Titillium Web; font-weight: 400; line-height: 24px; word-wrap: break-word">
                   '.shorten_text($entry->summary, 100).'
@@ -277,7 +321,12 @@ $this->content->text .='</div>
             ';*/
           }
           $j++;
+		  $printed_entry++;
           }
+
+	        if ( ! $printed_entry ) {
+		        $this->content->text .= '<div class="blog_recent_no_entry">Per il momento non sono stati inseriti comunicazioni e avvisi relativi ai corsi.</div>';
+	        }
 
 //echo $this->content->text;
 

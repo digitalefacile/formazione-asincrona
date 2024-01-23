@@ -396,24 +396,42 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
                  <div class="card-body">
                    ';
 
-	          $o .= '
+			  $preview = shorten_text( $entry->summary, 300 );
+
+			  $full_content = format_text( $entry->summary, FORMAT_HTML );
+			  $need_prewiev = strlen( format_string( $entry->summary, $striplinks = true, $options = null ) ) > 300;
+
+	          if ( $need_prewiev ) {
+				  $o .= '
 	            <div class="content-preview">
 	                <!-- Show only a portion of the content -->
 	                <p>' .
-	                substr( format_string( $entry->summary, $striplinks = true, $options = null ), 0, 300 ) . '
+				        $preview . '
 					</p>
 				</div>
 				<div class="content-full" style="display: none;">
 				<!-- The full content -->' .
-					format_text( $entry->summary, FORMAT_HTML ) . '
+				        $full_content . '
 				</div>
 	          ';
 
-              $o .= '</div>
+				  $o .= '</div>
 				<div class="card-footer">
 					<a href="#" id="toggle-' . $entry->id . '" class="expand-link" data-target-id="' . $entry->id . '" data-status="expand">Mostra di più</a>
 				</div>';
+			  } else {
+					$o .= '
+				<div class="content" >
+				<!-- The full content -->' .
+				        $full_content . '
+				</div>
+	          ';
 
+				  $o .= '</div>
+				<div class="card-footer">
+					&nbsp;&nbsp;
+				</div>';
+			  }
 
 	          $o .= '
 			</div></div></div>';
@@ -553,10 +571,7 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
           }
 }
 
-
       return $o;
   }
-
-
 
 }
