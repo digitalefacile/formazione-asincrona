@@ -5,14 +5,25 @@
   <div class="wrapper" id="page-content">
     {{> theme_edumy/ccn_mdl_400/navbar }}
 
+    <div class="mobile-breadcrumb d-lg-none">
+      {{> theme_edumy/ccn_breadcrumb }}
+    </div>
+
     {{#courseindex}}
     {{! Se è attivo l'indice del corso, va messo in un wrapper insieme a breadcrumb e page-wrapper }}
     <div id="ccn-course-index-breadcrumb-page-wrapper" class="container-fluid">
     <div class="row">
-    <div class="col-4 col-xl-3 d-none d-lg-block ccn-course-courseindex-col">
+    <div class="col-md-12 col-lg-3 d-md-inline d-lg-block ccn-course-courseindex-col">
+      <div class="courseindex-toggle-wrapper my-2">
+		    <a class="btn btn-secondary d-md-none" data-toggle="collapse" href="#theme_boost-drawers-courseindex" role="button"
+		       aria-expanded="false" aria-controls="theme_boost-drawers-courseindex">
+			    Indice del corso
+		    </a>
+      </div>
         {{< theme_boost/drawer }}
             {{$id}}theme_boost-drawers-courseindex{{/id}}
-            {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
+<!--	        {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}-->
+	        {{$drawerclasses}}drawer d-lg-block collapse{{/drawerclasses}}
             {{$drawercontent}}
                 {{{courseindex}}}
             {{/drawercontent}}
@@ -27,8 +38,9 @@
     <div id="ccn-course-breadcrumb-page-wrapper" class="col-12 col-lg-8 col-xl-9">
     {{/courseindex}}
 
-
+<div class="d-none d-lg-block ">
   {{> theme_edumy/ccn_breadcrumb }}
+</div>
 
     <div id="ccn-page-wrapper">
       <div id="ccnSettingsMenuContainer">

@@ -156,6 +156,12 @@ class section implements named_templatable, renderable {
         $haspartials['cm'] = $this->add_cm_data($data, $output);
         $this->add_format_data($data, $haspartials, $output);
 
+        // Se è un test iniziale aggiungo un campo per poterlo gestire in modo diverso
+        $data->testiniziale = false;
+        if($section->name == 'Test iniziale') {
+            $data->testiniziale = true;
+        }
+
         return $data;
     }
 

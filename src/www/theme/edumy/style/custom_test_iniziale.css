@@ -1,0 +1,80 @@
+/* STILI CUSTOM per l'attività test iniziale */
+/* nascondo l'icona dell'attività */
+.path-course-view .course-content li.activity .testiniziale .activityiconcontainer { 
+    display: none;
+}
+
+/* stile per il box dell'attività */
+.path-course-view .course-content li.activity .testiniziale { 
+    border-radius: 5px; 
+    padding: 21px;
+}
+.path-course-view .course-content li.activity .testiniziale.testiniziale-incomplete { 
+    background: #003366; 
+    border: 1px #D9DADB solid;
+}
+.path-course-view .course-content li.activity .testiniziale.testiniziale-completed { 
+    background: #d9d9d9; 
+}
+
+/* stile per il titolo dell'attività */
+.path-course-view .course-content li.activity .testiniziale .activityname { 
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+}
+.path-course-view .course-content li.activity .testiniziale.testiniziale-incomplete .activityname { 
+    color: #fff;
+}
+.path-course-view .course-content li.activity .testiniziale.testiniziale-completed .activityname { 
+    color: #000;
+}
+
+/* stile per la descrizione dell'attività */
+.path-course-view .course-content li.activity .testiniziale .description .no-overflow { 
+    overflow: hidden;
+}
+.path-course-view .course-content li.activity .testiniziale .description .course-description-item { 
+    background-color: transparent;
+}
+.path-course-view .course-content li.activity .testiniziale .description .course-description-item .description-inner {
+    font-size: 16px;
+    line-height: 20px;
+}
+.path-course-view .course-content li.activity .testiniziale.testiniziale-incomplete .description .course-description-item .description-inner {
+    color: #fff !important;
+}
+.path-course-view .course-content li.activity .testiniziale.testiniziale-completed .description .course-description-item .description-inner {
+    color: #000 !important;
+}
+.path-course-view .course-content li.activity .testiniziale .description .course-description-item .description-inner.text-break {
+    border: 0;
+}
+
+/* stile per il bottone dell'attività */
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] {
+    display: block !important;
+    text-align: center;
+}
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-incomplete,
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-completed,
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-incomplete:hover,
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-completed:hover {
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 16px 32px;
+    }
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-incomplete,
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-incomplete:hover {
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: #003366;
+}
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-completed,
+.path-course-view .course-content li.activity .testiniziale [data-region=activity-info-cta] .btn-test-iniziale-completed:hover {
+    background-color: transparent;
+    border: 1px solid #000;
+    color: #000;
+}
