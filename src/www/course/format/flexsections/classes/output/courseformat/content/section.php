@@ -97,6 +97,86 @@ class section extends \core_courseformat\output\local\content\section {
             $data->insertsubsection = $this->export_add_section($output, $this->section->id);
         }
 
+        // Controlla se l'utente ha già superato il test iniziale, se no salta il resto
+        // Check if current section starts with "Livello"
+        if (strpos($this->section->name, 'Livello') === 0) { // !!! Qui assumiamo che la sezione si chiami "Livello base/intermedio/avanzato"
+
+            global $CFG, $USER, $DB;
+            require_once($CFG->libdir.'/completionlib.php');
+
+            // Get all activities in the course
+            $modinfo = get_fast_modinfo($course->id);
+            $activities = $modinfo->get_cms();
+
+            // Check if there is an activity called "Test iniziale"
+            $testiniziale = null;
+            foreach ($activities as $activity) {
+                if ($activity->name == 'Test iniziale') {
+                    $testiniziale = $activity;
+                    break;
+                }
+            }
+
+            if ($testiniziale) {
+                // Check if the activity has been completed by the current user
+                $completioninfo = new \completion_info($course);
+                $completiondata = $completioninfo->get_data($testiniziale, false, $USER->id);
+                
+                $iscomplete = $completiondata->completionstate == COMPLETION_COMPLETE;
+                
+                if ($iscomplete) {
+                    
+                    // Get the time when the activity was completed
+                    $completiontimeObj = $DB->get_record_sql("SELECT timemodified FROM mdl_course_modules_completion where coursemoduleid = ? and userid = ?"
+                        , [$testiniziale->id, $USER->id]);                    
+                    $completiontime = $completiontimeObj->timemodified;
+                    
+                    // Get the grade 
+                    // TODO: questo codice è anche in altri posti; fare un metodo da qualche parte
+                    $grades = grade_get_grades($course->id, 'mod', $testiniziale->modname, $testiniziale->instance, $USER->id);
+                    $grade = $grades->items[0]->grades[$USER->id]->grade;
+
+                    if($grade >= 0 && $grade <= 40) {
+                        $data->testiniziale = 'base';
+                    } elseif($grade <= 80) {
+                        $data->testiniziale = 'intermedio';
+                    } else {
+                        $data->testiniziale = 'avanzato';
+                    }
+
+                    // Check from logstore_standard_log if the current user has already visited the course more than once after $completiontime
+                    // NB: va interrogato il log perché mdl_user_lastaccess conta anche l'accesso attuale
+                    $courseViewsAfterTestCount = $DB->get_record_sql("
+                        SELECT COUNT(*) AS visitcount
+                        FROM mdl_logstore_standard_log 
+                        WHERE userid = ? AND courseid = ? AND target = 'course' AND `action` = 'viewed' AND timecreated > ?"
+                        , [$USER->id, $course->id, $completiontime]);
+                    if((int)$courseViewsAfterTestCount->visitcount > 1) {
+                        $data->firstVisitAfterTest = false;
+                    } else {
+                        $data->firstVisitAfterTest = true;
+                    }
+
+                    // if current section name contains $data->testiniziale and it's the first visit after the test, it is expanded, otherwise it is collapsed
+                    if (strpos($this->section->name, $data->testiniziale) !== false && $data->firstVisitAfterTest === true) {
+                        $data->contentcollapsed = false;
+                        $data->indexcollapsed = false;
+                    } elseif (strpos($this->section->name, $data->testiniziale) === false && $data->firstVisitAfterTest === true) {
+                        $data->contentcollapsed = true;
+                        $data->indexcollapsed = true;
+                    } else {
+                        // nothing happens, let the default behaviour
+                    }             
+                    
+                } else {
+                    $data->testinizialeresult = NULL;
+                }
+            } else {
+                $data->testiniziale = false;
+            }
+
+        }
+
         return $data;
     }
 

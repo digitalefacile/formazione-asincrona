@@ -100,6 +100,12 @@ class section implements renderable {
                 $data->cmlist[] = $mod->id;
             }
         }
+        // $data->title = 'Sezione '.$data->id.' '.var_export($data->number,true);
+
+        // TEMP: nasconde la sezione zero, che di solito è quella degli annunci, in attesa di eventuali criteri più chiari
+        if($data->number == 0) {
+            $data->visible = false;
+        }
 
         return $data;
     }

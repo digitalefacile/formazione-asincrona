@@ -57,6 +57,8 @@
     }
 }}
 
+{{#visible}}
+
 {{#testingonly-make-mustache-lint-happy}}
 <div role="tree">
 {{/testingonly-make-mustache-lint-happy}}
@@ -72,11 +74,11 @@
 >
     <div class="courseindex-item d-flex
             {{^visible}}dimmed{{/visible}}
-            {{#hasrestrictions}}restrictions{{/hasrestrictions}}
             courseindex-section-title"
         id="courseindexsection{{number}}"
         data-for="section_item"
     >
+    {{^hasrestrictions}}
         <a data-toggle="collapse"
             href="#courseindexcollapse{{number}}"
             class="courseindex-chevron icons-collapse-expand {{#indexcollapsed}}collapsed{{/indexcollapsed}}"
@@ -96,6 +98,15 @@
                 <span class="sr-only">{{#str}} collapse, core {{/str}}</span>
             </span>
         </a>
+    {{/hasrestrictions}}
+
+    {{#hasrestrictions}}
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 10.0005C2.5 9.33745 2.76339 8.70156 3.23223 8.23272C3.70107 7.76388 4.33696 7.50049 5 7.50049H15C15.663 7.50049 16.2989 7.76388 16.7678 8.23272C17.2366 8.70156 17.5 9.33745 17.5 10.0005V15.8338C17.5 16.4969 17.2366 17.1327 16.7678 17.6016C16.2989 18.0704 15.663 18.3338 15 18.3338H5C4.33696 18.3338 3.70107 18.0704 3.23223 17.6016C2.76339 17.1327 2.5 16.4969 2.5 15.8338V10.0005ZM10.8333 11.6672C10.8333 11.4461 10.7455 11.2342 10.5893 11.0779C10.433 10.9216 10.221 10.8338 10 10.8338C9.77899 10.8338 9.56702 10.9216 9.41074 11.0779C9.25446 11.2342 9.16667 11.4461 9.16667 11.6672V14.1672C9.16667 14.3882 9.25446 14.6001 9.41074 14.7564C9.56702 14.9127 9.77899 15.0005 10 15.0005C10.221 15.0005 10.433 14.9127 10.5893 14.7564C10.7455 14.6001 10.8333 14.3882 10.8333 14.1672V11.6672Z" fill="black"/>
+        <path d="M6.66675 8.33382V5.83382C6.66675 4.94977 7.01794 4.10192 7.64306 3.4768C8.26818 2.85168 9.11603 2.50049 10.0001 2.50049C10.8841 2.50049 11.732 2.85168 12.3571 3.4768C12.9822 4.10192 13.3334 4.94977 13.3334 5.83382V8.33382" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    {{/hasrestrictions}}
+
         <a href="{{{sectionurl}}}"
             class="courseindex-link text-truncate"
             data-action="togglecourseindexsection"
@@ -140,3 +151,5 @@ require(['format_flexsections/local/courseindex/section'], function(component) {
     component.init('{{uniqid}}-course-index-section-{{id}}');
 });
 {{/js}}
+
+{{/visible}}

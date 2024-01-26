@@ -4,6 +4,44 @@
   {{> theme_edumy/ccn_preloader }}
   <div class="wrapper" id="page-content">
     {{> theme_edumy/ccn_mdl_400/navbar }}
+
+    <div class="mobile-breadcrumb d-lg-none">
+      {{> theme_edumy/ccn_breadcrumb }}
+    </div>
+
+    {{#courseindex}}
+    {{! Se è attivo l'indice del corso, va messo in un wrapper insieme a breadcrumb e page-wrapper }}
+    <div id="ccn-course-index-breadcrumb-page-wrapper" class="container-fluid">
+    <div class="row">
+    <div class="col-md-12 col-lg-3 d-md-inline d-lg-block ccn-course-courseindex-col">
+      <div class="courseindex-toggle-wrapper my-2">
+		    <a class="btn btn-secondary d-md-none" data-toggle="collapse" href="#theme_boost-drawers-courseindex" role="button"
+		       aria-expanded="false" aria-controls="theme_boost-drawers-courseindex">
+			    Indice del corso
+		    </a>
+      </div>
+        {{< theme_boost/drawer }}
+            {{$id}}theme_boost-drawers-courseindex{{/id}}
+<!--	        {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}-->
+	        {{$drawerclasses}}drawer d-lg-block collapse{{/drawerclasses}}
+            {{$drawercontent}}
+                {{{courseindex}}}
+            {{/drawercontent}}
+            {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
+            {{$drawerstate}}show-drawer-left{{/drawerstate}}
+            {{$forceopen}}1{{/forceopen}}
+            {{$tooltipplacement}}right{{/tooltipplacement}}
+            {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
+        {{/ theme_boost/drawer}}
+    </div>
+    {{! Se è attivo l'indice del corso, unisco in un secondo wrapper breadcrumb e page-wrapper }}
+    <div id="ccn-course-breadcrumb-page-wrapper" class="col-12 col-lg-8 col-xl-9">
+    {{/courseindex}}
+
+<div class="d-none d-lg-block ">
+  {{> theme_edumy/ccn_breadcrumb }}
+</div>
+
     <div id="ccn-page-wrapper">
       <div id="ccnSettingsMenuContainer">
         <div id="ccnSettingsMenuInner">{{! @ccnIrrevocable: These container divs #ccnSettingsMenuContainer/Inner must exist unconditionally, only contents can be conditional }}
@@ -31,19 +69,21 @@
         {{{ output.edit_switch }}}
         {{{ blocks_fullwidth_top }}}
         <div id="ccn-main-region">
+	        {{#isblog}}
+		        <div class="container-fluid blog-header">
+			        <div class="ccnMdlHeading ">
+				        <h2 class=" blogTitle">Forum annunci</h2>
+				        <p class=" blogDescription">Lorem ipsum dolor sit amet consectetur. Cursus leo lectus nec id
+					        vitae in. Sociis vestibulum in orci suspendisse. Id lectus amet.</p>
+			        </div>
+		        </div>
+	        {{/isblog}}
           <div class="container">
             {{#has_back2course_btn}}
               {{{ back2course_btn }}}
             {{/has_back2course_btn}}
             <div class="row">
-              {{#sidebar_left}}
-                <div class="{{#sidebar_double}} col-lg-3 col-xl-3 {{/sidebar_double}} {{^sidebar_double}} col-lg-4 col-xl-4 {{/sidebar_double}}">
-                  <div class="ccn-sidebar-region" aria-label="{{#str}}blocks{{/str}}">
-                    {{{ leftblocks }}}
-                  </div>
-                </div>
-              {{/sidebar_left}}
-              <div class="
+              <div id="row-cols" class="
                 {{#sidebar_none}} col-md-12 col-lg-12 col-xl-12 {{/sidebar_none}}
                 {{#sidebar_double}} col-lg-6 {{/sidebar_double}}
                 {{#sidebar_single_left}} col-lg-8 col-xl-8 {{/sidebar_single_left}}
@@ -118,10 +158,14 @@
       </div>
     </div>
     {{{ blocks_fullwidth_bottom }}}
-  </div>
-  </div>
+
+  {{#courseindex}}</div></div></div></div>{{/courseindex}} {{! end of ccn-course-index-breadcrumb-page-wrapper and ccn-course-breadcrumb-page-wrapper  }}
+
+  {{! Se è attivo l'indice del corso, il footer va fuori dal wrapper #page-content }}
+  {{#courseindex}}<!-- ci --></div>{{/courseindex}}
   {{> theme_edumy/ccn_mdl_400/footer }}
-  </div>
+  {{^courseindex}}<!-- not ci --></div>{{/courseindex}}
+
   {{{ output.standard_after_main_region_html }}}
 </body>
 

@@ -90,6 +90,9 @@ class cmitem implements named_templatable, renderable {
      * @return stdClass data context for a mustache template
      */
     public function export_for_template(\renderer_base $output): stdClass {
+
+        global $USER, $DB;
+
         $format = $this->format;
         $course = $format->get_course();
         $mod = $this->mod;
@@ -107,11 +110,11 @@ class cmitem implements named_templatable, renderable {
         $item = new $this->cmclass($format, $this->section, $mod, $this->displayoptions);
 
         // Predispone le CTA necessarie per l'accessibilità:
-        // 1. Vai al modulo / Scopri di più / Vai al test
+        // 1. Vai al modulo / Scopri di più / Vai al test (quiz)
         // 2. Scarica il certificato
+        // 3. Vai al test iniziale
 
         // 1. CTA per accedere al modulo, in base al fatto che l'utente abbia già visualizzato o meno l'attività
-        global $USER, $DB;
         $params = array(
             'contextinstanceid' => $mod->id,
             'userid' => $USER->id,
@@ -201,7 +204,6 @@ class cmitem implements named_templatable, renderable {
                         // Check permissions to download the customcert.
                         $context_module = context_module::instance($mod->id);
                         $canreceive = has_capability('mod/customcert:receiveissue', $context_module);
-
                        
                         foreach($certAvail->c as $avc) {
                             if($avc->type == 'completion' && $avc->cm == (int)$mod->id && $canreceive) {
@@ -229,6 +231,28 @@ class cmitem implements named_templatable, renderable {
 
         }
 
+        // 3. CTA per test iniziale (attività di tipo scorm con titolo definito)
+        if($mod->modname == 'scorm' && $mod->name == 'Test iniziale') {
+
+            if($mod->completion == '2') {
+
+                 // Definizione dell livello di superamento del test
+                 $scormId = $mod->instance;
+                 $grades = grade_get_grades($course->id, 'mod','scorm', $scormId, $USER->id);
+                 $grade = $grades->items[0]->grades[$USER->id]->grade; // NB: vscode segnala errore, ma funziona
+                 if($grade > 80) {
+                     $testInizialeLevel = 'avanzato';
+                 } elseif($grade > 40) {
+                     $testInizialeLevel = 'intermedio';
+                 } else {
+                     $testInizialeLevel = 'base';
+                 }
+ 
+            }
+
+        }
+
+
         return (object)[
             'id' => $mod->id,
             'anchor' => "module-{$mod->id}",
@@ -242,6 +266,7 @@ class cmitem implements named_templatable, renderable {
             'cta' => $cta,
             'dlCertCta' => $dlCertCta,
 
+            'testinizialelevel' => $testInizialeLevel,
         ];
     }
 }

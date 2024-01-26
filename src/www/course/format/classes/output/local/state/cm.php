@@ -100,7 +100,9 @@ class cm implements renderable {
         $data->accessvisible = ($data->visible && $info->is_available_for_all());
 
         // Add url if the activity is compatible.
-        $url = $cm->url;
+        //$url = $cm->url;
+        // Mod. per linkare all'anchor dell'attività
+        $url = new \moodle_url("/course/view.php?id={$course->id}#{$data->anchor}");
         if ($url) {
             $data->url = $url->out();
         }

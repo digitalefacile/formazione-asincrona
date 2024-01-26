@@ -59,12 +59,40 @@
 }}
 <div class="activity-item {{#modstealth}}hiddenactivity{{/modstealth}}{{!
         }}{{#modhiddenfromstudents}}hiddenactivity{{/modhiddenfromstudents}}{{!
-        }}{{#modinline}}activityinline{{/modinline}}" data-activityname="{{activityname}}">
+        }}{{#modinline}}activityinline{{/modinline}} 
+        {{#testiniziale}}
+        testiniziale 
+        {{#activityinfo.overallcomplete}}testiniziale-completed{{/activityinfo.overallcomplete}}
+        {{^activityinfo.overallcomplete}}testiniziale-incomplete{{/activityinfo.overallcomplete}}
+        {{/testiniziale}}" 
+        data-activityname="{{activityname}}">
     {{!
       Place the actual content of the activity-item in a separate template to make it easier for other formats to add
       additional content to the activity wrapper.
     }}
+
+    {{^testiniziale}}
     {{$ core_courseformat/local/content/cm/activity }}
         {{> core_courseformat/local/content/cm/activity }}
     {{/ core_courseformat/local/content/cm/activity }}
+    {{/testiniziale}}
+
+    {{#testiniziale}}
+
+    {{#activityinfo.istrackeduser}}
+        {{#activityinfo.overallcomplete}}
+        {{$ core_courseformat/local/content/cm/activitytestinizialecompleted }}
+            {{> core_courseformat/local/content/cm/activitytestinizialecompleted }}
+        {{/ core_courseformat/local/content/cm/activitytestinizialecompleted }}
+        {{/activityinfo.overallcomplete}}
+
+        {{^activityinfo.overallcomplete}}
+        {{$ core_courseformat/local/content/cm/activitytestinizialeincomplete }}
+            {{> core_courseformat/local/content/cm/activitytestinizialeincomplete }}
+        {{/ core_courseformat/local/content/cm/activitytestinizialeincomplete }}
+        {{/activityinfo.overallcomplete}}
+    {{/activityinfo.istrackeduser}}
+
+    {{/testiniziale}}
+
 </div>

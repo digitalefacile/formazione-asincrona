@@ -175,7 +175,7 @@ $blogheaders['heading'] = [
 ];
 
 //echo $OUTPUT->heading( $blogheaders['heading'], 2, 'blogheading' );
-echo $OUTPUT->mlab_heading( $blogheaders['heading'] );
+//echo $OUTPUT->mlab_heading( $blogheaders['heading'] );
 
 $bloglisting = new blog_listing($blogheaders['filters']);
 $bloglisting->print_entries();

@@ -98,6 +98,7 @@ class cm implements named_templatable, renderable {
      * @return stdClass data context for a mustache template
      */
     public function export_for_template(renderer_base $output): stdClass {
+
         $mod = $this->mod;
         $displayoptions = $this->displayoptions;
 
@@ -108,6 +109,8 @@ class cm implements named_templatable, renderable {
             'activityname' => $mod->get_formatted_name(),
             'textclasses' => $displayoptions['textclasses'],
             'classlist' => [],
+            // Added some course info to display in the activity module
+            'courseinfo' => [],
         ];
 
         // Add partial data segments.
@@ -124,6 +127,18 @@ class cm implements named_templatable, renderable {
             $data->hasurl = true;
         }
 
+        // Add course shortname to courseinfo
+        $courseobj = $mod->get_course();
+        $courseshortname = $courseobj->shortname; 
+        $data->courseinfo['courseshortname'] = $courseshortname;
+
+        // Se è un test iniziale aggiungo un campo per poterlo gestire in modo diverso e un titolo che comprende lo shortname del corso
+        $data->testiniziale = false;
+        if ($data->activityname == 'Test iniziale') {
+            $data->testiniziale = true;
+            $data->fullactivityname = $courseshortname . ' - ' . $data->activityname;
+        }
+        
         return $data;
     }
 
