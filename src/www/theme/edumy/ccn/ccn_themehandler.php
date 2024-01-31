@@ -750,7 +750,7 @@ $secondarynavigation = false;
 $overflow = '';
  $customRole = current(get_user_roles(context_system::instance(), $USER->id))->name;
 if (method_exists($PAGE, 'has_secondary_navigation') && $PAGE->has_secondary_navigation()) {
-  if(is_siteadmin() || $ccnIsManager || $ccnIsCourseCreator || $customRole == 'Tutor'){
+  if($customRole !== "Facilitatore" && $customRole !== "Volontario"){
   
     $tablistnav = $PAGE->has_tablist_secondary_navigation();
     $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
