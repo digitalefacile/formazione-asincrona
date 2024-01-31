@@ -400,3 +400,8 @@ if($PAGE->pagetype == "admin-setting-themesettingedumy") {
   $PAGE->requires->css('/theme/edumy/style/cocoon.editor.theme.css');
   $PAGE->requires->js('/theme/edumy/javascript/cocoon.editor.theme.js', true);
 }
+
+if($PAGE->pagetype == 'course-view-flexsections') {
+  $PAGE->requires->js('/theme/edumy/javascript/courseindex.js', true);
+}
+

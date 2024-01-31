@@ -262,7 +262,7 @@ $this->content->text .='</div>
 
               $this->content->text .= '
               <div class="blog_recent_card_info_date">
-              '.userdate($entry->created, '%D', 0).'
+              '.userdate($entry->created, '%d/%m/%Y', 0).'
               </div>
 
                   </div>

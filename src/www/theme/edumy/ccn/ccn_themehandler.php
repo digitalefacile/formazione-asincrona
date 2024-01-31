@@ -223,7 +223,6 @@ if (str_starts_with($PAGE->pagetype,'course-view-')) {
 
 // in a scorm page, show course name, activity name and activity title
 if ( str_starts_with($PAGE->pagetype,'mod-scorm-view') ||  str_starts_with($PAGE->pagetype,'mod-scorm-player') ) {
-
   // get the url for current course
   $course_url = new moodle_url('/course/view.php', array('id' => $PAGE->course->id));
 
@@ -279,7 +278,7 @@ if (str_starts_with($PAGE->pagetype,'mod-page-view') && $PAGE->course->format ==
   $PAGE->navbar->add("Home", "/?redirect=0", navigation_node::TYPE_CUSTOM);
   if($PAGE->course->shortname == 'Approfondimento'){
     // add a node to $PAGE->navbar with a label "Informazioni sul corso" and no link
-    $PAGE->navbar->add("Scopri di più", null, navigation_node::TYPE_CUSTOM);
+    $PAGE->navbar->add("Come completare il tuo percorso formativo", null, navigation_node::TYPE_CUSTOM);
 
   }else{
   // add a node to $PAGE->navbar with a label "Informazioni sul corso" and no link
@@ -750,7 +749,7 @@ $secondarynavigation = false;
 $overflow = '';
  $customRole = current(get_user_roles(context_system::instance(), $USER->id))->name;
 if (method_exists($PAGE, 'has_secondary_navigation') && $PAGE->has_secondary_navigation()) {
-  if($customRole !== "Facilitatore" && $customRole !== "Volontario"){
+  if(is_siteadmin() || $ccnIsManager || $ccnIsCourseCreator || $customRole == 'Tutor'){
   
     $tablistnav = $PAGE->has_tablist_secondary_navigation();
     $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
