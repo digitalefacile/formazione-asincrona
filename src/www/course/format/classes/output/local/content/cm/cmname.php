@@ -114,6 +114,7 @@ class cmname implements named_templatable, renderable {
             'showpluginname' => $this->format->show_editor(),
             'purpose' => plugin_supports('mod', $mod->modname, FEATURE_MOD_PURPOSE, MOD_PURPOSE_OTHER),
             'activityname' => $this->get_title_data($output),
+            'activityrestricted' => !$mod->uservisible,
         ];
 
         return $data;

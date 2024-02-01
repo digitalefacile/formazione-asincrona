@@ -1,0 +1,146 @@
+/* STILI CUSTOM per l'attività test finale */
+
+/* PAGINA CORSO */
+/* nascondo l'icona dell'attività */
+.path-course-view .course-content li.activity .testfinale .activityiconcontainer { 
+    display: none;
+}
+
+/* stile per il box dell'attività */
+.path-course-view .course-content li.activity .testfinale { 
+    border-radius: 5px; 
+    padding: 21px;
+    background: #fff; 
+    border: 1px #D9DADB solid;
+}
+
+/* stile per il titolo dell'attività */
+.path-course-view .course-content li.activity .testfinale .activityname { 
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    color: #000;
+}
+
+/* stile per la descrizione dell'attività */
+.path-course-view .course-content li.activity .testfinale .description .no-overflow { 
+    overflow: hidden;
+}
+.path-course-view .course-content li.activity .testfinale .description .course-description-item { 
+    background-color: transparent;
+}
+.path-course-view .course-content li.activity .testfinale .description .course-description-item .description-inner p {
+    font-size: 16px;
+    line-height: 24.34px;
+    color: #000 !important;
+    text-align: center !important;
+}
+.path-course-view .course-content li.activity .testfinale .description .course-description-item .description-inner.text-break,
+.path-course-view .course-content li.activity .testfinale .description .course-description-item .description-inner {
+    border: 0;
+}
+.path-course-view .course-content li.activity .testfinale .description .course-description-item .description-inner.testfinale-unavailable {
+    font-size: 15px;
+    line-height: 22.82px;
+    font-weight: 700;
+    color: #000 !important;
+    /* text-align: center; */
+}
+.coursepage-quizattempt-testfinale {
+    font-size: 15px;
+    color: #000 !important;
+}
+.coursepage-quizattempt-testfinale a,
+.coursepage-quizattempt-testfinale a:hover {
+    text-decoration: underline;
+}
+.testfinale-failed-text {
+    font-family: Titillium Web;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #333333;
+}
+.testfinale-failed-text > a {
+    text-decoration: none;
+}
+
+/* stile per il bottone dell'attività */
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] {
+    display: block !important;
+    text-align: center;
+}
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-unavailable,
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-available,
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-unavailable:hover,
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-available:hover {
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 20px;
+    padding: 16px 32px;
+    }
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-unavailable,
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-unavailable:hover {
+    background-color: #cfcfcf;
+    color: #000;
+}
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-available,
+.path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-available:hover {
+    background-color: #0065CC;
+    color: #fff;
+}
+
+/* PAGINA INTRO */
+#page-mod-quiz-view .button_custom_torna_indietro {
+    display: block !important;
+}
+#page-mod-quiz-view #ccn-main {
+    text-align: center;
+}
+#page-mod-quiz-view .quiz-title, 
+#page-mod-quiz-view .course-title  {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0px;
+    text-align: center;
+    padding: 0 !important;
+}
+#page-mod-quiz-view .quiz-title {
+    color: #0065CC;
+}
+#page-mod-quiz-view .course-shortname {
+    width: 102px; 
+    height: 24px; 
+    margin: 0 auto; 
+    padding-left: 16px; 
+    padding-right: 16px; 
+    padding-top: 4px; 
+    padding-bottom: 4px; 
+    background:#DCB930; 
+    border-radius: 4px; 
+    align-items: center;
+    color: #000000; 
+    font-size: 14px; 
+    font-weight: 700; 
+    line-height: 16px; 
+}
+#page-mod-quiz-view .tertiary-navigation .row {
+    display: inline;
+}
+#page-mod-quiz-view .singlebutton.quizstartbuttondiv {
+    padding: 0 !important;
+}
+#page-mod-quiz-view .quiz-view-intro {
+    width: 588px;
+    margin: 0 calc(50% - 294px);
+}
+#page-mod-quiz-view .quiz-view-intro ul {
+    list-style-position: inside;
+}
+#page-mod-quiz-view .quiz-view-intro li {
+    list-style-type: disc;
+}

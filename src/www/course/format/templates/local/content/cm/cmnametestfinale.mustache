@@ -1,0 +1,87 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core_courseformat/local/content/cm/cmname
+
+    Convenience mustache to displays a course module inplcae editable from the format renderer.
+
+    Format plugins are free to implement an alternative inplace editable for activities.
+
+    Example context (json):
+    {
+        "url": "#",
+        "icon": "../../../pix/help.svg",
+        "iconclass": "",
+        "pluginname": "File",
+        "showpluginname": 1,
+        "textclasses": "",
+        "purpose": "content",
+        "modname": "resource",
+        "activityname": {
+            "displayvalue" : "<a href=\"#\">Moodle</a>",
+            "value" : "Moodle",
+            "itemid" : "1",
+            "component" : "core_unknown",
+            "itemtype" : "unknown",
+            "edithint" : "Edit this",
+            "editlabel" : "New name for this",
+            "type" : "text",
+            "options" : "",
+            "linkeverything": 0
+        }
+    }
+}}
+{{#url}}
+    <div class="activity-instance text-center">
+        <div class="activitytitle media {{textclasses}} modtype_{{modname}} position-relative align-self-start">
+            <div class="activityiconcontainer {{purpose}} courseicon align-self-start mr-3">
+                <img src="{{{icon}}}" class="activityicon {{iconclass}}"
+                     alt="{{#cleanstr}} activityicon, moodle, {{{pluginname}}} {{/cleanstr}}"
+                >
+            </div>
+            <div class="media-body align-self-center">
+              
+                <div class="activityname">
+                <svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.46" y="0.46" width="23.78" height="26.5244" rx="1.84" stroke="#0065CC" stroke-width="0.92"/>
+                <g clip-path="url(#clip0_2287_7625)">
+                <path d="M19.2715 21.6815L19.3587 23.4504L17.5695 22.207L15.7702 23.4515L15.8575 21.6815H15.1019L14.9717 24.323H15.837L17.5685 23.1254L19.2919 24.323H20.1573L20.0271 21.6815H19.2715ZM21.3242 16.2785L21.2724 15.1451L20.3169 14.5337L19.7053 13.578L18.5719 13.5261L17.5645 13.0044L16.5571 13.5262L15.4237 13.5781L14.8121 14.5337L13.8566 15.1451L13.8048 16.2785L13.283 17.2859L13.8048 18.2933L13.8567 19.4267L14.8121 20.0382L15.4236 20.9938L16.557 21.0456L17.5645 21.5674L18.5719 21.0456L19.7053 20.9938L20.3168 20.0382L21.2724 19.4268L21.3242 18.2934L21.846 17.286L21.3242 16.2785ZM20.5778 18.0933L20.5362 19.0017L19.7703 19.4918L19.2802 20.2577L18.3718 20.2992L17.5645 20.7175L16.7571 20.2992L15.8487 20.2577L15.3586 19.4918L14.5928 19.0017L14.5513 18.0933L14.1329 17.2859L14.5512 16.4786L14.5928 15.5701L15.3586 15.08L15.8487 14.3141L16.7571 14.2726L17.5645 13.8544L18.3719 14.2726L19.2803 14.3141L19.7704 15.08L20.5362 15.5701L20.5777 16.4785L20.9961 17.2859L20.5778 18.0933Z" fill="#0065CC"/>
+                </g>
+                <line x1="4.39136" y1="5.02828" x2="20.858" y2="5.02828" stroke="#0065CC" stroke-width="0.92"/>
+                <path d="M4.39111 8.78223H20.8578M4.39111 13.1733H11.8011M4.39111 18.1133H11.8011" stroke="#0065CC" stroke-width="0.92"/>
+                <defs>
+                <clipPath id="clip0_2287_7625">
+                <rect width="12.0756" height="12.0756" fill="white" transform="translate(11.5269 12.625)"/>
+                </clipPath>
+                </defs>
+                </svg>
+
+                        {{^activityrestricted}}
+                            <a href="{{{url}}}" class="activitylink" title="{{#cleanstr}} activitylink, moodle, {{{pluginname}}} {{/cleanstr}}">                            
+                        {{/activityrestricted}}
+                        {{#fullactivityname}}
+                            {{{fullactivityname}}}
+                        {{/fullactivityname}}
+                        {{^activityrestricted}}
+                            </a>
+                        {{/activityrestricted}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{{/url}}

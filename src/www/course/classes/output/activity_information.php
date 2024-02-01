@@ -139,8 +139,10 @@ class activity_information implements renderable, templatable {
 
         // Overall completion states.
         $overallcompletion = $this->cmcompletion->get_overall_completion();
-        $data->overallcomplete = $overallcompletion == COMPLETION_COMPLETE;
+        $data->overallcomplete = $overallcompletion == COMPLETION_COMPLETE; 
         $data->overallincomplete = $overallcompletion == COMPLETION_INCOMPLETE;
+        // $data->overallcompletepass = $overallcompletion == COMPLETION_COMPLETE_PASS; 
+        // $data->overallcompletefail = $overallcompletion == COMPLETION_COMPLETE_FAIL; 
 
         // Set an accessible description for manual completions with overridden completion state.
         if (!$data->isautomatic && $data->overrideby) {

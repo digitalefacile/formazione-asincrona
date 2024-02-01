@@ -47,9 +47,9 @@
                 {{#isautomatic}}
                     <div class="automatic-completion-conditions" data-region ="completionrequirements" role="list" aria-label="{{#str}}completionrequirements, core_course, {{activityname}}{{/str}}">
                         {{!#overallcomplete}}
-                            {{$ core_course/completion_automatic }}
-                                {{> core_course/completion_automatic }}
-                            {{/ core_course/completion_automatic }}
+                            {{$ core_courseformat/local/content/cm/completion_automatic }}
+                                {{> core_courseformat/local/content/cm/completion_automatic }}
+                            {{/ core_courseformat/local/content/cm/completion_automatic }}
                         {{!/overallcomplete}}
                     </div>
                 {{/isautomatic}}

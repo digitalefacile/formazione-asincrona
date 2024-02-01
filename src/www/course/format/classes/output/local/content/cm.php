@@ -132,10 +132,19 @@ class cm implements named_templatable, renderable {
         $courseshortname = $courseobj->shortname; 
         $data->courseinfo['courseshortname'] = $courseshortname;
 
-        // Se è un test iniziale aggiungo un campo per poterlo gestire in modo diverso e un titolo che comprende lo shortname del corso
+        // Se è un test iniziale o finale aggiungo un campo per poterlo gestire in modo diverso e un titolo che comprende lo shortname del corso
+        $data->testinizialeofinale = false;
         $data->testiniziale = false;
+        $data->testfinale = false;
         if ($data->activityname == 'Test iniziale') {
+            $data->testinizialeofinale = true;
             $data->testiniziale = true;
+        }
+        if ($data->activityname == 'Test finale') {
+            $data->testinizialeofinale = true;
+            $data->testfinale = true;
+        }
+        if(true === $data->testinizialeofinale) {
             $data->fullactivityname = $courseshortname . ' - ' . $data->activityname;
         }
         

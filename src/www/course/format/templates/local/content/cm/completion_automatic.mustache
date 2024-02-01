@@ -1,0 +1,54 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core_course/completion_automatic
+
+    Template for displaying an automatic completion rule and its status.
+
+    Example context (json):
+    {
+        "statuscomplete": 1,
+        "description": "View",
+        "istrackeduser": true,
+        "accessibledescription": "Done: View (Set by Admin User)"
+    }
+}}
+{{#istrackeduser}}
+    {{#overallcomplete}}
+        {{$ core_courseformat/local/content/cm/completion_pill_completed }}
+            {{> core_courseformat/local/content/cm/completion_pill_completed }}
+        {{/ core_courseformat/local/content/cm/completion_pill_completed }}
+    {{/overallcomplete}}
+    {{^overallcomplete}}
+        {{$ core_courseformat/local/content/cm/completion_pill_incomplete }}
+            {{> core_courseformat/local/content/cm/completion_pill_incomplete }}
+        {{/ core_courseformat/local/content/cm/completion_pill_incomplete }}
+    {{/overallcomplete}}
+{{/istrackeduser}}
+{{^istrackeduser}}
+    <span class="badge badge-pill badge-light" role="listitem">
+ <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="margin-right: 5px;" viewBox="0 0 25 25" fill="none">
+    <g>
+        <circle cx="12" cy="13" r="12" fill="#5C6F82" /> <!-- Cerchio di sfondo colorato -->
+        <path d="M10.6698 16.9935L6.25 12.5726L7.72292 11.0997L10.6698 14.0455L16.5615 8.15283L18.0354 9.62679L10.6698 16.9914V16.9935Z" fill="white" />
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.0415 12.4998C1.0415 6.17171 6.17171 1.0415 12.4998 1.0415C18.828 1.0415 23.9582 6.17171 23.9582 12.4998C23.9582 18.828 18.828 23.9582 12.4998 23.9582C6.17171 23.9582 1.0415 18.828 1.0415 12.4998ZM12.4998 21.8748C11.2687 21.8748 10.0496 21.6323 8.91218 21.1612C7.77475 20.6901 6.74126 19.9995 5.87071 19.129C5.00016 18.2584 4.3096 17.2249 3.83847 16.0875C3.36733 14.9501 3.12484 13.731 3.12484 12.4998C3.12484 11.2687 3.36733 10.0496 3.83847 8.91218C4.3096 7.77475 5.00016 6.74126 5.87071 5.87071C6.74126 5.00016 7.77475 4.3096 8.91218 3.83847C10.0496 3.36733 11.2687 3.12484 12.4998 3.12484C14.9862 3.12484 17.3708 4.11256 19.129 5.87071C20.8871 7.62886 21.8748 10.0134 21.8748 12.4998C21.8748 14.9862 20.8871 17.3708 19.129 19.129C17.3708 20.8871 14.9862 21.8748 12.4998 21.8748Z" fill="white" />
+    </g>
+</svg>
+
+        <span class="font-weight-normal">{{description}}</span>
+    </span>
+{{/istrackeduser}}

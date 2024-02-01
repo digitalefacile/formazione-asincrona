@@ -25,6 +25,7 @@
 namespace theme_edumy\output;
 
 use \html_writer;
+use moodle_url;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -551,7 +552,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         $output .= html_writer::start_tag('div', array('class' => 'submitbtns'));
         if ($page > 0 && $navmethod == 'free') {
-            # MODIFIED BY MAINLAB 11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
+            # MODIFIED  11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
             $output .= html_writer::start_tag('button', array('type' => 'submit', 'name' => 'previous',
                     'value' => get_string('navigateprevious', 'quiz'), 'class' => 'mod_quiz-prev-nav btn btn-secondary',
                     'id' => 'mod_quiz-prev-nav'));
@@ -569,7 +570,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             <path d="M9.26667 3.33301L8.8 3.79967L12.3333 7.39967L2 7.39967V8.06634H12.3333L8.8 11.6663L9.26667 12.133L13.6667 7.73301L9.26667 3.33301Z" fill="white"/>
             </svg>&nbsp;';
         }
-        # MODIFIED BY MAINLAB 11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
+        # MODIFIED  11/10/23: input diventa button per poter inserire l'icona nell'etichetta di testo
         $output .= html_writer::start_tag('button', array('type' => 'submit', 'name' => 'next',
         'value' =>get_string('navigatenext', 'quiz'), 'class' => 'mod_quiz-next-nav btn btn-primary',
         'id' => 'mod_quiz-next-nav'));
@@ -814,58 +815,71 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 //        return $output;
 //    }
 //
-//    /*
-//     * View Page
-//     */
-//    /**
-//     * Generates the view page
-//     *
-//     * @param stdClass $course the course settings row from the database.
-//     * @param stdClass $quiz the quiz settings row from the database.
-//     * @param stdClass $cm the course_module settings row from the database.
-//     * @param context_module $context the quiz context.
-//     * @param mod_quiz_view_object $viewobj
-//     * @return string HTML to display
-//     */
-//    public function view_page($course, $quiz, $cm, $context, $viewobj) {
-//        $output = '';
-//
-//        $output .= $this->view_page_tertiary_nav($viewobj);
-//        $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
-//        $output .= $this->view_table($quiz, $context, $viewobj);
-//        $output .= $this->view_result_info($quiz, $context, $cm, $viewobj);
-//        $output .= $this->box($this->view_page_buttons($viewobj), 'quizattempt');
-//        return $output;
-//    }
-//
+   /*
+    * View Page
+    */
+   /**
+    * Generates the view page
+    *
+    * @param stdClass $course the course settings row from the database.
+    * @param stdClass $quiz the quiz settings row from the database.
+    * @param stdClass $cm the course_module settings row from the database.
+    * @param context_module $context the quiz context.
+    * @param mod_quiz_view_object $viewobj
+    * @return string HTML to display
+    */
+   public function view_page($course, $quiz, $cm, $context, $viewobj) {
+        global $CFG;
+       $output = '';
+        
+        // Show activity title
+        $output .= $this->heading(format_string($quiz->name),2,'quiz-title');
+
+        // Show course title
+        $output .= $this->heading(format_string($course->fullname),3,'course-title');
+
+        // Show course shortname
+        $output .= $this->heading(strtoupper(format_string(substr($course->shortname,6))),4,'course-shortname');
+
+        // Show intro text - NB: messo in template apposito per semplificare le modifiche
+        $output .= $this->render_from_template('mod_quiz/quiz_intro',$context);
+
+        // $output .= $this->view_information($quiz, $cm, $context, $viewobj->infomessages);
+    //    $output .= $this->view_table($quiz, $context, $viewobj);
+    //    $output .= $this->view_result_info($quiz, $context, $cm, $viewobj);
+    //    $output .= $this->box($this->view_page_buttons($viewobj), 'quizattempt');
+       $output .= $this->view_page_tertiary_nav($viewobj);
+       return $output;
+   }
+
 //    /**
 //     * Render the tertiary navigation for the view page.
 //     *
 //     * @param mod_quiz_view_object $viewobj the information required to display the view page.
 //     * @return string HTML to output.
 //     */
-//    public function view_page_tertiary_nav(mod_quiz_view_object $viewobj): string {
+//    public function view_page_tertiary_nav(\mod_quiz_view_object $viewobj): string {
 //        $content = '';
-//
+
 //        if ($viewobj->buttontext) {
 //            $attemptbtn = $this->start_attempt_button($viewobj->buttontext,
 //                    $viewobj->startattempturl, $viewobj->preflightcheckform,
 //                    $viewobj->popuprequired, $viewobj->popupoptions);
 //            $content .= $attemptbtn;
 //        }
-//
+
 //        if ($viewobj->canedit && !$viewobj->quizhasquestions) {
 //            $content .= html_writer::link($viewobj->editurl, get_string('addquestion', 'quiz'),
 //                    ['class' => 'btn btn-secondary']);
 //        }
-//
+
 //        if ($content) {
 //            return html_writer::div(html_writer::div($content, 'row'), 'container-fluid tertiary-navigation');
 //        } else {
 //            return '';
 //        }
 //    }
-//
+
 //    /**
 //     * Work out, and render, whatever buttons, and surrounding info, should appear
 //     * at the end of the review page.
@@ -873,25 +887,25 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 //     * @param mod_quiz_view_object $viewobj the information required to display the view page.
 //     * @return string HTML to output.
 //     */
-//    public function view_page_buttons(mod_quiz_view_object $viewobj) {
+//    public function view_page_buttons(\mod_quiz_view_object $viewobj) {
 //        $output = '';
-//
+
 //        if (!$viewobj->quizhasquestions) {
 //            $output .= html_writer::div(
 //                    $this->notification(get_string('noquestions', 'quiz'), 'warning', false),
 //                    'text-left mb-3');
 //        }
 //        $output .= $this->access_messages($viewobj->preventmessages);
-//
+
 //        if ($viewobj->showbacktocourse) {
 //            $output .= $this->single_button($viewobj->backtocourseurl,
 //                    get_string('backtocourse', 'quiz'), 'get',
 //                    array('class' => 'continuebutton'));
 //        }
-//
+
 //        return $output;
 //    }
-//
+
 //    /**
 //     * Generates the view attempt button
 //     *

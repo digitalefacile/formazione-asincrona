@@ -64,35 +64,45 @@
         testiniziale 
         {{#activityinfo.overallcomplete}}testiniziale-completed{{/activityinfo.overallcomplete}}
         {{^activityinfo.overallcomplete}}testiniziale-incomplete{{/activityinfo.overallcomplete}}
-        {{/testiniziale}}" 
+        {{/testiniziale}}
+        {{#testfinale}}
+        testfinale 
+        {{/testfinale}}" 
         data-activityname="{{activityname}}">
     {{!
       Place the actual content of the activity-item in a separate template to make it easier for other formats to add
       additional content to the activity wrapper.
     }}
 
-    {{^testiniziale}}
+    {{! Template generico delle attività }}
+    {{^testinizialeofinale}}
     {{$ core_courseformat/local/content/cm/activity }}
         {{> core_courseformat/local/content/cm/activity }}
     {{/ core_courseformat/local/content/cm/activity }}
-    {{/testiniziale}}
+    {{/testinizialeofinale}}
 
+    {{! Template per il test iniziale a seconda dello stato di completamento }}
     {{#testiniziale}}
+        {{#activityinfo.istrackeduser}}
+            {{#activityinfo.overallcomplete}}
+            {{$ core_courseformat/local/content/cm/activitytestinizialecompleted }}
+                {{> core_courseformat/local/content/cm/activitytestinizialecompleted }}
+            {{/ core_courseformat/local/content/cm/activitytestinizialecompleted }}
+            {{/activityinfo.overallcomplete}}
 
-    {{#activityinfo.istrackeduser}}
-        {{#activityinfo.overallcomplete}}
-        {{$ core_courseformat/local/content/cm/activitytestinizialecompleted }}
-            {{> core_courseformat/local/content/cm/activitytestinizialecompleted }}
-        {{/ core_courseformat/local/content/cm/activitytestinizialecompleted }}
-        {{/activityinfo.overallcomplete}}
-
-        {{^activityinfo.overallcomplete}}
-        {{$ core_courseformat/local/content/cm/activitytestinizialeincomplete }}
-            {{> core_courseformat/local/content/cm/activitytestinizialeincomplete }}
-        {{/ core_courseformat/local/content/cm/activitytestinizialeincomplete }}
-        {{/activityinfo.overallcomplete}}
-    {{/activityinfo.istrackeduser}}
-
+            {{^activityinfo.overallcomplete}}
+            {{$ core_courseformat/local/content/cm/activitytestinizialeincomplete }}
+                {{> core_courseformat/local/content/cm/activitytestinizialeincomplete }}
+            {{/ core_courseformat/local/content/cm/activitytestinizialeincomplete }}
+            {{/activityinfo.overallcomplete}}
+        {{/activityinfo.istrackeduser}}
     {{/testiniziale}}
+
+    {{! Template per il test finale }}
+    {{#testfinale}}
+        {{$ core_courseformat/local/content/cm/activitytestfinale }}
+            {{> core_courseformat/local/content/cm/activitytestfinale }}
+        {{/ core_courseformat/local/content/cm/activitytestfinale }}
+    {{/testfinale}}
 
 </div>

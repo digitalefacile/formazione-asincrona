@@ -1,0 +1,92 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core_courseformat/local/content/cm/activity_info
+
+    Container to display activity information on the course page such as:
+      - Activity completion requirements (automatic completion)
+      - Manual completion button
+
+    Example context (json):
+    {
+        "activityname": "Course announcements",
+        "hascompletion": true,
+        "uservisible": true,
+        "isautomatic": true,
+        "showmanualcompletion": true,
+        "completiondetails": [
+             {
+                "statuscomplete": 1,
+                "description": "Viewed"
+            },
+            {
+                "statusincomplete": 1,
+                "description": "Receive a grade"
+            }
+        ]
+    }
+}}
+<div data-region="activity-information" data-activityname="{{activityname}}" class="activity-information">
+
+    <div data-region="activity-info-cta" class="d-flex flex-row my-2">
+
+    {{#overallincomplete}}
+        {{^hasattempts}}
+        <div>
+            <a href="{{{url}}}" 
+                class="m-2 btn 
+                btn-test-finale{{#uservisible}}-available{{/uservisible}}{{^uservisible}}-unavailable disabled{{/uservisible}}" 
+                aria-label="Vai al test finale del corso {{ activityname }}"> 
+                Vai al test
+            </a>
+        </div>
+        {{/hasattempts}}
+
+        {{#hasattempts}}
+            <div>
+                <a href="{{{url}}}" 
+                    class="m-2 btn btn-test-finale-available" 
+                    aria-label="Riprova il test finale del corso {{ activityname }}"> 
+                    Prova di nuovo
+                </a>
+            </div>
+        {{/hasattempts}}
+    {{/overallincomplete}}
+
+    {{^overallincomplete}}
+        {{#quizpassed}}
+            {{$ core_courseformat/local/content/cm/completion_pill_completed }}
+                {{> core_courseformat/local/content/cm/completion_pill_completed }}
+            {{/ core_courseformat/local/content/cm/completion_pill_completed }}
+            <div class="my-4">
+                {{{dlCertCta}}}
+            </div>
+        {{/quizpassed}}
+        {{^quizpassed}}
+            <div class="my-4 p-4 testfinale-failed-text">
+                Ci dispiace, non hai superato il test finale. Contatta la tua segreteria tramite mail all’indirizzo <a href="mailto:segreteria@elearning.it">segreteria@elearning.it</a> o al numero 06.8080900.
+            </div>
+        {{/quizpassed}}
+    {{/overallincomplete}}
+
+    {{#hasattempts}}
+        {{$ core_courseformat/local/content/cm/quiz_attempts_testfinale }}
+            {{> core_courseformat/local/content/cm/quiz_attempts_testfinale }}
+        {{/ core_courseformat/local/content/cm/quiz_attempts_testfinale }}
+    {{/hasattempts}}
+        
+</div>

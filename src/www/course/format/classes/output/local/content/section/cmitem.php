@@ -168,6 +168,7 @@ class cmitem implements named_templatable, renderable {
                 </strong></a>';
             }
         }
+
         // 2. CTA per i quiz che abilitano attestato
         $dlCertCta = null;
         if( $mod->modname == 'quiz' && $mod->completion == 2)  { // 2 = attività superata (COMPLETION_COMPLETE_PASS)
@@ -175,10 +176,10 @@ class cmitem implements named_templatable, renderable {
         // @TODO: utilizzare la lib/completionlib.php e mod_quiz\completion\activity_custom_completion
             
             //CONTROLLO BOTTONE QUIZ SOLO SE HAI UN VOTO ADEGUATO
-                $quizId = $mod->instance;
-                $grades = grade_get_grades($course->id, 'mod','quiz', $quizId, $USER->id);
-                $gradepass = $grades->items[0]->gradepass; // Valore di gradepass
-                $grade = $grades->items[0]->grades[$USER->id]->grade;
+            $quizId = $mod->instance;
+            $grades = grade_get_grades($course->id, 'mod','quiz', $quizId, $USER->id);
+            $gradepass = $grades->items[0]->gradepass; // Valore di gradepass
+            $grade = $grades->items[0]->grades[$USER->id]->grade;
             
             $customcertModIds = $DB->get_records('modules', array('name' => 'customcert'));           
             if(count($customcertModIds) > 0) {
@@ -216,8 +217,10 @@ class cmitem implements named_templatable, renderable {
                                 $downloadbutton->class .= ' m-b-1';  // Seems a bit hackish, ahem.
                              
                                 if ($grade >= $gradepass || is_siteadmin($USER->id)) {
+                                    $quizpassed = true;
                                     $dlCertCta = $OUTPUT->render($downloadbutton);
                                 } else {
+                                    $quizpassed = false;
                                 }
                                 
                                 //$dlCertCta = '<a href="#" class="btn btn-primary">Scarica certificato</a>';
@@ -252,6 +255,50 @@ class cmitem implements named_templatable, renderable {
 
         }
 
+        // Se siamo al quiz finale, prepara i dati dei tentativi precedenti
+        if($mod->modname == 'quiz' && $mod->name == 'Test finale') {
+            $quiz = $DB->get_record('quiz', array('id' => $quizId));
+            if($quiz) {
+                $hasattempts = false;
+                $attemptobjs = [];
+                $userattempts = quiz_get_user_attempts($mod->instance, $USER->id);
+                if($userattempts) {
+                    foreach ($userattempts as $userattempt) {
+                        $attemptobjs[] = new \quiz_attempt($userattempt, $quiz, $mod, $course, false);
+                    }
+                    if(count($attemptobjs) > 0) {
+                        $hasattempts = true;
+                        $attempts = [];
+                        foreach($attemptobjs as $attemptobj) {
+                            if (!$attemptobj->is_finished()) { // Visualizza solo i tentativi completati
+                                continue;
+                            }                            
+                            $attemptno = $attemptobj->get_attempt_number();
+                            $usergrade = quiz_rescale_grade($attemptobj->get_sum_marks(), $quiz, false);
+                            $feedbacks = $DB->get_records('quiz_feedback', array('quizid' => $quiz->id));
+                            $attemptfeedback = '';
+                            foreach ($feedbacks as $feedback) {
+                                if ($usergrade >= $feedback->mingrade && $usergrade <= $feedback->maxgrade) {
+                                    $fullattemptfeedback = $feedback->feedbacktext;
+                                    // NB: utilizzato il messaggio configurato nelle impostazioni del quiz, che però è composto da più righe, mentre qui serve solo la prima
+                                    // Eventualmente sostituire con stringa apposita nel file di lingua
+                                    $attemptfeedback = strip_tags(explode("\r", $fullattemptfeedback)[0]);
+                                    break;
+                                }
+                            }
+            
+                            $attempts[] = [
+                                'attemptno' => $attemptno,
+                                'grade' => $usergrade,
+                                'feedback' => $attemptfeedback,
+                                'reviewurl' => new \moodle_url('/mod/quiz/review.php',['attempt' => $attemptobj->get_attemptid(), 'cmid' => $mod->id]),
+                            ];
+                            
+                        }
+                    }
+                }
+            }
+        }
 
         return (object)[
             'id' => $mod->id,
@@ -265,8 +312,11 @@ class cmitem implements named_templatable, renderable {
             'hascta' => $hascta,
             'cta' => $cta,
             'dlCertCta' => $dlCertCta,
+            'quizpassed' => $quizpassed,
 
             'testinizialelevel' => $testInizialeLevel,
+            'hasattempts' => $hasattempts,
+            'attempts' => $attempts,
         ];
     }
 }

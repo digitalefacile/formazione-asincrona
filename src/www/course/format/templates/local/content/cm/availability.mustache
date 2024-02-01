@@ -34,6 +34,8 @@
         "hasmodavailability": true
     }
 }}
+
+{{^testfinale}}
 {{#hasmodavailability}}
     {{#info}}
         <div class="availabilityinfo small course-description-item {{classes}}">
@@ -48,3 +50,21 @@
         </div>
     {{/info}}
 {{/hasmodavailability}}
+{{/testfinale}}
+
+{{#testfinale}}
+{{#hasmodavailability}}
+    {{#info}}
+        <div class="availabilityinfo small course-description-item {{classes}}">
+        {{^isrestricted}}
+            <span class="badge badge-pill badge-warning">{{{text}}}</span>
+        {{/isrestricted}}
+        {{#isrestricted}}
+            <div class="description-inner testfinale-unavailable text-center">
+            Potrai accedere al Test finale del corso quando avrai completato anche il livello avanzato.
+            </div>
+        {{/isrestricted}}
+        </div>
+    {{/info}}
+{{/hasmodavailability}}
+{{/testfinale}}
