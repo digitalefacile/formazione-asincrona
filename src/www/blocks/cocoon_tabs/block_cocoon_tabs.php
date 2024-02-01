@@ -127,7 +127,7 @@ class block_cocoon_tabs extends block_base {
                                        font-style: normal;
                                        font-weight: 700;
                                        line-height: 24px;"';
-                        $inputButton='
+                                       $inputButton='
                                        <div class="find-out-more">
                                        <a id="scopriDipiùTab"  aria-label="Scopri di più" class="text_3_tabs" >Scopri di più 
                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="margin-left: 5px;"viewBox="0 0 24 24" fill="none">
@@ -136,10 +136,10 @@ class block_cocoon_tabs extends block_base {
                                      </a>
                                    </div> ';
                       }else if( $ccnTabBody =='text2'){
-                        $titleOfAccordion='Consulta il forum annunci';
+                        $titleOfAccordion='Consulta la bacheca annunci';
                         $inputButton='
                         <div class="find-out-more text_2_button_align">
-                          <a  href="./blog"  aria-label="Entra nel forum" class="btn btn-primary text_2_tabs">Entra nel forum</a>
+                          <a  href="./blog"  aria-label="Entra nel forum" class="btn btn-primary text_2_tabs">Vai alla bacheca</a>
                         </div>';
                       }else if ($ccnTabBody =='text3'){
                         $titleOfAccordion='Conosci la Certificazione DigComp User?';                  
