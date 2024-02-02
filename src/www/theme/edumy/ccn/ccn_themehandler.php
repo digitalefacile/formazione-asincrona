@@ -781,14 +781,19 @@ if(class_exists('core\navigation\output\primary')) {
 $back2coursePagetypes = [];
 $back2CourseBtn = '';
 if(in_array($PAGE->pagetype,$back2coursePagetypes)) {
-	$arialabel = 'Torna al corso ' . $coursefullname;
+  $btnLabel = 'Torna indietro';
+  if($PAGE->pagetype == 'mod-quiz-attempt') {
+    $btnLabel = 'Abbandona il test';
+  }
+  $arialabel = 'Torna al corso ' . $coursefullname;
   $back2CourseBtn = '<div class="row">
                       <div class="col-md-12 col-lg-12 col-xl-12">
                         <a href="'. $CFG->wwwroot .'/course/view.php?id='.$courseid.'" class="button_custom_torna_indietro"  aria-label="' . $arialabel . '">
                         <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M6.73333 12.6665L7.2 12.1998L3.66667 8.59984L14 8.59984L14 7.93317L3.66667 7.93317L7.2 4.33317L6.73333 3.8665L2.33333 8.2665L6.73333 12.6665Z" fill="#0065CC"/>
                         </svg>
-                         Torna indietro </a>
+                        '.$btnLabel.'
+                        </a>
                       </div>
                     </div>';
 }

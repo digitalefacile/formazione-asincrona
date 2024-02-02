@@ -144,3 +144,164 @@
 #page-mod-quiz-view .quiz-view-intro li {
     list-style-type: disc;
 }
+
+/* PAGINA TENTATIVO */
+/* DSTF quiz start */
+#page-mod-quiz-attempt .button_custom_torna_indietro {
+  display: block !important;
+}
+
+.que .questionflag,
+.que .grade,
+.que .state {
+  display: none;
+}
+
+.que .content {
+  padding: 0 2em;
+}
+
+#page-mod-quiz-attempt #region-main-box {
+  clear: both;
+}
+
+.ccn-boxed-area,
+#mod_quiz_navblock {
+  border: 0 !important;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+}
+
+#mod_quiz_navblock h4 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0065CC;
+}
+
+.que.multichoice {
+  width: 750px;
+  min-height: 365px;
+}
+.que.multichoice .qa-flex-container {
+  padding: 16px;
+  align-items: stretch;
+  border-radius: 10px;
+  background-color: #29384A;
+}
+.que.multichoice .formulation {
+  flex: 1 0 50%;
+  background: transparent;
+  padding: 16px;
+}
+.que.multichoice .qtext,
+.que.multichoice .qtext p {
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFF;
+}
+
+.que.multichoice .answer-wrapper {
+  flex: 1 0 50%;
+  background: white;
+  border-radius: 10px;
+}
+.que.multichoice .ablock {
+  margin: 0;
+}
+.que.multichoice .answer {
+  border-radius: 10px;
+  background-color: white;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 50px;
+  text-align: left;
+}
+
+.que.multichoice .answer p {
+  font-size: inherit;
+}
+
+.que.multichoice .answer > div {
+	align-items: center !important;
+}
+.custom_tempo{
+   font-size:20px!important;
+  font-family: Titillium Web;
+
+}
+.que h3.no {
+  color: #FFF;
+  font-size:20px!important;
+  vertical-align: middle;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.que span.qno {
+  font-size: 20px!important;
+  font-weight: 700;
+}
+
+#page-mod-quiz-attempt #quiz-timer-wrapper  {
+  justify-content: center;
+}
+#page-mod-quiz-attempt #quiz-time-left {
+  vertical-align: initial;
+}
+#page-mod-quiz-attempt #quiz-timer-wrapper .quiz-countdown-time,
+#page-mod-quiz-attempt #quiz-timer-wrapper .quiz-countdown-label   {
+  font-size: 18px;
+  line-height: 16px;
+  vertical-align: initial;
+  font-weight: 700
+}
+#page-mod-quiz-attempt #quiz-timer-wrapper .quiz-countdown-time {
+  color: #29384A;
+}
+#page-mod-quiz-attempt #quiz-timer-wrapper .quiz-countdown-time {
+  color: #0065CC;
+}
+
+#page-mod-quiz-attempt .submitbtns,
+#page-mod-quiz-review .submitbtns {
+  padding: 0 calc(50% - 375px + 1.5rem);
+}
+
+#page-mod-quiz-attempt .activity-navigation {
+  display: none;
+}
+
+/* DSTF quiz end */
+#page-mod-quiz-view .quizinfo, #page-mod-quiz-view #page .quizgradefeedback {
+    color: #000000!important;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding-left: 16px!important;
+}
+.singlebutton.quizstartbuttondiv {
+      padding-left: 16px!important;
+}
+table.quizreviewsummary th.cell {
+    padding: 15px 4px!important;
+    text-align:center!important;
+    font-weight: 700;
+    text-align: right;
+    width: 10em;
+    background: #f0f0f0;
+}
+#page-mod-quiz-view .generalbox#feedback h3 {
+    text-align: left;
+    display: none;
+}
+
+.quizgradefeedback {
+    display: none;
+}
+.que.multichoice .answer .answernumber {
+    min-width: 1.5em;
+    display: none!important;
+}
+.que .info>div {
+    font-size:20px!important;
+}

@@ -440,7 +440,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         $output .= $this->header();
         //$output .= $this->during_attempt_tertiary_nav($attemptobj->view_url());
         $output .= $this->quiz_notices($messages);
-        //$output .= $this->countdown_timer($attemptobj, time());
+        $output .= $this->countdown_timer($attemptobj, time());
         $output .= $this->attempt_form($attemptobj, $page, $slots, $id, $nextpage);
         $output .= $this->footer();
         return $output;
@@ -566,7 +566,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
         if ($lastpage) {
             $nextlabel = get_string('endtest', 'quiz');
         } else {
-            $nextlabel = 'Vai avanti &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            $nextlabel = 'Conferma &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M9.26667 3.33301L8.8 3.79967L12.3333 7.39967L2 7.39967V8.06634H12.3333L8.8 11.6663L9.26667 12.133L13.6667 7.73301L9.26667 3.33301Z" fill="white"/>
             </svg>&nbsp;';
         }
