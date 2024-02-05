@@ -37,8 +37,11 @@ use mod_quiz\completion;
 // needed for certificate download
 use moodle_url;
 use context_module;
+use core\oauth2\rest;
 use single_button;
 use core_completion_external;
+
+require_once($CFG->dirroot.'/mod/quiz/accessmanager.php');
 /**
  * Base class to render a section activity in the activities list.
  *
@@ -258,6 +261,7 @@ class cmitem implements named_templatable, renderable {
         // Se siamo al quiz finale, prepara i dati dei tentativi precedenti
         if($mod->modname == 'quiz' && $mod->name == 'Test finale') {
             $quiz = $DB->get_record('quiz', array('id' => $quizId));
+            
             if($quiz) {
                 $hasattempts = false;
                 $attemptobjs = [];
@@ -296,6 +300,13 @@ class cmitem implements named_templatable, renderable {
                             
                         }
                     }
+                    // Check if the current user has any attempts left
+                    $quizobj = \quiz::create($mod->instance, $USER->id);
+                    $accessmanager = new \quiz_access_manager($quizobj, time(),has_capability('mod/quiz:ignoretimelimits', $mod->context, null, false));
+                    $moreattempts = true;
+                    if($hasattempts && $accessmanager->is_finished(count($userattempts), end($userattempts))) {
+                        $moreattempts = false;
+                    }
                 }
             }
         }
@@ -317,6 +328,7 @@ class cmitem implements named_templatable, renderable {
             'testinizialelevel' => $testInizialeLevel,
             'hasattempts' => $hasattempts,
             'attempts' => $attempts,
+            'moreattempts' => $moreattempts,
         ];
     }
 }
