@@ -1,0 +1,7 @@
+SHELL="/bin/bash"
+
+# Moodle Cron
+* * * * * root su -m -s /bin/bash -c "/usr/local/bin/php /var/www/html/admin/cli/cron.php" www-data > /proc/1/fd/1 2> /proc/1/fd/2
+
+# Insert cronjob here
+# * * * * * root /usr/local/bin/php /var/www/html/app.php > /proc/1/fd/1 2> /proc/1/fd/2

@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      tags:
+        - "${APP_IMAGE}:${APP_IMAGE_TAG:?Specify a custom Image Tag for \"app\" service}"
+
+  web:
+    build:
+      tags:
+        - "${WEB_IMAGE}:${WEB_IMAGE_TAG:?Specify a custom Image Tag for \"web\" service}"
