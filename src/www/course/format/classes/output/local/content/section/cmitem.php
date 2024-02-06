@@ -295,7 +295,7 @@ class cmitem implements named_templatable, renderable {
                                 'attemptno' => $attemptno,
                                 'grade' => $usergrade,
                                 'feedback' => $attemptfeedback,
-                                'reviewurl' => new \moodle_url('/mod/quiz/review.php',['attempt' => $attemptobj->get_attemptid(), 'cmid' => $mod->id]),
+                                'reviewurl' => new \moodle_url('/mod/quiz/review.php',['attempt' => $attemptobj->get_attemptid(), 'cmid' => $mod->id, 'secondreview' => '1']),
                             ];
                             
                         }

@@ -70,15 +70,15 @@
                 </defs>
                 </svg>
 
-                        {{^activityrestricted}}
+                        {{#isavailable}}
                             <a href="{{{url}}}" class="activitylink" title="{{#cleanstr}} activitylink, moodle, {{{pluginname}}} {{/cleanstr}}">                            
-                        {{/activityrestricted}}
+                        {{/isavailable}}
                         {{#fullactivityname}}
                             {{{fullactivityname}}}
                         {{/fullactivityname}}
-                        {{^activityrestricted}}
+                        {{#isavailable}}
                             </a>
-                        {{/activityrestricted}}
+                        {{/isavailable}}
 
                 </div>
             </div>

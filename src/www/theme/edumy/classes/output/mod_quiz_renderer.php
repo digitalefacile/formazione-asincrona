@@ -248,7 +248,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                     new moodle_url($attemptobj->attempt_url(null, $attemptobj->get_currentpage())),
                     get_string('returnattempt', 'quiz'));
             $output .= $this->container($this->container($this->render($button),
-                    'controls'), 'submitbtns mdl-align');
+                    'controls'), 'submitbtn mdl-align');
         }
 
         // Finish attempt button.
@@ -289,7 +289,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
 
         // $output .= $this->countdown_timer($attemptobj, time());
         $output .= $this->container($this->container(
-                $this->render($button), 'controls'), 'submitbtns mdl-align');
+                $this->render($button), 'controls'), 'submitbtn mdl-align');
 
         return $output;
     }

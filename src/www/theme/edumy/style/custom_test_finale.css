@@ -264,11 +264,11 @@ color: #29384A;
 color: #0065CC;
 }
 
-#page-mod-quiz-attempt .submitbtns.mdl-align {
+#page-mod-quiz-attempt .submitbtns {
 justify-content: right;
 padding: 0 calc(50% - 375px + 1.5rem);
 }
-#page-mod-quiz-attempt .submitbtns.mdl-align:first-of-type button {
+#page-mod-quiz-attempt .submitbtn.mdl-align:first-of-type button {
 display: none;
 }
 

@@ -30,6 +30,7 @@ use completion_info;
 use context;
 use core\activity_dates;
 use core_availability\info;
+use core_availability_renderer;
 use core_completion\cm_completion_details;
 use core_user;
 use core_user\fields;
@@ -82,6 +83,11 @@ class activity_information implements renderable, templatable {
         $data->activityname = $this->cminfo->get_formatted_name();
         $this->build_dates_data($data);
         $data->hasdates = !empty($this->activitydates);
+
+        // Get the section containing the activity.
+        $modinfo = get_fast_modinfo($this->cminfo->course);
+        $cm = $modinfo->get_cm($this->cminfo->id);
+        $data->isavailable = $cm->available;
 
         return $data;
     }

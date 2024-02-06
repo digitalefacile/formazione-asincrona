@@ -36,18 +36,24 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
 	  // Pulizia lista tag dai ruoli (tutti, Facilitatore, Volontario) ed estrazione primo tag rimanente per categoria
 	  // Oppure default a Senza categoria
 
-	  foreach ( $currentTags as $id => $current_tag ) {
-		  if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' ) {
-			  unset( $currentTags[ $id ] );
-		  }
-	  }
+	
+    $blockedRole = array("Volontario", "volontario", "Facilitatore", "facilitatore");
 
+foreach ($currentRoleNames as $role) {
+    if (in_array($role, $blockedRole)) {
+        foreach ( $currentTags as $id => $current_tag ) {
+          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' ) {
+            unset( $currentTags[ $id ] );
+          }
+        }
+    }
+}
 	  if ( empty( $currentTags ) ) {
 		  $currentCategory = array( 'Senza categoria' );
 	  } else {
-		  $currentCategory = array_slice( $currentTags, 0, 1 );
-	  }
+		  $currentCategory =  $currentTags;
 
+	  }
 	  global $CFG, $PAGE;
 
       $ccnBlogHandler = new ccnBlogHandler();
@@ -352,8 +358,12 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
 							<div class="details-data d-flex flex-row">';
 
 	          // Stampa categoria del post
-	          $o .= '<div class="category badge badge-secondary">' . $currentCategory[0] . '</div><!-- end category -->';
-
+	          // $o .= '<div class="category badge badge-secondary">' . $currentCategory[0] . '</div><!-- end category -->';
+            $o .='<div>';
+            foreach ($currentCategory as $category) {
+              $o .= '<div class="category badge badge-secondary">' . $category . '</div><!-- end category -->';
+           }
+           $o.='</div>';
 	          if ( $PAGE->theme->settings->blog_post_author != 1 ) {
 		          $o .= '<div class="metadata">' . $fullname;
 	          }

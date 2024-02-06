@@ -47,9 +47,9 @@
     2 - Test in corso       1                       --                     --                  1                1   
     3 - Test fallito        1                       --                     --                  1                --
     4 - Test non iniziato   1                       --                     --                  --               --
+    5 - Test non disp.      
 }}
 <div data-region="activity-information" data-activityname="{{activityname}}" class="activity-information">
-
     <div data-region="activity-info-cta" class="d-flex flex-row my-2">
     {{#overallincomplete}}
 
@@ -57,7 +57,7 @@
         <div>
             <a href="{{{url}}}" 
                 class="m-2 btn 
-                btn-test-finale{{#uservisible}}-available{{/uservisible}}{{^uservisible}}-unavailable disabled{{/uservisible}}" 
+                btn-test-finale{{#isavailable}}-available{{/isavailable}}{{^isavailable}}-unavailable disabled{{/isavailable}}" 
                 aria-label="Vai al test finale del corso {{ activityname }}"> 
                 Vai al test
             </a>
