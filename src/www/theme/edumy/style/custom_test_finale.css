@@ -43,8 +43,8 @@
   font-size: 15px;
   line-height: 22.82px;
   font-weight: 700;
-  color: #000 !important;
-  /* text-align: center; */
+  /* aggiunto color per allineamento figma */
+  color: #FFFFFF !important;
 }
 .coursepage-quizattempt-testfinale {
   font-size: 15px;

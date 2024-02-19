@@ -210,17 +210,20 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
     * @return string HTML to display
     */
    public function view_page($course, $quiz, $cm, $context, $viewobj) {
-        global $CFG;
-       $output = '';
-        
+        global $CFG,$DB;
+
+        $output = '';
         // Show activity title
         $output .= $this->heading(format_string($quiz->name),2,'quiz-title');
+
+        //per prendere la categoria da mostrare come chip
+        $category = $DB->get_record('course_categories',array('id'=>$course->category));
 
         // Show course title
         $output .= $this->heading(format_string($course->fullname),3,'course-title');
 
         // Show course shortname
-        $output .= $this->heading(strtoupper(format_string(substr($course->shortname,6))),4,'course-shortname');
+        $output .= $this->heading(format_string($category->name),4,'course-shortname');
 
         // Show intro text - NB: messo in template apposito per semplificare le modifiche
         $output .= $this->render_from_template('mod_quiz/quiz_intro',$context);
