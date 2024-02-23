@@ -145,7 +145,8 @@ class cm implements named_templatable, renderable {
             $data->testfinale = true;
         }
         if(true === $data->testinizialeofinale) {
-            $data->fullactivityname = $courseshortname . ' - ' . $data->activityname;
+            // $data->fullactivityname = $courseshortname . ' - ' . $data->activityname;
+            $data->fullactivityname = $data->activityname;
         }
         
         return $data;
