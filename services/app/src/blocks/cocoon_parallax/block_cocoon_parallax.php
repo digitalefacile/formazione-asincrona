@@ -56,7 +56,7 @@ class block_cocoon_parallax extends block_base
         $this->content->text = '
 
         
-        <section data-ccn="image" data-ccn-img="bg-img-url" class="'.$this->content->style.' parallax bg-img2" data-stellar-background-ratio="0.3" style="background-image:url('.$this->content->image.');background-size:cover;">
+        <section data-ccn="image" alt="" data-ccn-img="bg-img-url" class="'.$this->content->style.' parallax bg-img2" data-stellar-background-ratio="0.3" style="background-image:url('.$this->content->image.');background-size:cover;">
  		<div class="container">
  			<div class="row" style="justify-content:center;">
  				<div class="col-lg-8 text-center">
