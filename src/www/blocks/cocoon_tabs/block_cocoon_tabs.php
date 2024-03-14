@@ -161,7 +161,7 @@ class block_cocoon_tabs extends block_base {
                       <div class="single-card single_card_tabs" >
                       <div class="col-12 col-md-6 p-0">
                         <div class="thumb h-100">
-                          <img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="Cosa fare in caso di incendio?">
+                          <img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="">
                         </div>
                       </div>
                       <div class="text-container col-12 col-md-6 text_container_tabs" >
