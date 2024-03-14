@@ -1,0 +1,79 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'The target environment for deployment'
+        type: environment
+        required: true
+
+jobs:
+  
+  build:
+    
+    name: Build Image
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v4
+      with:
+          # this allow the workflow to be rerun after changes have been pushed from previous jobs
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Set short git commit SHA
+      id: vars
+      run: |
+        calculatedSha=$(git rev-parse --short ${{ github.sha }})
+        echo "IMAGE_TAG=$calculatedSha" >> $GITHUB_ENV
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        APP_IMAGE: "${{ steps.login-ecr.outputs.registry }}/${{ secrets.APP_ECR_NAME }}"
+        WEB_IMAGE: "${{ steps.login-ecr.outputs.registry }}/${{ secrets.WEB_ECR_NAME }}"
+        # IMAGE_TAG: ${{ env.IMAGE_TAG }}
+      run: |
+        docker compose -f compose.yml -f compose.aws.yml build --push
+
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.23.6' # default is latest stable
+      id: install
+
+    - name: Configure AWS credentials for K8S
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-session-name: Git
+        role-duration-seconds: 3600
+
+    - name: Setup Kubeconfig
+      run: |
+        aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.AWS_CLUSTER }}
+    
+    - name: Deploy on k8s
+      env:
+        APP_IMAGE: "${{ steps.login-ecr.outputs.registry }}/${{ secrets.APP_ECR_NAME }}:${{ env.IMAGE_TAG }}"
+        WEB_IMAGE: "${{ steps.login-ecr.outputs.registry }}/${{ secrets.WEB_ECR_NAME }}:${{ env.IMAGE_TAG }}"
+      run: |
+        kubectl -n ${{ secrets.K8S_NAMESPACE }} set image "deployment/${{ secrets.K8S_DEPLOYMENT_NAME_CRON }}" "cron=${APP_IMAGE}"
+        kubectl -n ${{ secrets.K8S_NAMESPACE }} set image "deployment/${{ secrets.K8S_DEPLOYMENT_NAME_WEB }}" "app=${APP_IMAGE}" "web=${WEB_IMAGE}"
