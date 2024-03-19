@@ -277,7 +277,8 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
                 // Only count the unanswered question if the navigation method is set to free.
                 $totalunanswered = $attemptobj->get_number_of_unanswered_questions();
             }
-            $this->page->requires->js_call_amd('mod_quiz/submission_confirmation', 'init', [$totalunanswered]);
+            //CORREZIONE TEST FINALE TODO
+            // $this->page->requires->js_call_amd('mod_quiz/submission_confirmation', 'init', [$totalunanswered]);
         }
         $button->primary = true;
 
