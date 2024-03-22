@@ -177,9 +177,9 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             $output .= html_writer::end_tag('button');
             $this->page->requires->js_call_amd('core_form/submit', 'init', ['mod_quiz-prev-nav']);
         }
-        if ($lastpage) {
-            $output .= $this->summary_page_controls($this->attemptobj);
-        } else {
+        // if ($lastpage) {
+        //     $output .= $this->summary_page_controls($this->attemptobj);
+        // } else {
             $nextlabel = 'Conferma &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M9.26667 3.33301L8.8 3.79967L12.3333 7.39967L2 7.39967V8.06634H12.3333L8.8 11.6663L9.26667 12.133L13.6667 7.73301L9.26667 3.33301Z" fill="white"/>
             </svg>&nbsp;';
@@ -189,7 +189,7 @@ class mod_quiz_renderer extends \mod_quiz_renderer {
             'id' => 'mod_quiz-next-nav'));
             $output .= $nextlabel;
             $output .= html_writer::end_tag('button');
-        }
+        // }
         $output .= html_writer::end_tag('div');
         $this->page->requires->js_call_amd('core_form/submit', 'init', ['mod_quiz-next-nav']);
 
