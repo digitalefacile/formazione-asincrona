@@ -63,7 +63,7 @@ class block_cocoon_parallax_white extends block_base
       				</div>
       				<div class="parallax_white_second_div">
       					<div class="about_thumb_home3 text-right">
-      						<img class="img-fluid" src="'.$this->content->image.'" alt="">
+      						<img class="img-fluid" src="'.$this->content->image.'" alt="prova alt">
       					</div>
       				</div>
       			</div>
