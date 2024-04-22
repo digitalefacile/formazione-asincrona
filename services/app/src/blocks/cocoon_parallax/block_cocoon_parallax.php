@@ -63,7 +63,7 @@ class block_cocoon_parallax extends block_base
  					<div class="divider-one ">
                         <h1 class="parallax-h1" data-ccn="title">'. format_text($this->content->title, FORMAT_HTML, array('filter' => true)) .'</h1>
  						<p class="p-parallax" data-ccn="subtitle">'. format_text($this->content->subtitle, FORMAT_HTML, array('filter' => true)) .'</p>
- 						<button data-ccn="button_text" aria-label="Scopri i corsi" style="margin-bottom: 30px;" class="btn btn-primary" href="'. format_text($this->content->button_link, FORMAT_HTML, array('filter' => true)) .'">'. format_text($this->content->button_text, FORMAT_HTML, array('filter' => true)) .'</button>
+ 						<button data-ccn="button_text" aria-label="Vai alla pagina dei corsi" style="margin-bottom: 30px;" class="btn btn-primary" href="'. format_text($this->content->button_link, FORMAT_HTML, array('filter' => true)) .'">'. format_text($this->content->button_text, FORMAT_HTML, array('filter' => true)) .'</button>
  					</div>
  				</div>
  			</div>
