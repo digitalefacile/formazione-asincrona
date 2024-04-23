@@ -13,49 +13,54 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-require_once($CFG->dirroot. '/theme/edumy/ccn/block_handler/ccn_block_handler.php');
-class block_cocoon_tabs extends block_base {
+require_once($CFG->dirroot . '/theme/edumy/ccn/block_handler/ccn_block_handler.php');
+
+class block_cocoon_tabs extends block_base
+{
 
     /**
      * Start block instance.
      */
-    function init() {
+    function init()
+    {
         $this->title = get_string('pluginname', 'block_cocoon_tabs');
     }
 
     /**
      * The block is usable in all pages
      */
-     function applicable_formats() {
-       $ccnBlockHandler = new ccnBlockHandler();
-       return $ccnBlockHandler->ccnGetBlockApplicability(array('all'));
-     }
+    function applicable_formats()
+    {
+        $ccnBlockHandler = new ccnBlockHandler();
+        return $ccnBlockHandler->ccnGetBlockApplicability(array('all'));
+    }
 
 
     /**
      * Customize the block title dynamically.
      */
-    function specialization() {
+    function specialization()
+    {
         $altValues = array(
-          'text' => 'Immagine',
-          'text1' => 'Descrizione per text1',
-          'text2' => 'Descrizione per text2',
-          'text3' => 'Descrizione per text3',
-          // Aggiungi qui altre coppie chiave-valore se necessario
-      );
+            'text' => 'Immagine',
+            'text1' => 'Descrizione per text1',
+            'text2' => 'Descrizione per text2',
+            'text3' => 'Descrizione per text3',
+            // Aggiungi qui altre coppie chiave-valore se necessario
+        );
 
         global $CFG, $DB;
         include($CFG->dirroot . '/theme/edumy/ccn/block_handler/specialization.php');
         if (empty($this->config)) {
-          $this->config = new \stdClass();
-          $this->config->slidesnumber = '3';
-          $this->config->title = 'Frequently Asked Questions';
-          $this->config->title1 = 'Percorso formativo';
-          $this->config->title2 = 'Forum annunci';
-          $this->config->title3 = 'Certificazioni Accredia';
-          $this->config->text1['text'] = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.';
-          $this->config->text2['text'] = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.';
-          $this->config->text3['text'] = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.';
+            $this->config = new \stdClass();
+            $this->config->slidesnumber = '3';
+            $this->config->title = 'Frequently Asked Questions';
+            $this->config->title1 = 'Percorso formativo';
+            $this->config->title2 = 'Forum annunci';
+            $this->config->title3 = 'Certificazioni Accredia';
+            $this->config->text1['text'] = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.';
+            $this->config->text2['text'] = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.';
+            $this->config->text3['text'] = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.';
         }
 
     }
@@ -63,14 +68,16 @@ class block_cocoon_tabs extends block_base {
     /**
      * The block can be used repeatedly in a page.
      */
-    function instance_allow_multiple() {
+    function instance_allow_multiple()
+    {
         return true;
     }
 
     /**
      * Build the block content.
      */
-    function get_content() {
+    function get_content()
+    {
         global $CFG, $PAGE;
 
         require_once($CFG->libdir . '/filelib.php');
@@ -83,7 +90,9 @@ class block_cocoon_tabs extends block_base {
 
         if (!empty($this->config) && is_object($this->config)) {
             $this->content = new \stdClass();
-            if(!empty($this->config->title)){$this->content->title = $this->config->title;}
+            if (!empty($this->config->title)) {
+                $this->content->title = $this->config->title;
+            }
             $data = $this->config;
             $data->slidesnumber = is_numeric($data->slidesnumber) ? (int)$data->slidesnumber : 3;
         } else {
@@ -96,46 +105,45 @@ class block_cocoon_tabs extends block_base {
         if ($data->slidesnumber > 0) {
             $text .= '
             <div class="shortcode_widget_tab">';
-              if(!empty($this->config->title)){
-                $text .='  <h4 data-ccn="title">'.format_text($this->content->title, FORMAT_HTML, array('filter' => true)).'</h4>';
-              }
-            $text .='
+            if (!empty($this->config->title)) {
+                $text .= '  <h4 data-ccn="title">' . format_text($this->content->title, FORMAT_HTML, array('filter' => true)) . '</h4>';
+            }
+            $text .= '
                 <div class="ui_kit_tab mt30">
                   <ul class="nav nav-tabs" id="myTab" style="    display: flex;
                   justify-content: center;    background-color: transparent; border-bottom:none;" role="tablist">';
-                  for ($i = 1; $i <= $data->slidesnumber; $i++) {
-                    $ccnTabTitle = 'title' . $i;
-                    $ccnTabLink = 'tab-'. $this->instance->id . $i;
-                    $ccnAriaSelected = 'false';
-                    $ccnClass = 'nav-link';
+            for ($i = 1; $i <= $data->slidesnumber; $i++) {
+                $ccnTabTitle = 'title' . $i;
+                $ccnTabLink = 'tab-' . $this->instance->id . $i;
+                $ccnAriaSelected = 'false';
+                $ccnClass = 'nav-link';
 
-                    if($i == 1){
-                      $ccnAriaSelected = 'true';
-                      $ccnClass .= ' active';
-                    }
-                    $text .= '<li class="nav-item">
-                                <a data-ccn="'.$ccnTabTitle.'" aria-label="Naviga alla sezione '.$ccnTabTitle.'" class="'.$ccnClass.'" id="'.$ccnTabLink.'-tab" data-toggle="tab" href="#'.$ccnTabLink.'" role="tab" aria-controls="'.$ccnTabLink.'" aria-selected="true">'.format_text($data->$ccnTabTitle, FORMAT_HTML, array('filter' => true)).'</a>
+                if ($i == 1) {
+                    $ccnAriaSelected = 'true';
+                    $ccnClass .= ' active';
+                }
+                $text .= '<li class="nav-item">
+                                <a data-ccn="' . $ccnTabTitle . '" aria-label="Naviga alla sezione ' . $ccnTabTitle . '" class="' . $ccnClass . '" id="' . $ccnTabLink . '-tab" data-toggle="tab" href="#' . $ccnTabLink . '" role="tab" aria-controls="' . $ccnTabLink . '" aria-selected="true">' . format_text($data->$ccnTabTitle, FORMAT_HTML, array('filter' => true)) . '</a>
                               </li>';
-                  }
-                 $text .='
+            }
+            $text .= '
                     </ul>
                     <div class="tab-content" id="myTabContent">';
-                    for ($i = 1; $i <= $data->slidesnumber; $i++) {
-                      $ccnTabBody = 'text' . $i;
-                      $ccnTabLink = 'tab-'. $this->instance->id . $i;
-                      $ccnBodyClass = 'tab-pane fade';
-                      $titleOfAccordion='';
-                     ;
-                      $inputButton='';
+            for ($i = 1; $i <= $data->slidesnumber; $i++) {
+                $ccnTabBody = 'text' . $i;
+                $ccnTabLink = 'tab-' . $this->instance->id . $i;
+                $ccnBodyClass = 'tab-pane fade';
+                $titleOfAccordion = '';;
+                $inputButton = '';
 
-                      if( $ccnTabBody =='text1'){
-                        $titleOfAccordion='Come completare la tua formazione';
-                        $style='style="
+                if ($ccnTabBody == 'text1') {
+                    $titleOfAccordion = 'Come completare la tua formazione';
+                    $style = 'style="
                                        font-size: 16px;
                                        font-style: normal;
                                        font-weight: 700;
                                        line-height: 24px;"';
-                                       $inputButton='
+                    $inputButton = '
                                        <div class="find-out-more">
                                        <a id="scopriDipiùTab"  aria-label="Scopri di più" class="text_3_tabs" >Scopri di più 
                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="margin-left: 5px;"viewBox="0 0 24 24" fill="none">
@@ -143,15 +151,15 @@ class block_cocoon_tabs extends block_base {
                                      </svg>
                                      </a>
                                    </div> ';
-                      }else if( $ccnTabBody =='text2'){
-                        $titleOfAccordion='Consulta la bacheca annunci';
-                        $inputButton='
+                } else if ($ccnTabBody == 'text2') {
+                    $titleOfAccordion = 'Consulta la bacheca annunci';
+                    $inputButton = '
                         <div class="find-out-more text_2_button_align">
                           <a  href="./blog"  aria-label="Entra nel forum" class="btn btn-primary text_2_tabs">Vai alla bacheca</a>
                         </div>';
-                      }else if ($ccnTabBody =='text3'){
-                        $titleOfAccordion='Conosci la Certificazione DigComp User?';
-                        $inputButton='
+                } else if ($ccnTabBody == 'text3') {
+                    $titleOfAccordion = 'Conosci la Certificazione DigComp User?';
+                    $inputButton = '
                         <div class="find-out-more">
                         <a href="./blocks/cocoon_tabs/fileDigicomp.pdf" download="BROCHURE.CERTIFICAZIONE.DIGCOMP.OK.pdf" aria-label="Apri il pdf DigComp User " class="text_3_tabs" >Scopri DigComp User - in pdf 
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" style="margin-left: 5px;" height="24" viewBox="0 0 24 24" fill="none">
@@ -159,35 +167,46 @@ class block_cocoon_tabs extends block_base {
                         </svg>
                       </a>
                     </div> ';
-                      }
-                      if($i == 1){
-                        $ccnBodyClass .= ' show active';
-                      }
+                }
+                if ($i == 1) {
+                    $ccnBodyClass .= ' show active';
+                }
 
-                      $altText = isset($altValues[$ccnTabBody]) ? $altValues[$ccnTabBody] : 'Valore predefinito';
+                $altText = isset($altValues[$ccnTabBody]) ? $altValues[$ccnTabBody] : 'Valore predefinito';
 
-                      $text .=
-                      '<div data-ccn="'.$ccnTabBody.'" class="'.$ccnBodyClass.'" id="'.$ccnTabLink.'" role="tabpanel" aria-labelledby="'.$ccnTabLink.'-tab">
-                      <div class="single-card single_card_tabs" >
-                      <div class="col-12 col-md-6 p-0">
-                        <div class="thumb h-100">
-                          <img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="'.$altText.'">
-                        </div>
-                      </div>
+                $text .=
+                    '<div data-ccn="'.$ccnTabBody.'" class="'.$ccnBodyClass.'" id="'.$ccnTabLink.'" role="tabpanel" aria-labelledby="'.$ccnTabLink.'-tab">
+<div class="single-card single_card_tabs" >
+<div class="col-12 col-md-6 p-0">
+  <div class="thumb h-100">';
+
+                if ($ccnTabBody =='text1'){
+                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="text1">';
+                } else if ($ccnTabBody =='text2'){
+                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="text2">';
+                } else if ($ccnTabBody =='text3'){
+                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="text3">';
+                } else {
+                    // Caso predefinito se nessuna delle condizioni precedenti è vera
+                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/default.png" alt="Valore predefinito">';
+                }
+
+                $text .= '</div>';
+                '
                       <div class="text-container col-12 col-md-6 text_container_tabs" >
                         <div class="text-content">
-                          <div class="title">'.$titleOfAccordion.' </div>
+                          <div class="title">' . $titleOfAccordion . ' </div>
                           <div class="description">
-                            '.format_text($data->$ccnTabBody['text'], FORMAT_HTML, array('filter' => true, 'noclean' => true)).'
+                            ' . format_text($data->$ccnTabBody['text'], FORMAT_HTML, array('filter' => true, 'noclean' => true)) . '
                           </div>
                         </div>
-                              '. $inputButton .'
+                              ' . $inputButton . '
                       </div>
                     
                       </div>
                       </div>';
-                    }
-              $text .='
+            }
+            $text .= '
                   </div>
                 </div>
               </div>';
@@ -199,7 +218,7 @@ class block_cocoon_tabs extends block_base {
 
         return $this->content;
 
-  }
+    }
 
     /**
      * The block should only be dockable when the title of the block is not empty
@@ -207,14 +226,17 @@ class block_cocoon_tabs extends block_base {
      *
      * @return bool
      */
-    public function instance_can_be_docked() {
+    public function instance_can_be_docked()
+    {
         return (!empty($this->config->title) && parent::instance_can_be_docked());
     }
-    public function html_attributes() {
-      global $CFG;
-      $attributes = parent::html_attributes();
-      include($CFG->dirroot . '/theme/edumy/ccn/block_handler/attributes.php');
-      return $attributes;
+
+    public function html_attributes()
+    {
+        global $CFG;
+        $attributes = parent::html_attributes();
+        include($CFG->dirroot . '/theme/edumy/ccn/block_handler/attributes.php');
+        return $attributes;
     }
 
 }
