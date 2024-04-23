@@ -37,13 +37,13 @@ class block_cocoon_tabs extends block_base {
      */
     function specialization() {
         $altValues = array(
-          'text' => 'Immagine'
+          'text' => 'Immagine',
           'text1' => 'Descrizione per text1',
           'text2' => 'Descrizione per text2',
           'text3' => 'Descrizione per text3',
           // Aggiungi qui altre coppie chiave-valore se necessario
       );
-    
+
         global $CFG, $DB;
         include($CFG->dirroot . '/theme/edumy/ccn/block_handler/specialization.php');
         if (empty($this->config)) {
@@ -108,13 +108,13 @@ class block_cocoon_tabs extends block_base {
                     $ccnTabLink = 'tab-'. $this->instance->id . $i;
                     $ccnAriaSelected = 'false';
                     $ccnClass = 'nav-link';
-                
+
                     if($i == 1){
                       $ccnAriaSelected = 'true';
                       $ccnClass .= ' active';
                     }
                     $text .= '<li class="nav-item">
-                                <a data-ccn="'.$ccnTabTitle.'" aria-label="Naviga alla sezione '.$ccnTabTitle'" class="'.$ccnClass.'" id="'.$ccnTabLink.'-tab" data-toggle="tab" href="#'.$ccnTabLink.'" role="tab" aria-controls="'.$ccnTabLink.'" aria-selected="true">'.format_text($data->$ccnTabTitle, FORMAT_HTML, array('filter' => true)).'</a>
+                                <a data-ccn="'.$ccnTabTitle.'" aria-label="Naviga alla sezione '.$ccnTabTitle.'" class="'.$ccnClass.'" id="'.$ccnTabLink.'-tab" data-toggle="tab" href="#'.$ccnTabLink.'" role="tab" aria-controls="'.$ccnTabLink.'" aria-selected="true">'.format_text($data->$ccnTabTitle, FORMAT_HTML, array('filter' => true)).'</a>
                               </li>';
                   }
                  $text .='
@@ -127,7 +127,7 @@ class block_cocoon_tabs extends block_base {
                       $titleOfAccordion='';
                      ;
                       $inputButton='';
-              
+
                       if( $ccnTabBody =='text1'){
                         $titleOfAccordion='Come completare la tua formazione';
                         $style='style="
@@ -150,7 +150,7 @@ class block_cocoon_tabs extends block_base {
                           <a  href="./blog"  aria-label="Entra nel forum" class="btn btn-primary text_2_tabs">Vai alla bacheca</a>
                         </div>';
                       }else if ($ccnTabBody =='text3'){
-                        $titleOfAccordion='Conosci la Certificazione DigComp User?';                  
+                        $titleOfAccordion='Conosci la Certificazione DigComp User?';
                         $inputButton='
                         <div class="find-out-more">
                         <a href="./blocks/cocoon_tabs/fileDigicomp.pdf" download="BROCHURE.CERTIFICAZIONE.DIGCOMP.OK.pdf" aria-label="Apri il pdf DigComp User " class="text_3_tabs" >Scopri DigComp User - in pdf 
@@ -165,13 +165,13 @@ class block_cocoon_tabs extends block_base {
                       }
 
                       $altText = isset($altValues[$ccnTabBody]) ? $altValues[$ccnTabBody] : 'Valore predefinito';
-                 
+
                       $text .=
                       '<div data-ccn="'.$ccnTabBody.'" class="'.$ccnBodyClass.'" id="'.$ccnTabLink.'" role="tabpanel" aria-labelledby="'.$ccnTabLink.'-tab">
                       <div class="single-card single_card_tabs" >
                       <div class="col-12 col-md-6 p-0">
                         <div class="thumb h-100">
-                          <img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="'.$altText'">
+                          <img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="'.$altText.'">
                         </div>
                       </div>
                       <div class="text-container col-12 col-md-6 text_container_tabs" >
