@@ -176,23 +176,12 @@ class block_cocoon_tabs extends block_base
 
                 $text .=
                     '<div data-ccn="'.$ccnTabBody.'" class="'.$ccnBodyClass.'" id="'.$ccnTabLink.'" role="tabpanel" aria-labelledby="'.$ccnTabLink.'-tab">
-<div class="single-card single_card_tabs" >
-<div class="col-12 col-md-6 p-0">
-  <div class="thumb h-100">';
-
-                if ($ccnTabBody =='text1'){
-                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="text1">';
-                } else if ($ccnTabBody =='text2'){
-                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="text2">';
-                } else if ($ccnTabBody =='text3'){
-                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="text3">';
-                } else {
-                    // Caso predefinito se nessuna delle condizioni precedenti è vera
-                    $text .= '<img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/default.png" alt="Valore predefinito">';
-                }
-
-                $text .= '</div>';
-                '
+                      <div class="single-card single_card_tabs" >
+                      <div class="col-12 col-md-6 p-0">
+                        <div class="thumb h-100">
+                          <img class="img_tabs" data-png="img-tab" src="./blocks/cocoon_tabs/'.$ccnTabBody.'.png" alt="'.$altText.'">
+                        </div>
+                      </div>
                       <div class="text-container col-12 col-md-6 text_container_tabs" >
                         <div class="text-content">
                           <div class="title">' . $titleOfAccordion . ' </div>
