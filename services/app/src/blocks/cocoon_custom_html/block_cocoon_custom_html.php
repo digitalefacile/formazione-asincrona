@@ -83,7 +83,7 @@ class block_cocoon_custom_html extends block_base
           </p>
         </div>
         <div style="'.$div.'margin-top: 14px;">
-        <a  aria-label="Consulta DigComp 2.2 in PDF" href="https://repubblicadigitale.innovazione.gov.it/assets/docs/DigComp-2_2-Italiano-marzo.pdf" style="'.$customLink.'"target="_blank">
+        <a  aria-label="Apri DigComp 2.2 in PDF" href="https://repubblicadigitale.innovazione.gov.it/assets/docs/DigComp-2_2-Italiano-marzo.pdf" style="'.$customLink.'"target="_blank">
         Consulta DigComp 2.2 in PDF
         <svg xmlns="http://www.w3.org/2000/svg" style="    margin-left: 4px;
         margin-bottom: 5px;" width="25" height="24" viewBox="0 0 25 24" fill="none" >
