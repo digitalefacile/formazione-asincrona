@@ -123,7 +123,7 @@ class block_cocoon_tabs extends block_base
                     $ccnClass .= ' active';
                 }
                 $text .= '<li class="nav-item">
-                                <a data-ccn="' . $ccnTabTitle . '" aria-label="Naviga alla sezione ' . $ccnTabTitle . '" class="' . $ccnClass . '" id="' . $ccnTabLink . '-tab" data-toggle="tab" href="#' . $ccnTabLink . '" role="tab" aria-controls="' . $ccnTabLink . '" aria-selected="true">' . format_text($data->$ccnTabTitle, FORMAT_HTML, array('filter' => true)) . '</a>
+                                <a data-ccn="' . $ccnTabTitle . '" aria-label="Naviga alla sezione '  . format_text($data->$ccnTabTitle, FORMAT_HTML, array('filter' => true)) .  '" class="' . $ccnClass . '" id="' . $ccnTabLink . '-tab" data-toggle="tab" href="#' . $ccnTabLink . '" role="tab" aria-controls="' . $ccnTabLink . '" aria-selected="true">' . format_text($data->$ccnTabTitle, FORMAT_HTML, array('filter' => true)) . '</a>
                               </li>';
             }
             $text .= '
