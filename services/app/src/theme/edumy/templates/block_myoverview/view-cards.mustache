@@ -39,13 +39,13 @@
         {{#courses}}
 
      {{ #hasprogress }}
-    
+
     <div class="card-custom-container" style="width: 33%;padding: 15px;">
           <div class="card-custom" data-course-id="{{{id}}}" >
             <img
               class="card-img-top card-image-top-custom"
               src="{{{courseimage}}}"
-              alt="Card image cap"
+              alt="Immagine di {{{fullname}}}"
             />
 
             <div class="details">
@@ -64,14 +64,14 @@
                       </div>
                     </div>
               </div>
-      
+
               <div class="footer_card_slider" style="padding: 40px  0 28px!important; ">
                 <a href="{{viewurl}}" class="btn btn-primary btn-lg" aria-label="Torna al corso {{{fullname}}}">Torna al corso </a>
               </div>
-           
+
             </div>
           </div>
-    </div>      
- {{/hasprogress}} 
+    </div>
+ {{/hasprogress}}
         {{/courses}}
 {{! </div> }}
