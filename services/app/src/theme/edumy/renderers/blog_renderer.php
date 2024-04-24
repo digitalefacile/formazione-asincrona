@@ -386,13 +386,13 @@ foreach ($currentRoleNames as $role) {
 
 	          $o .= '
 							<div class="entry-title details-data">
-								<span id="entry-subject">' .
+								<h4 id="entry-subject" class="entry-title">' .
 	                format_text(
 			          $entry->subject,
 			          FORMAT_HTML,
 			          array( 'filter' => true )
 	                ) .
-	                '          </span>';
+	                '          </h4>';
 
 
 	          if ( $entry->renderable->usercanedit ) {
