@@ -94,9 +94,11 @@ class block_badges extends block_base {
 
         if ($badges = badges_get_user_badges($USER->id, $courseid, 0, $this->config->numberofbadges)) {
             $output = $this->page->get_renderer('core', 'badges');
+            $this->content->text .= '<span class="sr-only">Elenco dei badge conseguiti</span>';
             $this->content->text = $output->print_badges_list($badges, $USER->id, true);
         } else {
             //DST RIMOZIONE NON HAI BADGES
+            $this->content->text .= '<span class="sr-only">Nessun badge presente</span>';
             $this->content->text .= '<div></div>';
         }
 
