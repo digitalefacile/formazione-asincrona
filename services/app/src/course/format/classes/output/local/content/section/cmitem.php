@@ -134,7 +134,7 @@ class cmitem implements named_templatable, renderable {
 	    $ariamoduletitle = $mod->get_name();
         if($mod->modname == 'customcert'){
             $stringaAttestato="Visualizza l'attestato";
-            $arialabel = 'Scarica il certificato '.$ariamoduletitle.' del corso '.$ariacoursetitle;
+            $arialabel = $ariamoduletitle . ' ' . $ariacoursetitle;
             $cta = '<a href="'.$mod->url.'&downloadown=1" class="m-2 btn btn-primary" aria-label="'.$arialabel.'" 
             style="display: flex;
             align-items: center;
@@ -177,14 +177,14 @@ class cmitem implements named_templatable, renderable {
         if( $mod->modname == 'quiz' && $mod->completion == 2)  { // 2 = attività superata (COMPLETION_COMPLETE_PASS)
         // @TODO: spostare a monte la mappatura quiz->attestato, per evitare di fare il giro a ogni modulo del corso
         // @TODO: utilizzare la lib/completionlib.php e mod_quiz\completion\activity_custom_completion
-            
+
             //CONTROLLO BOTTONE QUIZ SOLO SE HAI UN VOTO ADEGUATO
             $quizId = $mod->instance;
             $grades = grade_get_grades($course->id, 'mod','quiz', $quizId, $USER->id);
             $gradepass = $grades->items[0]->gradepass; // Valore di gradepass
             $grade = $grades->items[0]->grades[$USER->id]->grade;
-            
-            $customcertModIds = $DB->get_records('modules', array('name' => 'customcert'));           
+
+            $customcertModIds = $DB->get_records('modules', array('name' => 'customcert'));
             if(count($customcertModIds) > 0) {
                 $customcertModId = array_keys($customcertModIds)[0];
 
@@ -201,31 +201,31 @@ class cmitem implements named_templatable, renderable {
 
                     // for each customcert module, get access restrictions from its settings
                     foreach($customcerts as $customcert) {
-                        
+
                         // get access restrictions for customcert
                         $certAvail = json_decode($customcert->availability);
 
                         // Check permissions to download the customcert.
                         $context_module = context_module::instance($mod->id);
                         $canreceive = has_capability('mod/customcert:receiveissue', $context_module);
-                       
+
                         foreach($certAvail->c as $avc) {
                             if($avc->type == 'completion' && $avc->cm == (int)$mod->id && $canreceive) {
-                                
+
                                 // Create the button to download the customcert.
                                 // Code taken from mod/customcert/view.php, there is no unique method to do this
                                 $linkname = get_string('getcustomcert', 'customcert');
                                 $link = new moodle_url('/mod/customcert/view.php', array('id' => $customcert->id, 'downloadown' => true));
                                 $downloadbutton = new single_button($link, $linkname, 'get', true);
                                 $downloadbutton->class .= ' m-b-1';  // Seems a bit hackish, ahem.
-                             
+
                                 if ($grade >= $gradepass || is_siteadmin($USER->id)) {
                                     $quizpassed = true;
                                     $dlCertCta = $OUTPUT->render($downloadbutton);
                                 } else {
                                     $quizpassed = false;
                                 }
-                                
+
                                 //$dlCertCta = '<a href="#" class="btn btn-primary">Scarica certificato</a>';
                             }
                         }
@@ -253,7 +253,7 @@ class cmitem implements named_templatable, renderable {
                  } else {
                      $testInizialeLevel = 'base';
                  }
- 
+
             }
 
         }
@@ -261,7 +261,7 @@ class cmitem implements named_templatable, renderable {
         // Se siamo al quiz finale, prepara i dati dei tentativi precedenti
         if($mod->modname == 'quiz' && $mod->name == 'Test finale') {
             $quiz = $DB->get_record('quiz', array('id' => $quizId));
-            
+
             if($quiz) {
                 $hasattempts = false;
                 $attemptobjs = [];
@@ -276,7 +276,7 @@ class cmitem implements named_templatable, renderable {
                         foreach($attemptobjs as $attemptobj) {
                             if (!$attemptobj->is_finished()) { // Visualizza solo i tentativi completati
                                 continue;
-                            }                            
+                            }
                             $attemptno = $attemptobj->get_attempt_number();
                             $usergrade = quiz_rescale_grade($attemptobj->get_sum_marks(), $quiz, false);
                             $feedbacks = $DB->get_records('quiz_feedback', array('quizid' => $quiz->id));
@@ -290,14 +290,14 @@ class cmitem implements named_templatable, renderable {
                                     break;
                                 }
                             }
-            
+
                             $attempts[] = [
                                 'attemptno' => $attemptno,
                                 'grade' => $usergrade,
                                 'feedback' => $attemptfeedback,
                                 'reviewurl' => new \moodle_url('/mod/quiz/review.php',['attempt' => $attemptobj->get_attemptid(), 'cmid' => $mod->id, 'secondreview' => '1']),
                             ];
-                            
+
                         }
                     }
                     // Check if the current user has any attempts left
