@@ -784,6 +784,9 @@ if(in_array($PAGE->pagetype,$back2coursePagetypes)) {
   $btnUrl = new \moodle_url('/course/view.php', array('id' => $courseid));
   $btnLabel = 'Torna indietro';
   $arialabel = 'Torna al corso ' . $coursefullname;
+  if(strpos(strtolower($coursefullname), 'privacy')) {
+    $arialabel = 'Torna alla pagina di Home ';
+  }
   if($PAGE->pagetype == 'mod-quiz-attempt' || $PAGE->pagetype == 'mod-quiz-review') {
     $btnLabel = 'Abbandona il test';
   }
