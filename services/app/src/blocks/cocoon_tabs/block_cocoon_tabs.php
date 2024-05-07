@@ -103,7 +103,7 @@ class block_cocoon_tabs extends block_base
             }
             $text .= '
                 <div class="ui_kit_tab mt30">
-                  <ul class="nav nav-tabs" id="myTab" style="    display: flex;
+                  <ul class="nav nav-tabs" aria-label="Elenco altre informazioni sul percorso formativo" id="myTab" style="    display: flex;
                   justify-content: center;    background-color: transparent; border-bottom:none;" role="tablist">';
             for ($i = 1; $i <= $data->slidesnumber; $i++) {
                 $ccnTabTitle = 'title' . $i;

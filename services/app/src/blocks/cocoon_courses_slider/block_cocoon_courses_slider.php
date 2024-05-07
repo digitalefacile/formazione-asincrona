@@ -286,7 +286,8 @@ class block_cocoon_courses_slider extends block_base {
 
             $this->content->text .='
                       <div class="item">
-           							<div class="top_courses ">';
+           							<div class="top_courses ">
+                        <span class="sr-only">Inizio card corso</span>';
                          if($ccnBlockShowImg){
                            $this->content->text .='
            								<div class="thumb">
@@ -317,6 +318,7 @@ class block_cocoon_courses_slider extends block_base {
                            }
                           $this->content->text .='
            							</div>
+                         <span class="sr-only">Fine card corso</span>
            						</div>
                        ';
           }
