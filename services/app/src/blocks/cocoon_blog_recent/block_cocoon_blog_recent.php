@@ -267,16 +267,16 @@ $this->content->text .='</div>
 
                   </div>
                   <div class="blog_recent_card_content">
-                      <div class="blog_recent_card_subject focus-visible">
-                      <a href="'.$viewblogurl.'">'.$entry->subject.'</a>
+                      <div class="blog_recent_card_subject">
+                      <a class="link-title-blog-announcement" href="'.$viewblogurl.'">'.$entry->subject.'</a>
                       </div>
                       <div class="blog_recent_card_summary">
                       '.shorten_text($entry->summary, 150).'
                       </div>
                   </div>
                   <div class="blog_recent_card_more">
-                      <div class="blog_recent_card_more_link focus-visible">
-                      <a href="'.$viewblogurl.'">Scopri di più 
+                      <div class="blog_recent_card_more_link">
+                      <a href="'.$viewblogurl.'" class="discover-blog-announcement">Scopri di più 
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="margin-left: 5px;" viewBox="0 0 24 24" fill="none">
                                        <path d="M13.9 5L13.2 5.7L18.5 11.1H3V12.1H18.5L13.2 17.5L13.9 18.2L20.5 11.6L13.9 5Z" fill="#0066CC"></path>
                                      </svg>
