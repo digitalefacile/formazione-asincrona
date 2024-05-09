@@ -233,9 +233,9 @@ if ( str_starts_with($PAGE->pagetype,'mod-scorm-view') ||  str_starts_with($PAGE
 // if (!$DB->record_exists('course_modules', array('id' => $cmid))) {
 //     die('invalidcoursemodule');
 // }
-  //$cmid = $PAGE->activityrecord->course; 
+  //$cmid = $PAGE->activityrecord->course;
 
-  // Load course module object  
+  // Load course module object
   // $cm = get_coursemodule_from_id('', $cmid, 0, false, MUST_EXIST);
 
   // Load section object
@@ -344,7 +344,7 @@ $sidebar_none = (!$hasblocks && !$hasleftblocks);
 // Custom for boost course index sidebar in edumy theme
 $courseindex_pagetypes = ['course-view-flexsections','mod-scorm-player'];
 $courseindex = false;
-if(in_array($PAGE->pagetype, $courseindex_pagetypes)) {  
+if(in_array($PAGE->pagetype, $courseindex_pagetypes)) {
   $courseindex = core_course_drawer();
   if (isloggedin()) {
     $courseindexopen = (get_user_preferences('drawer-open-index', true) == true);
@@ -750,7 +750,7 @@ $overflow = '';
  $customRole = current(get_user_roles(context_system::instance(), $USER->id))->name;
 if (method_exists($PAGE, 'has_secondary_navigation') && $PAGE->has_secondary_navigation()) {
   if(is_siteadmin() || $ccnIsManager || $ccnIsCourseCreator || $customRole == 'Tutor'){
-  
+
     $tablistnav = $PAGE->has_tablist_secondary_navigation();
     $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
     $secondarynavigation = $moremenu->export_for_template($OUTPUT);
@@ -763,7 +763,7 @@ if (method_exists($PAGE, 'has_secondary_navigation') && $PAGE->has_secondary_nav
 
 if((int)$ccnMdlVersion < 400) $regionmainsettingsmenu = $OUTPUT->region_main_settings_menu();
 if(class_exists('core\navigation\output\primary')) {
-  
+
   $primary = new \theme_edumy\navigation\primary($PAGE);
   $renderer = $PAGE->get_renderer('core');
   $primarymenu = $primary->export_for_template($renderer);
@@ -788,7 +788,7 @@ if(in_array($PAGE->pagetype,$back2coursePagetypes)) {
     $arialabel = 'Torna alla pagina di Home ';
   }
   if($PAGE->pagetype == 'mod-quiz-attempt' || $PAGE->pagetype == 'mod-quiz-review') {
-    $btnLabel = 'Abbandona il test';
+    $btnLabel = 'Torna indietro';
   }
   $back2CourseBtn = '<div class="row">
                       <div class="col-md-12 col-lg-12 col-xl-12">
