@@ -229,6 +229,7 @@ header.header-nav.menu_style_home_one .ace-responsive-menu li ul.sub-menu li ul.
   .activity-item .activity-info {
     align-self: stretch;
     margin-right: 10px;
+    min-width: 170px;
   }
 }
 .ccn_context_focus .ccn_dashbord_nav_list .cc_tab .panel-body .section .activity .activityinstance>div {
