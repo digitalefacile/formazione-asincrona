@@ -787,8 +787,8 @@ if(in_array($PAGE->pagetype,$back2coursePagetypes)) {
   if(strpos(strtolower($coursefullname), 'privacy')) {
     $arialabel = 'Torna alla pagina di Home ';
   }
-  if($PAGE->pagetype == 'mod-quiz-attempt' || $PAGE->pagetype == 'mod-quiz-review') {
-    $btnLabel = 'Torna indietro';
+  if($PAGE->pagetype == 'mod-quiz-attempt') {
+    $btnLabel = 'Abbandona il test';
   }
   $back2CourseBtn = '<div class="row">
                       <div class="col-md-12 col-lg-12 col-xl-12">
