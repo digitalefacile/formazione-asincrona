@@ -2,20 +2,20 @@
 
 /* PAGINA CORSO */
 /* nascondo l'icona dell'attività */
-.path-course-view .course-content li.activity .testfinale .activityiconcontainer { 
+.path-course-view .course-content li.activity .testfinale .activityiconcontainer {
   display: none;
 }
 
 /* stile per il box dell'attività */
-.path-course-view .course-content li.activity .testfinale { 
-  border-radius: 5px; 
+.path-course-view .course-content li.activity .testfinale {
+  border-radius: 5px;
   padding: 21px;
-  background: #fff; 
+  background: #fff;
   border: 1px #D9DADB solid;
 }
 
 /* stile per il titolo dell'attività */
-.path-course-view .course-content li.activity .testfinale .activityname { 
+.path-course-view .course-content li.activity .testfinale .activityname {
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
@@ -23,10 +23,10 @@
 }
 
 /* stile per la descrizione dell'attività */
-.path-course-view .course-content li.activity .testfinale .description .no-overflow { 
+.path-course-view .course-content li.activity .testfinale .description .no-overflow {
   overflow: hidden;
 }
-.path-course-view .course-content li.activity .testfinale .description .course-description-item { 
+.path-course-view .course-content li.activity .testfinale .description .course-description-item {
   background-color: transparent;
 }
 .path-course-view .course-content li.activity .testfinale .description .course-description-item .description-inner p {
@@ -44,7 +44,8 @@
   line-height: 22.82px;
   font-weight: 700;
   /* aggiunto color per allineamento figma */
-  color: #FFFFFF !important;
+  color: #333333 !important;
+  font-style: normal!important;
 }
 .coursepage-quizattempt-testfinale {
   font-size: 15px;
@@ -85,7 +86,7 @@
 .path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-unavailable,
 .path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-unavailable:hover {
   background-color: #cfcfcf;
-  color: #000;
+  color: black!important;
 }
 .path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-available,
 .path-course-view .course-content li.activity .testfinale [data-region=activity-info-cta] .btn-test-finale-available:hover {
@@ -100,7 +101,7 @@
 #page-mod-quiz-view #ccn-main {
   text-align: center;
 }
-#page-mod-quiz-view .quiz-title, 
+#page-mod-quiz-view .quiz-title,
 #page-mod-quiz-view .course-title  {
   font-size: 28px;
   font-weight: 700;
@@ -113,20 +114,20 @@
   color: #0065CC;
 }
 #page-mod-quiz-view .course-shortname {
-  width: 102px; 
-  height: 24px; 
-  margin: 0 auto; 
-  padding-left: 16px; 
-  padding-right: 16px; 
-  padding-top: 4px; 
-  padding-bottom: 4px; 
-  background:#DCB930; 
-  border-radius: 4px; 
+  width: 102px;
+  height: 24px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background:#DCB930;
+  border-radius: 4px;
   align-items: center;
-  color: #000000; 
-  font-size: 14px; 
-  font-weight: 700; 
-  line-height: 16px; 
+  color: #000000;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
 }
 #page-mod-quiz-view .tertiary-navigation .row {
   display: inline;
@@ -335,7 +336,7 @@ min-height: 365px;
 border-radius: 10px;
 background-color: #29384A;
 }
-.first-review-header, 
+.first-review-header,
 .first-review-feedback,
 .first-review-feedback > p,
 .first-review-feedback > p > strong {
