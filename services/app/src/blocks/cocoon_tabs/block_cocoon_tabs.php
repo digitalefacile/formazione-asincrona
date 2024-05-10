@@ -127,13 +127,13 @@ class block_cocoon_tabs extends block_base
                 $ccnTabLink = 'tab-' . $this->instance->id . $i;
                 $ccnBodyClass = 'tab-pane fade';
                 $titleOfAccordion = '';
-                $altText = 'Testo alternativo';
+                $altText = '';
 
                 $inputButton = '';
 
                 if ($ccnTabBody == 'text1') {
                     $titleOfAccordion = 'Come completare la tua formazione';
-                    $altText = 'Fotografia di una postazione di studio con un computer e un blocco appunti';
+                    //$altText = 'Fotografia di una postazione di studio con un computer e un blocco appunti';
                     $style = 'style="
                                        font-size: 16px;
                                        font-style: normal;
@@ -149,14 +149,14 @@ class block_cocoon_tabs extends block_base
                                    </div> ';
                 } else if ($ccnTabBody == 'text2') {
                     $titleOfAccordion = 'Consulta la bacheca annunci';
-                    $altText = 'Fotografia di fogli e matita per appunti ';
+                    //$altText = 'Fotografia di fogli e matita per appunti ';
                     $inputButton = '
                         <div class="find-out-more text_2_button_align">
                           <a  href="./blog"  aria-label="Entra nel forum" class="btn btn-primary text_2_tabs">Vai alla bacheca</a>
                         </div>';
                 } else if ($ccnTabBody == 'text3') {
                     $titleOfAccordion = 'Conosci la Certificazione DigComp User?';
-                    $altText = 'Fotografia di persone che stanno seguendo un corso di formazione per una certificazione';
+                    //$altText = 'Fotografia di persone che stanno seguendo un corso di formazione per una certificazione';
                     $inputButton = '
                         <div class="find-out-more">
                         <a href="./blocks/cocoon_tabs/fileDigicomp.pdf" download="BROCHURE.CERTIFICAZIONE.DIGCOMP.OK.pdf" aria-label="Apri il pdf DigComp User " class="text_3_tabs" >Scopri DigComp User - in pdf 
