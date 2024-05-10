@@ -74,7 +74,7 @@ class block_cocoon_custom_html extends block_base
       $this->content->text .= '
       <div class="container-fluid container_custom_block">
         <div style="'.$div.'">
-          <h3 style="'.$title.'">Le aree tematiche dei corsi</h3>
+          <h2 style="'.$title.'">Le aree tematiche dei corsi</h2>
         </div>
         <div style="'.$div.'">
           <p  style="'.$paragraph.'">
