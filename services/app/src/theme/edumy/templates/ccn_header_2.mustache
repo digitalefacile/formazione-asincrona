@@ -10,13 +10,13 @@
                 {{> theme_edumy/ccn_navbar_user }}
               </ul>
 
-              <ul class="sign_up_btn pull-right dn-smd mt20">
-              {{> theme_edumy/ccn_navbar_user_popup }}
-              </ul>
-          </nav>
-      </div>
-      {{/isloggedin}}
-  </div>
+                    <ul class="sign_up_btn pull-right dn-smd mt20">
+                        {{> theme_edumy/ccn_navbar_user_popup }}
+                    </ul>
+                </nav>
+            </div>
+        {{/isloggedin}}
+    </div>
 </div>
 
 <div class="header_top home2" style="    min-height: 100px;">
@@ -40,18 +40,17 @@
       <div  style="color:white; font-size: 25px; font-weight: bolder; margin-bottom: 0;">Formazione per la facilitazione digitale</div>
       <div  style="color:white; font-size: 16px">Piattaforma di e-learning per facilitatori e volontari</div>
     </div>
-  </div>
 </div>
 
 <!-- Main Header Nav -->
 {{#isloggedin}}
-<header class="ccnHeader2 header-nav home2 style_one navbar-scrolltofixed main-menu">
-  <div class="container-fluid">
-    <nav>
-      <ul  class="ace-responsive-menu "  data-menu-style="horizontal">
-        {{{ output.custom_menu }}}
-      </ul>
-    </nav>
-  </div>
-</header>
- {{/isloggedin}}
+    <header class="ccnHeader2 header-nav home2 style_one navbar-scrolltofixed main-menu">
+        <div class="container-fluid">
+            <nav>
+                <ul class="ace-responsive-menu " data-menu-style="horizontal">
+                    {{{ output.custom_menu }}}
+                </ul>
+            </nav>
+        </div>
+    </header>
+{{/isloggedin}}
