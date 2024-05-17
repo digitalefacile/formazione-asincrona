@@ -1,7 +1,7 @@
 <div class=" home2">
   <div class="container-fluid test-top-header">
     <div>
-      <h4  style="color:white !important;margin-top: 7px;">Dipartimento per la trasformazione digitale</h4>
+      <a class="top-left-link" href="https://innovazione.gov.it/dipartimento/" style="color:white !important;margin-top: 7px;">Dipartimento per la trasformazione digitale</a>
     </div>
     {{#isloggedin}}
       <div class="color-icon-user">
@@ -24,24 +24,21 @@
     <div >
       {{#logo}}
         <a href="{{{ ccnLogoUrl }}}" class="">
-          {{#logo_image}}<img class="img-fluid" src="{{{headerlogo1}}}" alt="{{{sitename}}}" {{#logo_styles}} style="{{{logo_styles}}} " {{/logo_styles}}>{{/logo_image}}
+          {{#logo_image}}<img class="img-fluid" src="{{{headerlogo1}}}"
+                alt="Logo Repubblica Italiana" {{#logo_styles}}
+                style="{{{logo_styles}}} " {{/logo_styles}}>{{/logo_image}}
           {{#logotype}}<span>{{{ sitename }}}</span>{{/logotype}}
-        </a>
-      {{/logo}}
-    </div>
-
-    <div style="height: 74px; width: 74px;    margin-left: 14px;" >
-      {{#logo}}
-        <a href="{{{ ccnLogoUrl }}}" class="" >
-          {{#logo_image}}<img class="img-fluid" src="{{{headerlogo3}}}" alt="{{{sitename}}}" {{#logo_styles}} style="{{{logo_styles}}}" {{/logo_styles}}>{{/logo_image}}
+          {{#logo_image}}<img class="img-fluid" src="{{{headerlogo3}}}"
+                alt="Logo Dipartimento per la trasformazione digitale" {{#logo_styles}} 
+                style="{{{logo_styles}}}" {{/logo_styles}}>{{/logo_image}}
           {{#logotype}}<span>{{{ sitename }}}</span>{{/logotype}}
         </a>
       {{/logo}}
     </div>
 
     <div style="margin-left:14px;">
-      <h1  style="color:white;    margin-bottom: 0;">Formazione per la facilitazione digitale</h1>
-      <h5  style="color:white ">Piattaforma di e-learning per facilitatori e volontari</h5>
+      <div  style="color:white; font-size: 25px; font-weight: bolder; margin-bottom: 0;">Formazione per la facilitazione digitale</div>
+      <div  style="color:white; font-size: 16px">Piattaforma di e-learning per facilitatori e volontari</div>
     </div>
   </div>
 </div>
