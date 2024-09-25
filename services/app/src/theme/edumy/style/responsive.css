@@ -3221,3 +3221,13 @@
     margin-left: 0%;
   }
 }
+
+
+/* fix footer responsive 25-09-24 */
+@media (max-width: 1000px) and (min-width: 768px) {
+  section.footer_one .dipartimento-trasformazione-col img.img-fluid {
+    margin: 0 !important;
+    max-height: 50px !important;
+    width: fit-content !important;
+  }
+}
