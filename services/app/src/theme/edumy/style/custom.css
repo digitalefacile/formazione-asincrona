@@ -1315,6 +1315,10 @@ a[title=Lingua]{
     flex-direction: column;
     justify-content: center;
 }
+/* main title h2 same color */
+.main-title h2 {
+    color: #0065CC !important;
+}
 .main-title p {
 	width: 100%;
     color: #333;
