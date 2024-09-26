@@ -180,6 +180,28 @@ $blogheaders['heading'] = [
 $bloglisting = new blog_listing($blogheaders['filters']);
 $bloglisting->print_entries();
 
+// if bloglisting -> entries is empty -> echo no entries
+if (empty($bloglisting->entries)) {
+    ?>
+    <div class="container-fluid blog-header" style="background-color: transparent;">
+	    <div class="ccnMdlHeading" style="background-color: transparent;">
+            <h2 class="blogDescription" style="color: #FFF;">
+                <?php
+                switch (current_language()) {
+                    case 'en':
+                        echo "At the moment, there are no announcements relevant to your training. We invite you to check the board during your next visit so you don't miss the latest updates.";
+                        break;
+                    default:
+                        echo 'Al momento non ci sono annunci di interesse per la tua formazione. Ti invitiamo a consultare la bacheca al tuo prossimo accesso per non perderti le prime novità';
+                        break;
+                }
+                ?>
+            </h2>
+        </div>
+    </div>
+    <?php
+}
+
 if ($CFG->enablerssfeeds) {
     blog_rss_print_link($rsscontext, $filtertype, $thingid, $tagid, get_string('rssfeed', 'blog'));
 }
