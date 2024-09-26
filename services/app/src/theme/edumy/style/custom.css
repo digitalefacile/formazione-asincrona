@@ -2313,10 +2313,16 @@ font-weight: 600;
     line-height: 22.82px;
     font-weight: 700;
     font-style: italic;
-    color: unset !important; 
+    /* color: unset !important;  */
+    color: #333333 !important;
 }
 
 .path-blog .addbloglink .btn-primary:hover{
 
     color: white!important;
+}
+
+/* h2 like h3 */
+body.pagelayout-course #ccn-course-breadcrumb-page-wrapper #ccn-page-wrapper #ccn-main-region .container h2 {
+    font-size: 24px;
 }
