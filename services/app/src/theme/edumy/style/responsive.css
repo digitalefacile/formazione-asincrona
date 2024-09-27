@@ -3231,3 +3231,15 @@
     width: fit-content !important;
   }
 }
+@media (max-width: 450px) {
+  section.footer_one .dipartimento-trasformazione-col img.img-fluid {
+    max-height: 45px !important;
+  }
+}
+/* blocco bacheca home page */
+@media (max-width: 768px) {
+  .ccnBlockContent > section.our-blog > .container .row > .blog_recent_no_entry {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
