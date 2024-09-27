@@ -2326,3 +2326,7 @@ font-weight: 600;
 body.pagelayout-course #ccn-course-breadcrumb-page-wrapper #ccn-page-wrapper #ccn-main-region .container h2 {
     font-size: 24px;
 }
+/* main title blue outside media query */
+.main-title h2 {
+  color: #0065CC !important;
+}
