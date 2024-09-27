@@ -334,7 +334,8 @@ $THEME->javascripts = array(
   'jquery.youtubebackground',
   'jquery.fancybox.min',
   'dashboard-script',
-  'script'
+  'script',
+  'blog-customizer',
 );
 
 
