@@ -1277,7 +1277,8 @@ a[title=Lingua]{
 
 @media (min-width: 1200px) {
   .ccn_breadcrumb_xs {
-    height: 80px;
+    /* height: 80px; */
+    height: auto;
   }
 
 .ace-responsive-menu > li > a {
