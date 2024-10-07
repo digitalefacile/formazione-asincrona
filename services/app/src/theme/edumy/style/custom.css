@@ -1230,6 +1230,7 @@ a[title=Lingua]{
   background-color: #fff;
   background-image: none;
   opacity: 1;
+  display: none;
 }
 
 .inner_page_breadcrumb .breadcrumb-item a, 
