@@ -29,7 +29,7 @@ class block_cocoon_custom_html extends block_base
     }
 
     public function get_content()
-    {  
+    {
       $div="display: flex;
       justify-content: center;";
       $title="    max-width: 654px;
@@ -74,7 +74,7 @@ class block_cocoon_custom_html extends block_base
       $this->content->text .= '
       <div class="container-fluid container_custom_block">
         <div style="'.$div.'">
-          <h3 style="'.$title.'">Le aree tematiche dei corsi</h3>
+          <h2 style="'.$title.'">Le aree tematiche dei corsi</h2>
         </div>
         <div style="'.$div.'">
           <p  style="'.$paragraph.'">
@@ -83,7 +83,7 @@ class block_cocoon_custom_html extends block_base
           </p>
         </div>
         <div style="'.$div.'margin-top: 14px;">
-        <a  aria-label="Consulta DigComp 2.2 in PDF" href="https://repubblicadigitale.innovazione.gov.it/assets/docs/DigComp-2_2-Italiano-marzo.pdf" style="'.$customLink.'"target="_blank">
+        <a  aria-label="Apri DigComp 2.2 in PDF" class="courses-theme" href="https://repubblicadigitale.innovazione.gov.it/assets/docs/DigComp-2_2-Italiano-marzo.pdf" style="'.$customLink.'"target="_blank">
         Consulta DigComp 2.2 in PDF
         <svg xmlns="http://www.w3.org/2000/svg" style="    margin-left: 4px;
         margin-bottom: 5px;" width="25" height="24" viewBox="0 0 25 24" fill="none" >
@@ -95,7 +95,7 @@ class block_cocoon_custom_html extends block_base
 
         </div>
       </div>';
-       
+
         return $this->content;
     }
     public function html_attributes() {

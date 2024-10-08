@@ -56,14 +56,14 @@ class block_cocoon_parallax extends block_base
         $this->content->text = '
 
         
-        <section data-ccn="image" data-ccn-img="bg-img-url" class="'.$this->content->style.' parallax bg-img2" data-stellar-background-ratio="0.3" style="background-image:url('.$this->content->image.');background-size:cover;">
+        <section data-ccn="image" alt="" data-ccn-img="bg-img-url" class="'.$this->content->style.' parallax bg-img2" data-stellar-background-ratio="0.3" style="background-image:url('.$this->content->image.');background-size:cover;">
  		<div class="container">
  			<div class="row" style="justify-content:center;">
  				<div class="col-lg-8 text-center">
  					<div class="divider-one ">
                         <h1 class="parallax-h1" data-ccn="title">'. format_text($this->content->title, FORMAT_HTML, array('filter' => true)) .'</h1>
  						<p class="p-parallax" data-ccn="subtitle">'. format_text($this->content->subtitle, FORMAT_HTML, array('filter' => true)) .'</p>
- 						<button data-ccn="button_text" aria-label="Scopri i corsi" style="margin-bottom: 30px;" class="btn btn-primary" href="'. format_text($this->content->button_link, FORMAT_HTML, array('filter' => true)) .'">'. format_text($this->content->button_text, FORMAT_HTML, array('filter' => true)) .'</button>
+ 						<button data-ccn="button_text" aria-label="Vai alla pagina dei corsi" style="margin-bottom: 30px;" class="btn btn-primary" href="'. format_text($this->content->button_link, FORMAT_HTML, array('filter' => true)) .'">'. format_text($this->content->button_text, FORMAT_HTML, array('filter' => true)) .'</button>
  					</div>
  				</div>
  			</div>

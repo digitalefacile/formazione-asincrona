@@ -256,7 +256,7 @@ class block_cocoon_courses_slider extends block_base {
       <div class="col-lg-6 offset-lg-3">
         <div class="main-title text-center" id="sezione-1">';
         // if(!empty($this->content->title)){
-          $this->content->text .='<h3 class="mb0 mt0" style="width:100%;" data-ccn="title">'. format_text($this->content->title, FORMAT_HTML, array('filter' => true)) .'</h3>';
+          $this->content->text .='<h2 class="mb0 mt0" style="width:100%;" data-ccn="title">'. format_text($this->content->title, FORMAT_HTML, array('filter' => true)) .'</h2>';
         // }
         // if(!empty($this->content->subtitle)){
           $this->content->text .='<p data-ccn="subtitle" style="width:100%;">Segui i corsi dedicati alle <strong>5 aree tematiche del DigComp 2.2,</strong> il quadro europeo delle competenze digitali dei cittadini. </p>';
@@ -286,7 +286,8 @@ class block_cocoon_courses_slider extends block_base {
 
             $this->content->text .='
                       <div class="item">
-           							<div class="top_courses ">';
+           							<div class="top_courses ">
+                        <span class="sr-only">Inizio card corso</span>';
                          if($ccnBlockShowImg){
                            $this->content->text .='
            								<div class="thumb">
@@ -317,6 +318,7 @@ class block_cocoon_courses_slider extends block_base {
                            }
                           $this->content->text .='
            							</div>
+                         <span class="sr-only">Fine card corso</span>
            						</div>
                        ';
           }

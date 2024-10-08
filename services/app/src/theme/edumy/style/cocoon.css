@@ -15141,7 +15141,8 @@ header.header-nav .header_top_lang_widget .ht-widget-container .vertical-wrapper
   padding: 30px 0;
 }
 .ccn_breadcrumb_s {
-  height: 250px;
+  /* height: 250px; */
+  height: auto;
   padding: 0;
 }
 .ccn_breadcrumb_s .breadcrumb_content {

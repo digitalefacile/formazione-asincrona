@@ -36,42 +36,45 @@
 }}
 
 {{! <div class="my_course_content_list" role="list"> }}
-        {{#courses}}
+{{#courses}}
 
-     {{ #hasprogress }}
-    
+    {{ #hasprogress }}
+
     <div class="card-custom-container" style="width: 33%;padding: 15px;">
-          <div class="card-custom" data-course-id="{{{id}}}" >
+        <div class="card-custom" data-course-id="{{{id}}}">
+            <span class="sr-only">Inizio card corso</span>
             <img
-              class="card-img-top card-image-top-custom"
-              src="{{{courseimage}}}"
-              alt="Card image cap"
+                    class="card-img-top card-image-top-custom"
+                    src="{{{courseimage}}}"
+                    alt="{{{fullname}}}"
             />
 
             <div class="details">
-                    <div class="tc_content">
-                      <div class="container_cip_category" style="margin-top: 16px;">
+                <div class="tc_content">
+                    <div class="container_cip_category" style="margin-top: 16px;">
+                        <span class="sr-only">Categoria: </span>
                         <div class="cip_category">
-                         {{{coursecategory}}}
+                            {{{coursecategory}}}
                         </div>
-                      </div>
-                      <div class="content_title_card_slider">
+                    </div>
+                    <div class="content_title_card_slider">
                         {{{fullname}}}
-                      </div>
-                      <div class="container-fluid" style="text-align: center;position: relative;">
+                    </div>
+                    <div class="container-fluid" style="text-align: center;position: relative;">
                         {{> block_myoverview/progress-bar}}
                         {{$progress}}{{/progress}}
-                      </div>
                     </div>
-              </div>
-      
-              <div class="footer_card_slider" style="padding: 40px  0 28px!important; ">
-                <a href="{{viewurl}}" class="btn btn-primary btn-lg" aria-label="Torna al corso {{{fullname}}}">Torna al corso </a>
-              </div>
-           
+                </div>
             </div>
-          </div>
-    </div>      
- {{/hasprogress}} 
-        {{/courses}}
+
+            <div class="footer_card_slider" style="padding: 40px  0 28px!important; ">
+                <a href="{{viewurl}}" class="btn btn-primary btn-lg" aria-label="Torna al corso {{{fullname}}}">Torna al
+                    corso </a>
+            </div>
+            <span class="sr-only">Fine card corso</span>
+        </div>
+    </div>
+    </div>
+{{/hasprogress}}
+{{/courses}}
 {{! </div> }}

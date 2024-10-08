@@ -1230,6 +1230,7 @@ a[title=Lingua]{
   background-color: #fff;
   background-image: none;
   opacity: 1;
+  display: none;
 }
 
 .inner_page_breadcrumb .breadcrumb-item a, 
@@ -1276,7 +1277,8 @@ a[title=Lingua]{
 
 @media (min-width: 1200px) {
   .ccn_breadcrumb_xs {
-    height: 80px;
+    /* height: 80px; */
+    height: auto;
   }
 
 .ace-responsive-menu > li > a {
@@ -1314,6 +1316,10 @@ a[title=Lingua]{
     height: 79px;
     flex-direction: column;
     justify-content: center;
+}
+/* main title h2 same color */
+.main-title h2 {
+    color: #0065CC !important;
 }
 .main-title p {
 	width: 100%;
@@ -2309,10 +2315,20 @@ font-weight: 600;
     line-height: 22.82px;
     font-weight: 700;
     font-style: italic;
-    color: unset !important; 
+    /* color: unset !important;  */
+    color: #333333 !important;
 }
 
 .path-blog .addbloglink .btn-primary:hover{
 
     color: white!important;
+}
+
+/* h2 like h3 */
+body.pagelayout-course #ccn-course-breadcrumb-page-wrapper #ccn-page-wrapper #ccn-main-region .container h2 {
+    font-size: 24px;
+}
+/* main title blue outside media query */
+.main-title h2 {
+  color: #0065CC !important;
 }

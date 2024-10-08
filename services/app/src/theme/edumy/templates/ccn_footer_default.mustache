@@ -2,28 +2,26 @@
   <div class="container">
   <div class="row" style="padding-bottom: 36px">
       {{#logo_footer}}
-      <div class="col-sm-12 col-md-4  col-lg-3 custom-responsive-footer">
-        <a href="https://ec.europa.eu/info/index_it" target="_blank"  aria-label="finanziato dall'unione europea">
-          <img class="img-fluid" style="max-height: 60px;width: auto;margin-right: 30px; margin-bottom: 15px;" src="/theme/edumy/templates/img_footer/logo-eu-pnrr-white.png" alt="finanziato dall'unione europea" >
+      <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 custom-responsive-footer">
+        <a href="https://ec.europa.eu/info/index_it" target="_blank" class="footer-focus" aria-label="Vai al sito della Commissione Europea">
+          <img class="img-fluid" style="max-height: 60px;width: auto;margin-right: 30px; margin-bottom: 15px;" src="/theme/edumy/templates/img_footer/logo-eu-pnrr-white.png" alt="Logo della Commissione Europea" >
         </a>
-      </div> 
+      </div>
       <div >
-      </div> 
-      <div class="col-sm-12 col-md-5 col-lg-4 d-flex-custom-footer custom-responsive-footer">
-           <a aria-label="dipartimento per la trasformazione digitale"  href="https://innovazione.gov.it/" target="_blank" rel="noreferrer" >
-          <img class="img-fluid" src="/theme/edumy/templates/img_footer/header_light.png" alt="servizio civile digitale" style="max-height: 60px;width: auto;margin-right: 5px; margin-bottom: 15px; padding-right: 15px;" >
-        </a>
-          <a aria-label="dipartimento per la trasformazione digitale" href="https://innovazione.gov.it/" target="_blank" rel="noreferrer" >
-          <img class="img-fluid" src="/theme/edumy/templates/img_footer/mitd-logo_tmp.png"  alt="dipartimento per la trasformazione digitale" style="max-height: 60px;width: auto;margin-right: 30px; margin-bottom: 15px;" >
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-5 d-flex-custom-footer custom-responsive-footer dipartimento-trasformazione-col">
+          <a aria-label="Vai al sito del dipartimento della trasformazione digitale" class="footer-focus" href="https://innovazione.gov.it/" target="_blank" rel="noreferrer" style="display:flex; flex-direction: row">
+          <img class="img-fluid" src="/theme/edumy/templates/img_footer/header_light.png" alt="Logo Repubblica Italiana" style="max-height: 60px;width: auto;margin-right: 5px; margin-bottom: 15px; padding-right: 15px;" >
+          <img class="img-fluid" src="/theme/edumy/templates/img_footer/mitd-logo_tmp.png"  alt="Logo Dipartimento per la trasformazione digitale" style="max-height: 60px;width: auto;margin-right: 30px; margin-bottom: 15px;" >
         </a>
     </div>
 
-      <div class="col-sm-12 col-md-3  col-lg-3 custom-responsive-footer">
-        <a aria-label="repubblica digitale" href="https://repubblicadigitale.gov.it/portale/" target="_blank" rel="noreferrer"> 
-          <img class="img-fluid" src="/theme/edumy/templates/img_footer/logo-rd-white.png" alt="repubblica digitale" style="max-height: 60px;width: auto; margin-bottom: 15px;" >
+      <div class="col-sm-12 col-md-3 col-lg-3 col-xl-4 custom-responsive-footer">
+        <a aria-label="Vai al sito della Repubblica Digitale" class="footer-focus" href="https://repubblicadigitale.gov.it/portale/" target="_blank" rel="noreferrer">
+          <img class="img-fluid" src="/theme/edumy/templates/img_footer/logo-rd-white.png" alt="Logo Repubblica Digitale" style="max-height: 60px;width: auto; margin-bottom: 15px;" >
         </a>
     </div>
-    
+
       {{/logo_footer}}
     </div>
     <div class="row">
@@ -62,7 +60,6 @@
       {{#footer_column_5}}
         <div class="{{{footer_col_5_class}}}">
           <div class="footer_apps_widget {{#footer_2}} home3 {{/footer_2}} {{#footer_3}} home4 {{/footer_3}}">
-            <h4>{{{ footer_col_5_title }}}</h4>
             {{> theme_edumy/ccn_social_icons }}
           </div>
         </div>

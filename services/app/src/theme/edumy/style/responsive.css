@@ -3221,3 +3221,25 @@
     margin-left: 0%;
   }
 }
+
+
+/* fix footer responsive 25-09-24 */
+@media (max-width: 1000px) and (min-width: 768px) {
+  section.footer_one .dipartimento-trasformazione-col img.img-fluid {
+    margin: 0 !important;
+    max-height: 50px !important;
+    width: fit-content !important;
+  }
+}
+@media (max-width: 450px) {
+  section.footer_one .dipartimento-trasformazione-col img.img-fluid {
+    max-height: 45px !important;
+  }
+}
+/* blocco bacheca home page */
+@media (max-width: 768px) {
+  .ccnBlockContent > section.our-blog > .container .row > .blog_recent_no_entry {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}

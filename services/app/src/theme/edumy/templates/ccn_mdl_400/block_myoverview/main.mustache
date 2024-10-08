@@ -29,12 +29,12 @@
         flex-direction: column;
         align-items: center;
     ">
-    <div class="title">
+    <h1 class="title">
     Il mio percorso
-    </div>
-    <div class="subtitle">
+    </h1>
+    <h2 class="subtitle">
     Gestisci la tua formazione e monitora i tuoi progressi passo dopo passo. Completa i corsi attivi e scegli i corsi da seguire per ottenere nuovi badge.
-    </div>
+    </h2>
   <div class="my_course_content mb30">
     <div class="my_course_content_header" style="    display: none!important;">
         <div class="candidate_revew_select style2 text-right w-100" data-region="filter" aria-label="{{#str}} aria:controls, block_myoverview {{/str}}">
@@ -52,7 +52,7 @@
 
     </div>
 
-    <div class="container-fluid p-0" style="
+    <h3 class="container-fluid p-0" style="
     color: #0066CC;
     padding-left: 15px!important;
     font-size: 24px;
@@ -61,10 +61,10 @@
     line-height: 24px;
     ">
         I miei corsi attivi
-    </div>
+    </h3>
     <div class="container-fluid p-0">
         {{> theme_edumy/ccn_mdl_400/block_myoverview/courses-view }}
-      
+
     </div>
 </div>
 </div>
@@ -76,11 +76,11 @@
         Esplora le 7 aree tematiche dei corsi e perfeziona le tue competenze in ogni ambito della facilitazione digitale.
      </div>
      <div class="container-fluid cta">
-        <a data-redirect="goAllCourses">Vai a tutti i corsi</a>
+        <a data-redirect="goAllCourses" class="go-all-courses">Vai a tutti i corsi</a>
      </div>
 <div>
 
-  
+
 
 {{#js}}
 require(

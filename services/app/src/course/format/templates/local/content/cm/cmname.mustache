@@ -47,14 +47,14 @@
 }}
 {{#url}}
     <div class="activity-instance d-flex flex-column">
-        <div class="activitytitle media {{textclasses}} modtype_{{modname}} position-relative align-self-start">
-            <div class="activityiconcontainer {{purpose}} courseicon align-self-start mr-3">
+        <div class="d-flex align-items-center activitytitle media {{textclasses}} modtype_{{modname}} position-relative">
+            <div class="activityiconcontainer {{purpose}} courseicon mr-3">
                 <img src="{{{icon}}}" class="activityicon {{iconclass}}"
-                     alt="{{#cleanstr}} activityicon, moodle, {{{pluginname}}} {{/cleanstr}}"
+                     alt=""
                 >
             </div>
             <div class="media-body align-self-center">
-              
+
                 <div class="activityname">
                     {{#activityname}}
                         {{$ core/inplace_editable }}
