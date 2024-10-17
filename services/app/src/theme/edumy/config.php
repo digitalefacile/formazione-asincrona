@@ -336,6 +336,7 @@ $THEME->javascripts = array(
   'dashboard-script',
   'script',
   'blog-customizer',
+  'facilita-customizer',
 );
 
 
