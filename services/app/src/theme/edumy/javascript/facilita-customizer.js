@@ -51,6 +51,27 @@ document.addEventListener('DOMContentLoaded', function() {
             var afterElement = document.createElement('span');
             afterElement.className = 'after-element';
             facilitaATag.appendChild(afterElement);
+
+            // get all elements with class breadcrumb_content
+            var breadcrumbContents = document.querySelectorAll('div.breadcrumb_content');
+            // iterate over each breadcrumbContent
+            breadcrumbContents.forEach(function(breadcrumbContent) {
+                // inside breadcrumbContent get li elements and loop through them
+                var breadcrumbLi = breadcrumbContent.querySelectorAll('li');
+                for (var i = 0; i < breadcrumbLi.length; i++) {
+                    // get a element
+                    var a = breadcrumbLi[i].querySelector('a');
+                    // if a is not null get href attribute
+                    if (a != null) {
+                        var href = a.getAttribute('href');
+                        // if href contains courses.php set li parent to display none
+                        if (href.includes('courses.php')) {
+                            breadcrumbLi[i].remove();
+                        }
+                    }
+                }
+            });
+
         }
     }
 });
