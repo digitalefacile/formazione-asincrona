@@ -3,12 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var pageTitle = document.querySelector('title').innerText;
     // get element header.ccnHeader2
     var ccnHeader2 = document.querySelector('header.ccnHeader2');
-    // console.log(ccnHeader2);
     // get nav > ul > li
     var navUlLi = ccnHeader2.querySelectorAll('nav > ul > li');
     // remove last li
     navUlLi = Array.prototype.slice.call(navUlLi, 0, -1);
-    // console.log(navUlLi);
 
     var facilitaATag = null;
     var ilMioPercorsoATag = null;
@@ -23,14 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
             facilitaATag = a;
             // get li parent of a and style float right
             var li = a.parentElement;
-            // console.log(li);
             li.style.float = 'right';
         }
 
         if (lowerCaseText == 'il mio percorso') {
             ilMioPercorsoATag = a;
-            // console.log('Il mio percorso found');
-            // console.log(ilMioPercorsoATag);
         }
     }
 
@@ -69,6 +64,34 @@ document.addEventListener('DOMContentLoaded', function() {
                             breadcrumbLi[i].remove();
                         }
                     }
+                }
+            });
+
+            // change icon replace /page/ with /scorm/
+            // get div.course-content
+            var courseContent = document.querySelector('div.course-content');
+            // inside get ul.flexsections
+            var flexSections = courseContent.querySelector('ul.flexsections');
+            // inside get li.section
+            var sections = flexSections.querySelectorAll('li.section');
+            // loop through sections
+            sections.forEach(function(section) {
+                // inside find img.courseicon
+                var courseIcons = section.querySelectorAll('img.activityicon');
+                // if courseIcon is not null
+                if (courseIcons.length > 0) {
+                    // loop through courseIcons
+                    courseIcons.forEach(function(courseIcon) {
+                        // get src attribute
+                        var src = courseIcon.getAttribute('src');
+                        // if src contains monologo
+                        if (src.includes('/page/')) {
+                            // replace /page/ with /scorm/
+                            src = src.replace('/page/', '/scorm/');
+                            // set src attribute
+                            courseIcon.setAttribute('src', src);
+                        }
+                    });
                 }
             });
 
