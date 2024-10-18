@@ -66,6 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
+            // after loop get again breadcrumbContents, if there are only two elements and one has textlowercase 'home', delete breadcrumbContent
+            breadcrumbContents = document.querySelectorAll('div.breadcrumb_content');
+            breadcrumbContents.forEach(function(breadcrumbContent) {
+                var breadcrumbLi = breadcrumbContent.querySelectorAll('li');
+                if (breadcrumbLi.length == 2) {
+                    var a = breadcrumbLi[0].querySelector('a');
+                    if (a.innerText.toLowerCase() == 'home') {
+                        breadcrumbContent.remove();
+                    }
+                }
+            });
+
 
             // change icon replace /page/ with /scorm/
             // get div.course-content
