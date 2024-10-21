@@ -1,0 +1,7 @@
+li.facilita-breadcrumb-after-home::before {
+    content: "/" !important;
+}
+
+.facilita-course-index ul > li span {
+    display: none !important;
+}

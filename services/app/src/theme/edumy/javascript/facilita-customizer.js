@@ -114,6 +114,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
+            // get el #theme_boost-drawers-courseindex
+            var courseIndex = document.querySelector('#theme_boost-drawers-courseindex');
+            // add class facilita-course-index
+            if (courseIndex != null) {
+                courseIndex.classList.add('facilita-course-index');
+            }
         }
     }
 });
