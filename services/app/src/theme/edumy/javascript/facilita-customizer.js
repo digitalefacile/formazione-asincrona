@@ -70,11 +70,18 @@ document.addEventListener('DOMContentLoaded', function() {
             breadcrumbContents = document.querySelectorAll('div.breadcrumb_content');
             breadcrumbContents.forEach(function(breadcrumbContent) {
                 var breadcrumbLi = breadcrumbContent.querySelectorAll('li');
+                console.log(breadcrumbLi);
                 if (breadcrumbLi.length == 2) {
                     var a = breadcrumbLi[0].querySelector('a');
                     if (a.innerText.toLowerCase() == 'home') {
-                        breadcrumbContent.remove();
+                        // style display block important, using attribute, to a parent (li)
+                        a.parentElement.setAttribute('style', 'display: block !important; padding-right: .5rem;');
                     }
+                    // get li[1]::before and set content to '>'
+                    var activeLi = breadcrumbLi[1];
+                    // add class facilita-breadcrumb-after-home
+                    activeLi.classList.add('facilita-breadcrumb-after-home');
+                    // beforeElement.style.content = '/';
                 }
             });
 
