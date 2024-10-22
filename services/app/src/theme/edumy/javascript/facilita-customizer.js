@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // get nav > ul > li
     var navUlLi = ccnHeader2.querySelectorAll('nav > ul > li');
     // remove last li
-    navUlLi = Array.prototype.slice.call(navUlLi, 0, -1);
+    // navUlLi = Array.prototype.slice.call(navUlLi, 0, -1);
 
     var facilitaATag = null;
     var ilMioPercorsoATag = null;
