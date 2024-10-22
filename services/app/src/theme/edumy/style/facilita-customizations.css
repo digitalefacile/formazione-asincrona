@@ -41,4 +41,9 @@ li.facilita-breadcrumb-after-home::before {
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.facilita-top-course-description-inner-page .green-bg-text a {
+    text-decoration: underline;
 }
