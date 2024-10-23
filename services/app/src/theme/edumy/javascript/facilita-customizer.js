@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
             breadcrumbContents = document.querySelectorAll('div.breadcrumb_content');
             breadcrumbContents.forEach(function(breadcrumbContent) {
                 var breadcrumbLi = breadcrumbContent.querySelectorAll('li');
-                console.log(breadcrumbLi);
                 if (breadcrumbLi.length == 2) {
                     var a = breadcrumbLi[0].querySelector('a');
                     if (a.innerText.toLowerCase() == 'home') {
@@ -119,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     activityInfos.forEach(function(activityInfo) {
                         // get a element
                         var a = activityInfo.querySelector('a');
-                        // console.log(a);
                         // if class is "m-2 btn btn-primary" replace with "mt-2 mb-2 btn btn-link btn-sm float-right"
                         if (a != null) {
                             if (a.className == 'm-2 btn btn-primary') {
