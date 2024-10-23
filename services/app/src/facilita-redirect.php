@@ -24,9 +24,10 @@ if (!isloggedin() || $USER->username == 'guest') {
 $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https://' : 'http://';
 $domain = $_SERVER['HTTP_HOST'];
 $current_url = $protocol . $domain . '/course/view.php?id=';
-// rfd = facilitatore | scd = volontario
-$courseId['rfd'] = '25';
-$courseId['scd'] = '26';
+// scd = volontario
+// rfd = facilitatore
+$courseId['scd'] = '25';
+$courseId['rfd'] = '26';
 $courseUrl['rfd'] = $current_url . $courseId['rfd'];
 $courseUrl['scd'] = $current_url . $courseId['scd'];
 
