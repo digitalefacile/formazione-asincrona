@@ -52,8 +52,8 @@ if ($roleid) {
             case 'editingteacher':
                 echo "Ruolo dell'utente: " . $rolename . "<br>";
                 echo 'Utente admin rilevato, clicca uno dei seguenti link per accedere ai corsi:<br>';
-                echo '<a href="' . $courseUrl['rfd'] . '">RFD</a><br>';
-                echo '<a href="' . $courseUrl['scd'] . '">SCD</a><br>';
+                echo '<a href="' . $courseUrl['scd'] . '">SCD [VOLONTARI] </a><br>';
+                echo '<a href="' . $courseUrl['rfd'] . '">RFD [FACILITATORI] </a><br>';
                 break;
             default:
                 echo "ERRORE: Nessun corso trovato per il ruolo: " . $rolename;
