@@ -112,6 +112,36 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                 }
+
+                // get all div.activity-info
+                var activityInfos = section.querySelectorAll('div.activity-info');
+                if (activityInfos.length > 0) {
+                    activityInfos.forEach(function(activityInfo) {
+                        // get a element
+                        var a = activityInfo.querySelector('a');
+                        // console.log(a);
+                        // if class is "m-2 btn btn-primary" replace with "mt-2 mb-2 btn btn-link btn-sm float-right"
+                        if (a != null) {
+                            if (a.className == 'm-2 btn btn-primary') {
+                                a.className = 'mt-2 mb-2 btn btn-link btn-sm float-right';
+                                a.innerHTML = `
+                                    <strong>Scopri di più 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M13.9 5L13.2 5.7L18.5 11.1H3V12.1H18.5L13.2 17.5L13.9 18.2L20.5 11.6L13.9 5Z" fill="#0066CC"></path>
+                                        </svg>
+                                    </strong>`;
+
+                                // replace "vai al modulo" with "Scopri di più" in aria-label
+                                var ariaLabel = a.getAttribute('aria-label');
+                                if (ariaLabel && ariaLabel.includes('Vai al modulo')) {
+                                    ariaLabel = ariaLabel.replace('Vai al modulo', 'Scopri di più');
+                                    a.setAttribute('aria-label', ariaLabel);
+                                }
+                            }
+                        }
+                    });
+                }
+                
             });
 
             // get el #theme_boost-drawers-courseindex
@@ -120,6 +150,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (courseIndex != null) {
                 courseIndex.classList.add('facilita-course-index');
             }
+
+
+
         }
     }
 });
