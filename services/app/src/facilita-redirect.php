@@ -1,8 +1,11 @@
 <?php
 require_once(__DIR__ . '/config.php');
-require_login();
 global $DB, $USER, $CFG;
-
+require_once($CFG->dirroot .'/course/lib.php');
+require_once($CFG->libdir .'/filelib.php');
+require_login();
+require_course_login($SITE);
+$PAGE->set_title('Facilita redirect');
 if (!isloggedin() || $USER->username == 'guest') {
     echo "Errore: Utente non loggato.";
     exit;
@@ -35,7 +38,7 @@ $userid = $USER->id;
 
 $roleid = $DB->get_field('role_assignments', 'roleid', array('userid' => $userid));
 // var_dump($roleid);
-?><div class="avviso-custom"><?php
+//<div class="avviso-custom">
 if ($roleid) {
     $rolename = $DB->get_field('role', 'shortname', array('id' => $roleid));
     // echo "Ruolo dell'utente: " . $rolename . "<br>";
@@ -50,10 +53,14 @@ if ($roleid) {
                 redirect($courseUrl['scd'], null, 0);
                 break;
             case 'editingteacher':
-                echo "Ruolo dell'utente: " . $rolename . "<br>";
-                echo 'Utente admin rilevato, clicca uno dei seguenti link per accedere ai corsi:<br>';
-                echo '<a href="' . $courseUrl['scd'] . '">SCD [VOLONTARI] </a><br>';
-                echo '<a href="' . $courseUrl['rfd'] . '">RFD [FACILITATORI] </a><br>';
+                echo $OUTPUT->header();
+                ?>
+                <h2>Ruolo dell'utente:  <?php echo $rolename ?> <h2>
+                <h3>Utente admin rilevato, clicca uno dei seguenti link per accedere ai corsi:</h3>
+                <a class="btn btn-primary button_parallax_white" href="<?php echo $courseUrl['scd'] ?>">SCD [VOLONTARI] </a>
+                <a class="btn btn-primary button_parallax_white" href="<?php echo $courseUrl['rfd'] ?>">RFD [FACILITATORI] </a>
+                <?php
+                echo $OUTPUT->footer();
                 break;
             default:
                 echo "ERRORE: Nessun corso trovato per il ruolo: " . $rolename;
@@ -76,6 +83,4 @@ if ($roleid) {
 
 
 
-?>
-</div>
-<?php
+//</div>
