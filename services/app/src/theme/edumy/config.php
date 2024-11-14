@@ -194,6 +194,7 @@ $ccnSheetsTheme[] = 'dashbord_navitaion';
 $ccnSheetsTheme[] = 'cocoon-mdl';
 $ccnSheetsTheme[] = 'cocoon-dashboard';
 $ccnSheetsTheme[] = 'responsive';
+$ccnSheetsTheme[] = 'facilita-customizations';
 
 $ccnSheetsAppend = [];
 $ccnSheetsReset[] = 'cocoon-mdl-reset';
@@ -336,6 +337,7 @@ $THEME->javascripts = array(
   'dashboard-script',
   'script',
   'blog-customizer',
+  'facilita-customizer',
 );
 
 

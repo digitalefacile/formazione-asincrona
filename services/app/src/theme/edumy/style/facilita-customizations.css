@@ -1,0 +1,62 @@
+li.facilita-breadcrumb-after-home::before {
+    content: "/" !important;
+}
+
+.facilita-course-index ul > li span {
+    display: none !important;
+}
+
+/* interno corso */
+.facilita-top-course-description-html .top-img-container,
+.facilita-top-course-description-inner-page .top-img-container {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    align-items: center;
+    text-align: center;
+}
+.facilita-top-course-description-html .facilita-blue-label,
+.facilita-top-course-description-inner-page .facilita-blue-label {
+    background: #06C;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 800;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+    /* padding-top: 4px; */
+    /* padding-bottom: 4px; */
+}
+
+.facilita-top-course-description-inner-page .green-bg-text {
+    background-color: #CFEFEE;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border-radius: 5px;
+    color: #333;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.facilita-top-course-description-inner-page .green-bg-text a {
+    text-decoration: underline;
+}
+
+.facilita-video-title {
+    /* color: rgba(88, 88, 88, 1);
+    text-align: center;
+    font-size: 19px; */
+    text-align: center;
+    color: var(--color-text-primary, #06C);
+    font-family: "Titillium Web";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+}

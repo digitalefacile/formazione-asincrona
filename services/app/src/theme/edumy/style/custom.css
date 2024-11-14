@@ -2332,3 +2332,8 @@ body.pagelayout-course #ccn-course-breadcrumb-page-wrapper #ccn-page-wrapper #cc
 .main-title h2 {
   color: #0065CC !important;
 }
+
+/* remove continue button from enrolment page */
+#page-enrol-index .continuebutton {
+  display: none;
+}

@@ -797,7 +797,14 @@
               slideBy: 3,
             }
           }
-        })
+        }).on('changed.owl.carousel', function (event) {
+          // if index is 2 and size is 3, then we are on the last item, change the active dot
+          if (event.item.index == 2 && event.page.size == 3) {
+            $(event.target).find('.owl-dots .owl-dot').removeClass('active');
+            // find the last dot FROM THE CURRENT EVENT ITEM and add the active class
+            $(event.target).find('.owl-dots .owl-dot').last().addClass('active');
+          }
+        });
       }
       /*  Team-Slider-Owl-carousel  */
       if ($('.single_product_slider').length) {
