@@ -62,6 +62,16 @@ if ($roleid) {
                 <?php
                 echo $OUTPUT->footer();
                 break;
+            case 'coursecreator':
+                echo $OUTPUT->header();
+                ?>
+                <h2>Ruolo dell'utente:  <?php echo $rolename ?> <h2>
+                <h3>Utente DOCENTE rilevato, clicca uno dei seguenti link per accedere ai corsi:</h3>
+                <a class="btn btn-primary button_parallax_white" href="<?php echo $courseUrl['scd'] ?>">SCD [VOLONTARI] </a>
+                <a class="btn btn-primary button_parallax_white" href="<?php echo $courseUrl['rfd'] ?>">RFD [FACILITATORI] </a>
+                <?php
+                echo $OUTPUT->footer();
+                break;
             default:
                 echo "ERRORE: Nessun corso trovato per il ruolo: " . $rolename;
                 // then redirect to the home page without message
