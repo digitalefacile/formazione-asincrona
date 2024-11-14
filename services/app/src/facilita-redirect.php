@@ -29,8 +29,8 @@ $domain = $_SERVER['HTTP_HOST'];
 $current_url = $protocol . $domain . '/course/view.php?id=';
 // scd = volontario
 // rfd = facilitatore
-$courseId['scd'] = '25';
-$courseId['rfd'] = '26';
+$courseId['scd'] = '22';
+$courseId['rfd'] = '23';
 $courseUrl['rfd'] = $current_url . $courseId['rfd'];
 $courseUrl['scd'] = $current_url . $courseId['scd'];
 
