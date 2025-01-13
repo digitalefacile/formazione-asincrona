@@ -168,7 +168,7 @@ class block_cocoon_tabs extends block_base
                 }
 
                 if ($ccnTabBody == 'text4') {
-                    $titleOfAccordion = 'Impara a usare Facilita con cinque video lezioni';
+                    $titleOfAccordion = 'Impara a usare Facilita con le video lezioni';
                     $inputButton = '
                     <div class="find-out-more">
                         <a href="./facilita-redirect.php" id="scopriDipiùTab"  aria-label="Scopri di più" class="text_3_tabs" >Vai ai tutorial 
