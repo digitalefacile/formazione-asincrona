@@ -37,6 +37,15 @@ if ($hassiteconfig) {
         PARAM_TEXT
     ));
 
+    // Aggiungi un campo di testo per i campi dinamici in formato JSON
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk/custom_fields',
+        get_string('custom_fields', 'local_zendesk'),
+        get_string('custom_fields_desc', 'local_zendesk'),
+        '',
+        PARAM_RAW
+    ));
+
     $ADMIN->add('localplugins', $settings);
 }
 ?>

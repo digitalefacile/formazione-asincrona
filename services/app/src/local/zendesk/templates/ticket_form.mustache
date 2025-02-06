@@ -2,30 +2,6 @@
     <input type="hidden" name="sesskey" value="{{sesskey}}">
     <div class="fitem">
         <div class="fitemtitle">
-            <label for="formid">Form ID:</label>
-        </div>
-        <div class="felement">
-            <input type="text" id="formid" name="formid" value="{{formid}}" readonly class="form-control">
-        </div>
-    </div>
-    <div class="fitem">
-        <div class="fitemtitle">
-            <label for="apitoken">API Token:</label>
-        </div>
-        <div class="felement">
-            <input type="text" id="apitoken" name="apitoken" value="{{apitoken}}" readonly class="form-control">
-        </div>
-    </div>
-    <div class="fitem">
-        <div class="fitemtitle">
-            <label for="zendeskemail">Zendesk Email:</label>
-        </div>
-        <div class="felement">
-            <input type="text" id="zendeskemail" name="zendeskemail" value="{{zendeskemail}}" readonly class="form-control">
-        </div>
-    </div>
-    <div class="fitem">
-        <div class="fitemtitle">
             <label for="firstname">Name:</label>
         </div>
         <div class="felement">
@@ -72,17 +48,38 @@
             <textarea id="description" name="description" required class="form-control"></textarea>
         </div>
     </div>
-    <div class="fitem">
-        <div class="fitemtitle">
-            <label for="attachment">Attachment:</label>
+    <div class="attachment-container">
+        <div class="fitem uploader">
+            <div class="fitemtitle">
+                <label for="attachment">Attachment:</label>
+            </div>
+            <div class="felement">
+                <input type="file" id="attachment" name="attachment" class="form-control">
+            </div>
         </div>
-        <div class="felement">
-            <input type="file" id="attachment" name="attachment" class="form-control">
+        <div class="fitem attachment-list">
+            <ul>
+            </ul>
+        </div>
+        <div class="spinner" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
     </div>
+    <div class="form-spinner" style="display: none;">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div> <!-- Spinner per l'intero form -->
     <div class="fitem">
         <div class="felement">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 </form>
+<div id="zendesk-form-success-message" class="alert alert-success" role="alert" style="display: none;">
+    <center>
+        <h4 class="alert-heading">{{success_message}}</h4>
+    </center>
+</div>

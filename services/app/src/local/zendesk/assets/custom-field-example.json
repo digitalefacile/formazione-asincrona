@@ -1,0 +1,22 @@
+[
+    {
+        "id": "campo1",
+        "name": "Campo 1",
+        "type": "text"
+    },
+    {
+        "id": "campo2",
+        "name": "Campo 2",
+        "type": "select",
+        "options": [
+            {
+                "name": "Opzione 1",
+                "value": "1"
+            },
+            {
+                "name": "Opzione 2",
+                "value": "2"
+            }
+        ]
+    }
+]

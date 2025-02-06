@@ -1,0 +1,59 @@
+#zendesk-ticket-form,
+#zendesk-ticket-form .attachment-container {
+    position: relative;
+}
+
+#zendesk-ticket-form .attachment-container .spinner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #00000061;
+    padding: 20px;
+    padding-left: calc(50% - 45px);
+}
+#zendesk-ticket-form .attachment-container .spinner .spinner-border {
+    border: .25em solid #06C;
+    border-right-color: transparent;
+}
+
+#zendesk-ticket-form .attachment-list {
+    margin-top: 20px;
+}
+
+#zendesk-ticket-form .attachment-list .attachment-item {
+    list-style: disc;
+    margin-left: 24px;
+    margin-bottom: 10px;
+}
+#zendesk-ticket-form .attachment-list .attachment-item a {
+    margin-right: 40px;
+}
+
+#zendesk-ticket-form .form-spinner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #00000061;
+    padding-left: calc(50% - 5rem);
+    /* padding-top: 100px; */
+    z-index: 1000;
+}
+#zendesk-ticket-form .form-spinner .spinner-border {
+    border: .25em solid #06C;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    position: absolute;
+    bottom: 100px;
+}
+
+/* remove hover effect in button submit disabled */
+#zendesk-ticket-form button[type="submit"]:disabled {
+    pointer-events: none;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}

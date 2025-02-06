@@ -24,16 +24,13 @@ class ticket_form implements renderable, templatable {
         return [
             'actionurl' => new \moodle_url('/local/zendesk/actions/submit_ticket.php'),
             'uploadurl' => new \moodle_url('/local/zendesk/actions/upload_file.php'),
-            'formid' => get_config('local_zendesk', 'form_id'), // rimuovere dopo test
-            'apitoken' => get_config('local_zendesk', 'api_token'), // rimuovere dopo test
-            'zendeskemail' => get_config('local_zendesk', 'zendesk_email'), // rimuovere dopo test
-            'subdomain' => get_config('local_zendesk', 'subdomain'), // rimuovere dopo test
             'sesskey' => sesskey(), // Passa la sesskey al template
             'firstname' => $USER->firstname,
             'lastname' => $USER->lastname,
             'username' => $USER->username,
             'email' => $USER->email,
-            'groups' => implode(', ', array_merge($group_names, [$rolename]))
+            'groups' => implode(', ', array_merge($group_names, [$rolename])),
+            'success_message' => get_string('success', 'local_zendesk'),
         ];
     }
 }

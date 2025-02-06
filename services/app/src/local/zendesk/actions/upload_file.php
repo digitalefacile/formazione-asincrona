@@ -28,14 +28,15 @@ if ($attachment) {
             $file_path = $attachment['tmp_name'];
             $file_name = $attachment['name'];
             $file_data = file_get_contents($file_path);
+            $file_type = mime_content_type($file_path);
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://$subdomain.zendesk.com/api/v2/uploads.json?filename=" . urlencode($file_name));
+            curl_setopt($ch, CURLOPT_URL, "https://$subdomain.zendesk.com/api/v2/uploads.json?filename=" . urlencode($file_name) );
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $file_data);
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/binary',
+                'Content-Type: ' . $file_type,
                 'Authorization: Basic ' . base64_encode("$zendesk_email/token:$api_token")
             ]);
 
@@ -46,7 +47,13 @@ if ($attachment) {
             if ($upload_httpcode == 201) {
                 $upload_data = json_decode($upload_response, true);
                 $upload_token = $upload_data['upload']['token'];
-                echo json_encode(['success' => true, 'upload_token' => $upload_token, 'response' => 'Allegato caricato con successo', 'upload_response' => json_decode($upload_response)]);
+                echo json_encode([
+                    'success' => true, 
+                    'response' => 'Allegato caricato con successo',
+                    'upload_token' => $upload_token, 
+                    'upload_url' => $upload_data['upload']['attachment']['content_url'],
+                    'upload_response' => json_decode($upload_response)
+                ]);
                 exit;
             } else {
                 echo json_encode(['success' => false, 'response' => $upload_response]);
