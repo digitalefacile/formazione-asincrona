@@ -1,0 +1,88 @@
+<form id="zendesk-ticket-form" action="{{actionurl}}" uploadurl="{{uploadurl}}" method="post" class="mform" enctype="multipart/form-data">
+    <input type="hidden" name="sesskey" value="{{sesskey}}">
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="formid">Form ID:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="formid" name="formid" value="{{formid}}" readonly class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="apitoken">API Token:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="apitoken" name="apitoken" value="{{apitoken}}" readonly class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="zendeskemail">Zendesk Email:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="zendeskemail" name="zendeskemail" value="{{zendeskemail}}" readonly class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="firstname">Name:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="name" name="name" value="{{firstname}} {{lastname}}" readonly class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="username">Username:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="username" name="username" value="{{username}}" readonly class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="email">Email:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="email" name="email" value="{{email}}" readonly class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="groups">Groups:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="groups" name="groups" value="{{groups}}" readonly class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="subject">Subject:</label>
+        </div>
+        <div class="felement">
+            <input type="text" id="subject" name="subject" required class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="description">Description:</label>
+        </div>
+        <div class="felement">
+            <textarea id="description" name="description" required class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="attachment">Attachment:</label>
+        </div>
+        <div class="felement">
+            <input type="file" id="attachment" name="attachment" class="form-control">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="felement">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
