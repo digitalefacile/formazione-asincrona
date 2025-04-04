@@ -57,6 +57,16 @@ if ($hassiteconfig) {
         30
     ));
 
+    // field id for name + surname
+    $settings->add(new admin_setting_configtext(
+        'local_zendesk/name_field_id',
+        get_string('name_field_id', 'local_zendesk'),
+        get_string('name_field_id_desc', 'local_zendesk'),
+        '',
+        PARAM_INT,
+        30
+    ));
+
     // new int field for area_tematica
     $settings->add(new admin_setting_configtext(
         'local_zendesk/area_tematica_field_id',
@@ -76,15 +86,6 @@ if ($hassiteconfig) {
         PARAM_INT,
         30
     ));
-
-    // // Aggiungi un campo di testo per i campi dinamici in formato JSON
-    // $settings->add(new admin_setting_configjson(
-    //     'local_zendesk/custom_fields',
-    //     get_string('custom_fields', 'local_zendesk'),
-    //     get_string('custom_fields_desc', 'local_zendesk'),
-    //     '',
-    //     PARAM_RAW
-    // ));
 
     $settings->add(new admin_setting_configcheckbox(
         'local_zendesk/duplicate_upload',

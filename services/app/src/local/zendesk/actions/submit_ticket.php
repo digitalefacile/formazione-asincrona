@@ -20,6 +20,7 @@ $form_id = get_config('local_zendesk', 'form_id');
 $subdomain = get_config('local_zendesk', 'subdomain');
 $user_group_field_id = get_config('local_zendesk', 'user_group_field_id');
 $username_field_id = get_config('local_zendesk', 'username_field_id');
+$name_field_id = get_config('local_zendesk', 'name_field_id');
 
 $subject = required_param('subject', PARAM_TEXT);
 $description = required_param('description', PARAM_TEXT);
@@ -38,6 +39,10 @@ $custom_fields = [
     [
         'id' => $username_field_id,
         'value' => (string)$username_text
+    ],
+    [
+        'id' => $name_field_id,
+        'value' => (string)$name
     ],
     [
         'id' => $user_group_field_id,

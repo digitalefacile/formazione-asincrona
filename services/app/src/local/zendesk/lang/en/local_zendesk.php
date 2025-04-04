@@ -14,6 +14,9 @@ $string['user_group_field_id'] = 'User Group Zendesk Field ID';
 $string['user_group_field_id_desc'] = 'Enter the ID of the field in Zendesk for the user group';
 $string['username_field_id'] = 'Username Zendesk Field ID';
 $string['username_field_id_desc'] = 'Enter the ID of the field in Zendesk for the username';
+// name
+$string['name_field_id'] = 'Name and Surname Zendesk Field ID';
+$string['name_field_id_desc'] = 'Enter the ID of the field in Zendesk for the name and surname';
 $string['duplicate_upload'] = 'Enable duplicate upload';
 $string['duplicate_upload_desc'] = 'Enable this option to allow duplicate uploads of attachments, needed to show the attachments to the user with a public link';
 $string['area_tematica_field_id'] = 'Zendesk Thematic Area Field ID';

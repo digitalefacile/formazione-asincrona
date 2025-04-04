@@ -12,8 +12,11 @@ $string['subdomain'] = 'Sottodominio Zendesk';
 $string['subdomain_desc'] = 'Inserisci il tuo sottodominio Zendesk (es. tuosottodominio.zendesk.com)';
 $string['user_group_field_id'] = 'ID del Campo Gruppo Utente Zendesk';
 $string['user_group_field_id_desc'] = 'Inserisci l\'ID del campo in Zendesk per il gruppo utente';
-$string['username_field_id'] = 'ID del Campo Nome Utente Zendesk';
+$string['username_field_id'] = 'ID del Campo Nome Utente Zendesk (codice fiscale)';
 $string['username_field_id_desc'] = 'Inserisci l\'ID del campo in Zendesk per il nome utente';
+// name
+$string['name_field_id'] = 'ID del Campo Nome e Cognome Zendesk (nominativo)';
+$string['name_field_id_desc'] = 'Inserisci l\'ID del campo in Zendesk per il nome e cognome';
 $string['duplicate_upload'] = 'Abilita upload duplicato';
 $string['duplicate_upload_desc'] = 'Abilita questa opzione per consentire upload duplicati degli allegati, serve per mostrare gli allegati all\'utente con un link pubblico';
 $string['area_tematica_field_id'] = 'ID del Campo Area Tematica Zendesk';
