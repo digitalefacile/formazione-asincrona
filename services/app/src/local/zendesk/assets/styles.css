@@ -1,0 +1,444 @@
+.container-fluid.test-top-header,
+header,
+.footer_one .container .row:last-child,
+.footer_middle_area{
+    display: none !important;
+}
+section.footer_one {
+    padding-bottom: 0 !important;
+}
+
+#zendesk-ticket-form,
+#zendesk-ticket-form label,
+#zendesk-ticket-form p {
+    color: #001A33 !important;
+}
+
+#zendesk-ticket-form,
+#zendesk-ticket-form-header,
+#zendesk-form-success-message,
+#zendesk-form-error-message {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+#zendesk-ticket-form-header {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+#zendesk-ticket-form-header .title {
+    color: #003366;
+    font-size: 28px;
+    line-height: 40px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+#zendesk-ticket-form-header .subtitle {
+    font-size: 18px;
+    color: #001A33;
+    margin: 0;
+    line-height: 28px;
+}
+
+#zendesk-ticket-form,
+#zendesk-ticket-form .attachment-container {
+    position: relative;
+}
+
+#zendesk-ticket-form .fitem {
+    margin-bottom: 60px;
+}
+#zendesk-ticket-form .fitem label {
+    margin-bottom: 0;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 700;
+}
+#zendesk-ticket-form .fitem p {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* description, new editor */
+#zendesk-ticket-form #descriptioneditable {
+    min-height: 250px !important;
+    border: 1px solid #8f959e !important;
+    border-top: 0 !important;
+    padding: 8px 16px !important;
+}
+
+#zendesk-ticket-form input#attachment {
+    padding: 30px 20px;
+    height: auto;
+    border: 1px solid #8f959e !important;
+}
+
+#zendesk-ticket-form .attachment-container .spinner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #00000061;
+    padding: 20px;
+    padding-left: calc(50% - 45px);
+}
+#zendesk-ticket-form .attachment-container .spinner .spinner-border {
+    border: .25em solid #06C;
+    border-right-color: transparent;
+}
+
+/* #zendesk-ticket-form .attachment-list,
+#zendesk-ticket-form .attachment-list ul {
+    margin: 0;
+}
+
+#zendesk-ticket-form .attachment-list .attachment-item {
+    list-style: disc;
+    margin-left: 24px;
+    padding-bottom: 25px;
+}
+#zendesk-ticket-form .attachment-list .attachment-item a {
+    margin-right: 40px;
+} */
+
+
+#zendesk-ticket-form .form-spinner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #00000061;
+    padding-left: calc(50% - 5rem);
+    /* padding-top: 100px; */
+    z-index: 1000;
+}
+#zendesk-ticket-form .form-spinner .spinner-border {
+    border: .25em solid #06C;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    position: absolute;
+    top: calc(50% - 5rem);
+}
+
+
+/* submit button */
+#zendesk-ticket-form .fitem.submit {
+    padding-top: 15px;
+}
+#zendesk-ticket-form .fitem.submit button {
+    min-width: 186px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.5;
+}
+#zendesk-ticket-form button[type="submit"] {
+    /* min-width: 150px; */
+    margin-left: 8px;
+}
+#zendesk-ticket-form .fitem.submit .zendesk-form-close-button {
+    margin-right: 8px;
+}
+
+/* remove hover effect in button submit disabled */
+#zendesk-ticket-form button[type="submit"]:disabled {
+    pointer-events: none;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* The container must be positioned relative: */
+#zendesk-ticket-form .custom-select {
+    position: relative !important;
+    font-family: Arial !important;
+    height: auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+
+#zendesk-ticket-form .custom-select select {
+    display: none !important; /* Hide original SELECT element */
+}
+
+#zendesk-ticket-form .select-selected {
+    background-color: #FFF !important;
+    color: #001A33 !important;
+    border-bottom: 1px solid #797C80;
+    cursor: pointer !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Titillium Web';
+    font-size: 18px;
+}
+
+/* Style the arrow inside the select element: */
+#zendesk-ticket-form .select-selected:after {
+    position: absolute !important;
+    content: "" !important;
+    top: 14px !important;
+    right: 10px !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: url('/local/zendesk/assets/images/arrow-down-icon.svg') no-repeat center center !important;
+    background-size: contain !important;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+#zendesk-ticket-form .select-selected.select-arrow-active:after {
+    background: url('/local/zendesk/assets/images/arrow-down-icon.svg') no-repeat center center !important;
+    background-size: contain !important;
+    transform: rotate(180deg) !important;
+    top: 7px !important;
+}
+
+/* Style the items (options), including the selected item: */
+#zendesk-ticket-form .select-items div, #zendesk-ticket-form .select-selected {
+    color: #001A33 !important;
+    padding: 8px 16px !important;
+    /* border: 1px solid transparent !important; */
+    /* border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent !important; */
+    cursor: pointer !important;
+}
+
+/* Style items (options): */
+#zendesk-ticket-form .select-items {
+    position: absolute !important;
+    background-color: #fff !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99 !important;
+    border: 1px solid #797C80;
+}
+#zendesk-ticket-form .select-items div:not(:last-child) {
+    border-bottom: 1px solid #797C80;
+}
+
+/* Hide the items when the select box is closed: */
+#zendesk-ticket-form .select-hide {
+    display: none !important;
+}
+
+#zendesk-ticket-form .select-items div:hover, #zendesk-ticket-form .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+#zendesk-ticket-form input,
+#zendesk-ticket-form #descriptioneditable,
+#zendesk-ticket-form .editor_atto_toolbar {
+    border-radius: 0 !important;
+}
+#zendesk-ticket-form input[type="text"] {
+    border: 0 !important;
+    border-bottom: 1px solid #797C80 !important;
+    height: auto !important;
+    padding: 8px 16px !important;
+    font-size: 18px !important;
+    font-family: 'Titillium Web' !important;
+}
+#zendesk-ticket-form input[type="text"]::placeholder {
+    color: #001A33 !important;
+    font-weight: 600 !important;
+    opacity: 0.5 !important;
+    font-family: 'Titillium Web' !important;
+    font-size: 18px !important;
+}
+
+
+/* custom upload */
+#zendesk-ticket-form .attachment-container .fitem.uploader .felement {
+    border-bottom: 1px solid #C3DBF3;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+#zendesk-ticket-form .attachment-container .fitem.uploader .fitemtitle {
+    text-transform: uppercase;
+}
+
+#zendesk-ticket-form .fitem.uploader.dragging {
+    border: 2px dashed #007bff;
+    background-color: #e6f2ff;
+}
+
+#zendesk-ticket-form .file-name-container {
+    width: 70%;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    opacity: 0.5;
+    font-size: 18px;
+    font-weight: 600;
+}
+#zendesk-ticket-form .custom-file-upload-container {
+    width: 30%;
+    text-align: right;
+}
+
+#zendesk-ticket-form .custom-file-upload {
+    display: inline-block;
+    padding: 6px 25px;
+    cursor: pointer;
+    background-color: #fff;
+    color: #007bff !important;
+    border-radius: 4px;
+    border: 1px solid #007bff;
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+#zendesk-ticket-form .custom-file-upload-container img {
+    /* margin-right: 8px; */
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+#zendesk-ticket-form .custom-file-upload:hover {
+    background-color: #e6f2ff;
+    border-color: #0056b3;
+    color: #0056b3;
+}
+
+/* parte di upload generata in js */
+#zendesk-ticket-form .attachment-container .fitemtitle {
+    margin-bottom: 30px;
+}
+#zendesk-ticket-form .attachment-list-item .row {
+    border-bottom: 1px solid #C3DBF3;
+    padding-bottom: 22px;
+    margin-bottom: 5px !important;
+}
+#zendesk-ticket-form .attachment-list-item .fitemtitle img,
+#zendesk-ticket-form .attachment-container .fitem.uploader .fitemtitle img
+{
+    margin-top: -2px;
+    margin-left: 10px;
+}
+#zendesk-ticket-form .attachment-list-item .delete {
+    text-align: right;
+}
+#zendesk-ticket-form .attachment-list-item .delete img:hover {
+    cursor: pointer;
+}
+#zendesk-ticket-form .attachment-list-item .under-text, 
+#zendesk-ticket-form .attachment-container .fitem.uploader .under-text
+{
+    font-style: italic;
+    opacity: 0.7;
+}
+
+#zendesk-ticket-form input[type="file"] {
+    display: none;
+}
+
+/* form disattivati finche non si seleziona area tematica */
+#zendesk-ticket-form .fitem[disabled]:not(.submit) {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#zendesk-ticket-form .fitem[disabled] input,
+#zendesk-ticket-form .fitem[disabled] select,
+#zendesk-ticket-form .fitem[disabled] textarea,
+#zendesk-ticket-form .fitem[disabled] button[type="submit"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+#zendesk-ticket-form .fitem[disabled] button[type="submit"] {
+    background-color: #BFC2C9;
+    border-color: #BFC2C9;
+    color: #383a3d;
+}
+
+/* response message */
+.zendesk-form-response-container .img-container {
+    margin-top: 60px;
+    margin-bottom: 35px;
+}
+.zendesk-form-response-container .message {
+    color: #455B71;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 100px;
+}
+.zendesk-form-response-container .buttons-container {
+    margin-bottom: 200px;
+}
+.zendesk-form-response-container .buttons-container button {
+    min-width: 195px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+}
+.zendesk-form-response-container#zendesk-form-error-message .buttons-container button:first-child {
+    margin-right: 7px;
+}
+.zendesk-form-response-container#zendesk-form-error-message .buttons-container button:last-child {
+    margin-left: 7px;
+}
+
+/* close form */
+.zendesk-modal.zendesk-form-modal {
+    padding-bottom: 60px;
+}
+.zendesk-modal.zendesk-form-modal .modal-body {
+    font-size: 24px !important;
+    line-height: 1.6 !important
+}
+.zendesk-modal.zendesk-form-modal .modal-body .img-container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.zendesk-modal.zendesk-form-modal .modal-footer {
+    padding-top: 70px;
+    padding-bottom: 45px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    #zendesk-ticket-form-header {
+        margin-top: 50px;
+    }
+    #zendesk-ticket-form .attachment-container .fitem.uploader .felement {
+        vertical-align: middle;
+        align-items: center;
+    }
+    #zendesk-ticket-form .file-name-container {
+        width: 50%;
+    }
+    #zendesk-ticket-form .custom-file-upload-container {
+        width: 50%;
+    }
+    #zendesk-ticket-form .custom-file-upload {
+        padding: 6px 15px;
+        width: 100%;
+    }
+    #zendesk-ticket-form .custom-file-upload img {
+        margin-top: -4px;
+    }
+    #zendesk-ticket-form .fitem.submit button {
+        min-width: 45% !important;
+        max-width: 45% !important;
+    }
+
+    .zendesk-form-response-container#zendesk-form-error-message .buttons-container button:first-child,
+    .zendesk-form-response-container#zendesk-form-error-message .buttons-container button:last-child {
+        margin: 0;
+    }
+    .zendesk-form-response-container#zendesk-form-error-message .buttons-container button:first-child {
+        margin-bottom: 10px;
+    }
+}
