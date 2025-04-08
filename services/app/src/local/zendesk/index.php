@@ -19,7 +19,7 @@ $PAGE->requires->css('/local/zendesk/assets/styles.css');
 // Includi il file JavaScript
 $PAGE->requires->js('/local/zendesk/assets/scripts.js');
 
-$attobuttons = 'style1 = bold, italic, underline, strike, subscript, superscript' . PHP_EOL .
+$attobuttons = 'style1 = title, bold, italic, underline, strike, subscript, superscript' . PHP_EOL .
                'list = unorderedlist, orderedlist' . PHP_EOL .
             //    'indent = indent, outdent' . PHP_EOL .
             //    'align = alignleft, aligncenter, alignright, alignjustify' . PHP_EOL .
