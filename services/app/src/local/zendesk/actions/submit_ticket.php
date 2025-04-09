@@ -68,7 +68,7 @@ if ($altra_area_tematica) {
 $ticket_data = [
     'ticket' => [
         'subject' => $subject,
-        'description' => $description,
+        'description' => urldecode($description),
         'ticket_form_id' => $form_id,
         'requester' => [
             'name' => $name,
@@ -76,7 +76,7 @@ $ticket_data = [
         ],
         'custom_fields' => $custom_fields,
         'comment' => [
-            'body' => $description,
+            'html_body' => urldecode($description),
             'uploads' => $upload_token
         ]
     ]

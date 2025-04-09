@@ -231,6 +231,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(form);
             const actionUrl = form.getAttribute('action');
 
+            // manipola formdata description
+            // convert to serialized string
+            const description = formData.get('description');
+            
+            const descriptionSerialized = new URLSearchParams(description).toString();
+            // // replace the description with the serialized string
+            formData.set('description', descriptionSerialized);
+
+            // const turndownService = new TurndownService();
+            // // convert to markdown
+            // const descriptionMarkdown = turndownService.turndown(description);
+            // formData.set('description', descriptionMarkdown);
+
             // Aggiungi i token degli upload al formData
             formData.append('upload_tokens', JSON.stringify(uploadTokens));
 
@@ -360,6 +373,10 @@ document.addEventListener('DOMContentLoaded', function() {
             backToRequestButton.addEventListener('click', function() {
                 returnFromErrorMessage();
             });
+        }
+
+        function toBase64(str) {
+            return btoa(String.fromCharCode(...new TextEncoder().encode(str)));
         }
 
 
