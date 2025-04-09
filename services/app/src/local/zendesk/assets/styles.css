@@ -64,6 +64,12 @@ section.footer_one {
 }
 
 /* description, new editor */
+#zendesk-ticket-form #descriptioneditable p {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    color: inherit !important;
+}
+
 #zendesk-ticket-form #descriptioneditable {
     min-height: 250px !important;
     border: 1px solid #8f959e !important;
