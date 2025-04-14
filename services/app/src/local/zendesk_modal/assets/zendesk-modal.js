@@ -6,8 +6,23 @@ document.addEventListener('DOMContentLoaded', function() {
             var modalLoginButton = document.querySelector('.color-icon-user.login-button-container');
             // inside get a.login-button
             var modalLoginButton = modalLoginButton.querySelector('a.login-button');
-            var modalLoginButtonHref = modalLoginButton.getAttribute('href');
-            console.log('Modal login button href:', modalLoginButtonHref);
+            if (modalLoginButton) {
+                var modalLoginButtonHref = modalLoginButton.getAttribute('href');
+                // console.log('Initial Modal login button href:', modalLoginButtonHref);
+                // Crea un MutationObserver per monitorare i cambiamenti
+                var observer = new MutationObserver(function(mutationsList) {
+                    mutationsList.forEach(function(mutation) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
+                            modalLoginButtonHref = modalLoginButton.getAttribute('href');
+                            // console.log('Updated Modal login button href:', modalLoginButtonHref);
+                        }
+                    });
+                });
+                // Configura l'osservatore per monitorare gli attributi
+                observer.observe(modalLoginButton, { attributes: true });
+                // interrompere l'osservazione quando non è più necessaria
+                // observer.disconnect();
+            }
         }
         // console.log('Modal body role name:', modalBodyRoleName);
     }
