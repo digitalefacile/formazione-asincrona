@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
             selElmnt = x[i].getElementsByTagName("select")[0];
             ll = selElmnt.length;
             a = document.createElement("DIV");
-            a.setAttribute("class", "select-selected");
+            a.setAttribute("class", "select-selected placeholder");
             a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
             x[i].appendChild(a);
             b = document.createElement("DIV");
             b.setAttribute("class", "select-items select-hide");
-            for (j = 0; j < ll; j++) {
+            for (j = 1; j < ll; j++) {
                 c = document.createElement("DIV");
                 c.innerHTML = selElmnt.options[j].innerHTML;
                 c.addEventListener("click", function(e) {
@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 otherThematicAreaContainer.style.display = 'none';
                 otherThematicAreaInput.removeAttribute('required');
+                var select = document.getElementsByClassName("select-selected");
+                // remove class placeholder from select-selected
+                select[0].classList.remove("placeholder");
             }
             toggleFormFields(this.value !== "Seleziona l'area tematica");
         });
