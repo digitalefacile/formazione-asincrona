@@ -30,6 +30,14 @@ if ($hassiteconfig) {
         'This is the pre-body text.'
     ));
 
+    // pre-body alt text
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/prebody_text_alt', 
+        get_string('prebody_text_alt', 'local_zendesk_modal'), 
+        '', 
+        'This is the pre-body alt text.'
+    ));
+
     // after-body text
     $settings->add(new admin_setting_configtextarea(
         'local_zendesk_modal/afterbody_text', 
@@ -50,6 +58,22 @@ if ($hassiteconfig) {
         get_string('modalbody_rfd', 'local_zendesk_modal'), 
         '', 
         'This is the body of the modal for rfd.'
+    ));
+
+    // modalbody for guest
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/modalbody_guest', 
+        get_string('modalbody_guest', 'local_zendesk_modal'), 
+        '', 
+        'This is the body of the modal for guest.'
+    ));
+
+    // modalbody for admin
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/modalbody_admin', 
+        get_string('modalbody_admin', 'local_zendesk_modal'), 
+        '', 
+        'This is the body of the modal for admin.'
     ));
 
     // default text modalbody
