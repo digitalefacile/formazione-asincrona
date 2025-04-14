@@ -156,6 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleFileUpload(file) {
             if (file) {
+
+                var fileSize = file.size / 1024 / 1024; // Convert to MB
+                if (fileSize > 40) {
+                    alert('Il file è troppo grande. La dimensione massima è di 40MB.');
+                    return;
+                }
+
                 // fileNameContainer.textContent = file.name;
                 const formData = new FormData(form);
                 formData.append('attachment', file);
@@ -190,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </div>
                         <div class="under-text">
-                            <p>Il limite di dimensione per i file è di 10MB</p>
+                            <p>Il limite di dimensione per i file è di 40MB</p>
                         </div>
                     `;
 
