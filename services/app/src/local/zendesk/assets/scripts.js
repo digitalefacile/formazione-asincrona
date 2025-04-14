@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         listItem.innerHTML = `
                         <div class="fitemtitle">
-                            <label>ALLEGA FILE <img src="/local/zendesk/assets/images/info-icon.svg"></label>
+                            <label>ALLEGA FILE <!--<img src="/local/zendesk/assets/images/info-icon.svg">--></label>
                         </div>
                         <div class="row m-0">
                             <div class="col-6 filename pl-md-0">
