@@ -179,12 +179,12 @@ section.footer_one {
     color: #001A33 !important;
     border-bottom: 1px solid #797C80;
     cursor: pointer !important;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-weight: 600;
     font-family: 'Titillium Web';
     font-size: 18px;
 }
 #zendesk-ticket-form .select-selected.placeholder {
+    text-transform: uppercase;
     color: #7F8C99 !important;
 }
 

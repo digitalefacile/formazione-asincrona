@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </svg>
                         </button>
                     `;
-                    if (modalBodyRoleName == 'editingteacher' || modalBodyRoleName == 'coursecreator') {
+                    if (modalBodyRoleName == 'editingteacher' || modalBodyRoleName == 'coursecreator' || modalBodyRoleName == 'teacher') {
                         var modalFooter = `<button type="button" class="btn btn-cancel" data-action="close">${strings[1]}</button>`;
                     }
                     if (modalBodyRoleName == 'guest') {

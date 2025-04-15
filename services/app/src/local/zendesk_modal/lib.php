@@ -25,10 +25,15 @@ function local_zendesk_modal_before_footer() {
     }
     
     $userid = $USER->id;
-    $roleid = $DB->get_field('role_assignments', 'roleid', array('userid' => $userid));
-    $rolename = $DB->get_field('role', 'shortname', array('id' => $roleid));
-    if (!$rolename) {
-        $rolename = 'guest';
+    $roleassignments = $DB->get_records('role_assignments', array('userid' => $userid));
+    $roles = [];
+    if ($roleassignments) {
+        foreach ($roleassignments as $assignment) {
+            $rolename = $DB->get_field('role', 'shortname', array('id' => $assignment->roleid));
+            if ($rolename && !in_array($rolename, $roles)) { // Controlla se il ruolo non è già presente
+                $roles[] = $rolename;
+            }
+        }
     }
 
     $prebodyText = get_config('local_zendesk_modal', 'prebody_text');
@@ -40,43 +45,44 @@ function local_zendesk_modal_before_footer() {
     $modalbodyTextSCD = get_config('local_zendesk_modal', 'modalbody_scd');
     $modalbodyTextRFD = get_config('local_zendesk_modal', 'modalbody_rfd');
 
-    switch ($rolename) {
-        case 'rfd':
-            $prebodyHTML = "<div class='prebody-text'>" . $prebodyText . "</div>";
-            $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextRFD) . "</div>";
-            $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyText . "</div>";
-            break;
-        case 'scd':
-            $prebodyHTML = "<div class='prebody-text'>" . $prebodyText . "</div>";
-            $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextSCD) . "</div>";
-            $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyText . "</div>";
-            break;
-        case 'guest':
-            $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
-            $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextGuest) . "</div>";
-            $afterbodyHTML = "<div class='afterbody-text'>&nbsp;</div>";
-            break;
-        case 'editingteacher':
-            $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
-            $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextAdmin) . "</div>";
-            $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
-            break;
-        case 'coursecreator':
-            $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
-            $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextAdmin) . "</div>";
-            $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
-            break;
-        default:
-            // default is guest
-            $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
-            $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextGuest) . "</div>";
-            $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
-            break;
+    // Default (guest) logic
+    $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
+    $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextGuest) . "</div>";
+    $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
+    $rolename = 'guest';
+
+    // Check for specific roles
+    if (in_array('rfd', $roles)) {
+        $prebodyHTML = "<div class='prebody-text'>" . $prebodyText . "</div>";
+        $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextRFD) . "</div>";
+        $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyText . "</div>";
+        $rolename = 'rfd';
     }
-    // $prebody = "<div class='prebody-text'>" . get_config('local_zendesk_modal', 'prebody_text') . "</div>";
-    // $afterbody = "<div class='afterbody-text'>" . get_config('local_zendesk_modal', 'afterbody_text') . "</div>";
-    // $modalbody = "<div class='modal-inner-body'>" . nl2br($modalbody) . "</div>";
-    // $totalbody = $prebody . $modalbody . $afterbody;
+    if (in_array('scd', $roles)) {
+        $prebodyHTML = "<div class='prebody-text'>" . $prebodyText . "</div>";
+        $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextSCD) . "</div>";
+        $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyText . "</div>";
+        $rolename = 'scd';
+    }
+    if (in_array('editingteacher', $roles)) {
+        $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
+        $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextAdmin) . "</div>";
+        $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
+        $rolename = 'editingteacher';
+    }
+    if (in_array('coursecreator', $roles)) {
+        $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
+        $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextAdmin) . "</div>";
+        $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
+        $rolename = 'coursecreator';
+    }
+    if (in_array('teacher', $roles)) {
+        $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
+        $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextAdmin) . "</div>";
+        $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
+        $rolename = 'teacher';
+    }
+
     $totalbody = $prebodyHTML . $modalbodyHTML . $afterbodyHTML;
 
     echo html_writer::tag('div', $totalbody, array(
