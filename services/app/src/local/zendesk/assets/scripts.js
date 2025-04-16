@@ -102,15 +102,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener("click", closeAllSelect);
 
         thematicAreaSelect.addEventListener('change', function() {
+            var select = document.getElementsByClassName("select-selected");
+            // remove class placeholder from select-selected
+            select[0].classList.remove("placeholder");
             if (this.value === 'altro__specificare_') {
                 otherThematicAreaContainer.style.display = '';
                 otherThematicAreaInput.setAttribute('required', 'required');
             } else {
                 otherThematicAreaContainer.style.display = 'none';
                 otherThematicAreaInput.removeAttribute('required');
-                var select = document.getElementsByClassName("select-selected");
-                // remove class placeholder from select-selected
-                select[0].classList.remove("placeholder");
+                otherThematicAreaInput.value = '';
             }
             toggleFormFields(this.value !== "Seleziona l'area tematica");
         });
