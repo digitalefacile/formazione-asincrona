@@ -2,7 +2,7 @@
     <h2 class="title">{{#str}}title, local_zendesk{{/str}}</h2>
     <p class="subtitle">{{#str}}subtitle, local_zendesk{{/str}}</p>
 </div>
-<form id="zendesk-ticket-form" action="{{actionurl}}" uploadurl="{{uploadurl}}" method="post" class="mform" enctype="multipart/form-data">
+<form id="zendesk-ticket-form" action="{{actionurl}}" uploadurl="{{uploadurl}}" updatesubjecturl="{{updatesubjecturl}}" method="post" class="mform" enctype="multipart/form-data">
     <input type="hidden" name="sesskey" value="{{sesskey}}">
     <input type="hidden" id="groups" name="groups" value="{{groups}}">
     <input type="hidden" id="name" name="name" value="{{firstname}} {{lastname}}">

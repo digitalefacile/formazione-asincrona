@@ -45,6 +45,7 @@ class ticket_form implements renderable, templatable {
         return [
             'actionurl' => new \moodle_url('/local/zendesk/actions/submit_ticket.php'),
             'uploadurl' => new \moodle_url('/local/zendesk/actions/upload_file.php'),
+            'updatesubjecturl' => new \moodle_url('/local/zendesk/actions/update_ticket_subject.php'),
             'sesskey' => sesskey(), // Passa la sesskey al template
             'firstname' => $USER->firstname,
             'lastname' => $USER->lastname,

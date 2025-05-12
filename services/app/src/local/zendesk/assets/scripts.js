@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const formData = new FormData(form);
             const actionUrl = form.getAttribute('action');
+            const updatesubjecturl = form.getAttribute('updatesubjecturl');
 
             // manipola formdata description
             // convert to serialized string
@@ -267,11 +268,39 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                hideFormSpinner(); // Nascondi lo spinner dell'intero form
                 if (data.success) {
-                    showSuccessMessage();
+                    // showSuccessMessage();
+                    var ticketId = data.response.ticket.id;
+                    var ticketSubject = data.response.ticket.subject;
+
+                    var newSubject = "Ticket #" + ticketId + " - " + ticketSubject;
+
+                    var updateSubjectFormData = new FormData(form);
+                    updateSubjectFormData.append('ticket_id', ticketId);
+                    updateSubjectFormData.append('ticket_subject', newSubject);
+
+                    fetch(updatesubjecturl, {
+                        method: 'POST',
+                        body: updateSubjectFormData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        hideFormSpinner(); // Nascondi lo spinner dell'intero form
+                        console.log(data);
+                        if (data.success) {
+                            showSuccessMessage();
+                        } else {
+                            // alert('An error occurred while updating the ticket subject: ' + data.response);
+                            showErrorMessage();
+                        }
+                    }).catch(error => {
+                        hideFormSpinner(); // Nascondi lo spinner dell'intero form
+                        showErrorMessage();
+                        console.error('Error:', error);
+                    });
                 } else {
                     // alert('An error occurred while submitting the ticket: ' + data.response);
+                    hideFormSpinner();
                     showErrorMessage();
                 }
             })
