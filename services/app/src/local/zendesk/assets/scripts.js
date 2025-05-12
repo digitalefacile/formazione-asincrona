@@ -269,7 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // showSuccessMessage();
                     var ticketId = data.response.ticket.id;
                     var ticketSubject = data.response.ticket.subject;
 
@@ -288,9 +287,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         hideFormSpinner(); // Nascondi lo spinner dell'intero form
                         console.log(data);
                         if (data.success) {
-                            showSuccessMessage();
+                            showSuccessMessage(ticketId);
                         } else {
-                            // alert('An error occurred while updating the ticket subject: ' + data.response);
+                            hideFormSpinner(); // Nascondi lo spinner dell'intero form
                             showErrorMessage();
                         }
                     }).catch(error => {
@@ -299,16 +298,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.error('Error:', error);
                     });
                 } else {
-                    // alert('An error occurred while submitting the ticket: ' + data.response);
                     hideFormSpinner();
                     showErrorMessage();
                 }
             })
             .catch(error => {
                 hideFormSpinner(); // Nascondi lo spinner dell'intero form
-                console.error('Error:', error);
-                // alert('An error occurred while submitting the ticket.');
                 showErrorMessage();
+                console.error('Error:', error);
             });
         });
 
@@ -396,7 +393,9 @@ document.addEventListener('DOMContentLoaded', function() {
         function enableSubmitButton() {
             submitButton.disabled = false;
         }
-        function showSuccessMessage() {
+        function showSuccessMessage(ticketID) {
+            // replace {{TICKET_ID}} with ticketID
+            successMessage.innerHTML = successMessage.innerHTML.replace(/{{TICKET_ID}}/g, ticketID);
             successMessage.style.display = '';
             form.style.display = 'none';
         }
