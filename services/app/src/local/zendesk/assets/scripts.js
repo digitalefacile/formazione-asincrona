@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var ticketId = data.response.ticket.id;
                     var ticketSubject = data.response.ticket.subject;
 
-                    var newSubject = "Ticket #" + ticketId + " - " + ticketSubject;
+                    var newSubject = ticketSubject + " (ticket n. " + ticketId + ")";
 
                     var updateSubjectFormData = new FormData(form);
                     updateSubjectFormData.append('ticket_id', ticketId);
