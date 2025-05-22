@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var select = document.getElementsByClassName("select-selected");
             // remove class placeholder from select-selected
             select[0].classList.remove("placeholder");
-            if (this.value === 'altro__specificare_') {
+            if (this.value === 'altro') {
                 otherThematicAreaContainer.style.display = '';
                 otherThematicAreaInput.setAttribute('required', 'required');
             } else {
