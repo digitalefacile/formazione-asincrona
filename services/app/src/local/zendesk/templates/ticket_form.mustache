@@ -1,0 +1,145 @@
+<div id="zendesk-ticket-form-header">
+    <h2 class="title">{{#str}}title, local_zendesk{{/str}}</h2>
+    <p class="subtitle">{{#str}}subtitle, local_zendesk{{/str}}</p>
+</div>
+<form id="zendesk-ticket-form" action="{{actionurl}}" uploadurl="{{uploadurl}}" updatesubjecturl="{{updatesubjecturl}}" method="post" class="mform" enctype="multipart/form-data">
+    <input type="hidden" name="sesskey" value="{{sesskey}}">
+    <input type="hidden" id="groups" name="groups" value="{{groups}}">
+    <input type="hidden" id="name" name="name" value="{{firstname}} {{lastname}}">
+    <input type="hidden" id="email" name="email" value="{{email}}">
+    <input type="hidden" id="username" name="username" value="{{username}}">
+
+    <div class="row">
+        <div class="col-md-6 pr-md-5">
+            <div class="fitem" id="thematic_area_container">
+                <div class="fitemtitle">
+                    <label for="thematic_area">{{#str}}thematic_area, local_zendesk{{/str}}*</label>
+                    <p>{{#str}}thematic_area_desc, local_zendesk{{/str}}</p>
+                </div>
+                <div class="felement custom-select">
+                    <select id="thematic_area" name="area_tematica">
+                        <option default>Seleziona l'area tematica</option>
+                        <option value="accesso_corsi">Accesso ai corsi</option>
+                        <option value="completamento_corsi">Completamento dei corsi</option>
+                        <option value="completamento_moduli">Completamento di moduli / videolezioni</option>
+                        <option value="badge">Badge</option>
+                        <option value="test_iniziale">Test iniziale</option>
+                        <option value="test_finale">Test finale</option>
+                        <option value="attestato">Attestato PDF scaricabile a conclusione corso</option>
+                        <option value="certificazione_digcomp">Certificazione DigComp User </option>
+                        <option value="altro">{{#str}}other, local_zendesk{{/str}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pl-md-5">
+            <div class="fitem" id="other_thematic_area_container" style="display: none;">
+                <div class="fitemtitle">
+                    <label for="other_thematic_area">{{#str}}other_thematic_area, local_zendesk{{/str}}*</label>
+                    <p>{{#str}}other_thematic_area_desc, local_zendesk{{/str}}</p>
+                </div>
+                <div class="felement">
+                    <input type="text" id="other_thematic_area" name="altra_area_tematica" class="form-control" placeholder="{{#str}}other_thematic_area_desc, local_zendesk{{/str}}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="subject">{{#str}}subject, local_zendesk{{/str}}*</label>
+            <p>{{#str}}subject_desc, local_zendesk{{/str}}</p>
+        </div>
+        <div class="felement">
+            <input type="text" id="subject" name="subject" required class="form-control" placeholder="{{#str}}subject_placeholder, local_zendesk{{/str}}">
+        </div>
+    </div>
+    <div class="fitem">
+        <div class="fitemtitle">
+            <label for="description">{{#str}}description, local_zendesk{{/str}}*</label>
+            <p>{{#str}}description_desc, local_zendesk{{/str}}</p>
+        </div>
+        <div class="felement">
+            <textarea id="description" name="description"></textarea>
+            <div class="error-message" style="display: none; color: red;">
+                <p style="color: red !important; font-weight: 800 !important;">Questo campo è obbligatorio</p>
+            </div>
+        </div>
+    </div>
+    <div class="attachment-container">
+        <div class="attachment-list">
+            {{! <div class="fitem attachment-list-item">
+                <div class="fitemtitle">
+                    <label>ALLEGA FILE <img src="/local/zendesk/assets/images/info-icon.svg"></label>
+                </div>
+                <div class="row m-0">
+                    <div class="col-6 filename pl-md-0">
+                        <label>NOME FILE</label>
+                    </div>
+                    <div class="col-6 delete pr-md-0">
+                        <img src="/local/zendesk/assets/images/delete-icon.svg" alt="Delete Icon">
+                    </div>
+                </div>
+                <div class="under-text">
+                    <p>Il limite di dimensione per i file è di 10MB</p>
+                </div>
+            </div> }}
+        </div>
+        <div class="fitem uploader">
+            <div class="fitemtitle">
+                <label for="attachment">{{#str}}attachment, local_zendesk{{/str}} <!--<img src="/local/zendesk/assets/images/info-icon.svg">--></label>
+            </div>
+            <div class="felement d-flex">
+                <div class="file-name-container">
+                    <span id="file-name">{{#str}}upload_file_desc, local_zendesk{{/str}}</span>
+                </div>
+                <div class="custom-file-upload-container">
+                    <label for="attachment" class="custom-file-upload"><img src="/local/zendesk/assets/images/plus-icon.svg" alt="Plus Icon"> {{#str}}upload_file, local_zendesk{{/str}}</label>
+                </div>
+                <input type="file" id="attachment" name="attachment" class="form-control">
+            </div>
+            <div class="under-text">
+                <p>Il limite di dimensione per i file è di 40MB</p>
+            </div>
+        </div>
+        <div class="spinner" style="display: none;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-spinner" style="display: none;">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div> <!-- Spinner per l'intero form -->
+    <div class="fitem submit">
+        <div class="felement d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary zendesk-form-close-button">{{#str}}close, local_zendesk{{/str}}</button>
+            <button type="submit" class="btn btn-primary">{{#str}}submit, local_zendesk{{/str}}</button>
+        </div>
+    </div>
+</form>
+<div id="zendesk-form-success-message" class="zendesk-form-response-container" role="alert" style="display: none;">
+    <center>
+        <div class="img-container">
+            <img src="/local/zendesk/assets/images/form-ok-icon.svg" alt="Error Icon">
+        </div>
+        <div class="message">{{#str}}ticket_success_message, local_zendesk{{/str}}<br>{{email}}</div>
+        <div class="buttons-container">
+            <button type="button" class="btn btn-primary" onClick="window.close();"  >{{#str}}close, local_zendesk{{/str}}</button>
+        </div>
+    </center>
+</div>
+<div id="zendesk-form-error-message" class="zendesk-form-response-container" role="alert" style="display: none;">
+    <center>
+        <div class="img-container">
+            <img src="/local/zendesk/assets/images/form-ko-icon.svg" alt="Error Icon">
+        </div>
+        <div class="message">{{#str}}ticket_error_message, local_zendesk{{/str}}</div>
+        <div class="buttons-container">
+            <button type="button" class="btn btn-secondary zendesk-form-close-button">{{#str}}close, local_zendesk{{/str}}</button>
+            <button type="button" class="btn btn-primary" id="back-to-request-button">{{#str}}retry, local_zendesk{{/str}}</button>
+        </div>
+    </center>
+</div>
