@@ -275,7 +275,6 @@ class import_users extends \core\task\scheduled_task {
             $error->email = $user->email;
             $error->errormessage = $errormessage;
             $error->timecreated = time();
-            $error->originalqueueid = $user->id; // Riferimento opzionale alla coda originale
             
             $DB->insert_record('local_createuserqueue_errors', $error);
             

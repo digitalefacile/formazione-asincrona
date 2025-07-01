@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/createuserqueue/db" VERSION="2025062614" COMMENT="Install tables for createuserqueue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../lib/xmldb/xmldb.xsd">
+<XMLDB PATH="local/createuserqueue/db" VERSION="2025062615" COMMENT="Install tables for createuserqueue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../lib/xmldb/xmldb.xsd">
     <TABLES>
 
         <!-- Coda utenti -->
@@ -30,7 +30,6 @@
                 <FIELD NAME="email" TYPE="char" LENGTH="255" NOTNULL="true"/>
                 <FIELD NAME="errormessage" TYPE="text" NOTNULL="true"/>
                 <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true"/>
-                <FIELD NAME="originalqueueid" TYPE="int" LENGTH="10" NOTNULL="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
