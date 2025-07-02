@@ -216,7 +216,7 @@ class import_users extends \core\task\scheduled_task {
             
             // Assegna alla coorte fissa
             mtrace("Inizio assegnazione coorte...");
-            $this->assign_to_cohort($userid, 'reti_19');
+            $this->assign_to_cohort($userid, 'reti_2');
             mtrace("Coorte completata");
             
             // Imposta i campi profilo personalizzati
