@@ -76,7 +76,7 @@ class import_users extends \core\task\scheduled_task {
                     $error->lastname = $user->lastname;
                     $error->codicefiscale = $user->codicefiscale;
                     $error->email = $user->email;
-                    $error->errormessage = "Utente già esistente con email {$user->email} o username tinit-{$user->codicefiscale}";
+                    $error->errormessage = "Utente già esistente con email {$user->email} o username tinit-" . strtolower($user->codicefiscale);
                     $error->timecreated = time();
                     
                     $DB->insert_record('local_createuserqueue_errors', $error);
