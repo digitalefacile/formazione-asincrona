@@ -55,6 +55,12 @@ class import_users extends \core\task\scheduled_task {
         $processed = 0;
         $errors = 0;
 
+        // dump users in mtrace
+        mtrace("Utenti da processare: " . count($users));
+        mtrace("Utenti in coda: " . implode(', ', array_map(function($u) {
+            return "{$u->firstname} {$u->lastname} ({$u->email})";
+        }, $users)));
+
         foreach ($users as $user) {
             mtrace("Processando utente: {$user->firstname} {$user->lastname} ({$user->email})");
             
@@ -64,7 +70,21 @@ class import_users extends \core\task\scheduled_task {
             try {
                 // Controlla se l'utente esiste già
                 if ($this->user_exists($user->email, $user->codicefiscale)) {
-                    $this->handle_user_error($user, "Utente già esistente con email {$user->email} o codice fiscale {$user->codicefiscale}");
+                    // Utente già esistente - sposta direttamente negli errori
+                    $error = new \stdClass();
+                    $error->firstname = $user->firstname;
+                    $error->lastname = $user->lastname;
+                    $error->codicefiscale = $user->codicefiscale;
+                    $error->email = $user->email;
+                    $error->errormessage = "Utente già esistente con email {$user->email} o username tinit-{$user->codicefiscale}";
+                    $error->timecreated = time();
+                    
+                    $DB->insert_record('local_createuserqueue_errors', $error);
+                    
+                    // Rimuovi dalla coda
+                    $DB->delete_records('local_createuserqueue_queue', ['id' => $user->id]);
+                    
+                    mtrace("Utente già esistente - spostato direttamente negli errori e rimosso dalla coda");
                     $errors++;
                     continue;
                 }
@@ -73,10 +93,16 @@ class import_users extends \core\task\scheduled_task {
                 $newuser = $this->create_moodle_user($user);
                 
                 if ($newuser) {
-                    // Rimuovi dalla coda se creato con successo
-                    $DB->delete_records('local_createuserqueue_queue', ['id' => $user->id]);
                     mtrace("Utente creato con successo: {$newuser->username} (ID: {$newuser->id})");
-                    $processed++;
+                    
+                    // Rimuovi dalla coda se creato con successo
+                    $deleted = $DB->delete_records('local_createuserqueue_queue', ['id' => $user->id]);
+                    if ($deleted) {
+                        mtrace("Utente rimosso dalla coda con successo");
+                        $processed++;
+                    } else {
+                        mtrace("ERRORE: Impossibile rimuovere utente dalla coda");
+                    }
                 } else {
                     $this->handle_user_error($user, "Errore sconosciuto durante la creazione dell'utente");
                     $errors++;
@@ -178,25 +204,29 @@ class import_users extends \core\task\scheduled_task {
         
         // Inserisci l'utente
         $userid = $DB->insert_record('user', $user);
+        mtrace("Utente inserito nel database con ID: {$userid}");
         
         if ($userid) {
             $user->id = $userid;
             
             // Assegna ruolo di sistema fisso (rfd)
+            mtrace("Inizio assegnazione ruolo...");
             $this->assign_system_role($userid, 'rfd');
+            mtrace("Ruolo completato");
             
             // Assegna alla coorte fissa
-            $this->assign_to_cohort($userid, 'reti_28');
+            mtrace("Inizio assegnazione coorte...");
+            $this->assign_to_cohort($userid, 'reti_19');
+            mtrace("Coorte completata");
             
             // Imposta i campi profilo personalizzati
+            mtrace("Inizio impostazione campi profilo...");
             $this->set_profile_fields($userid, [
                 'Gruppo' => 'Studenti',
-                // 'Intervento' => 'RFD', 
-                // 'Regione' => 'Veneto',
-                // 'Programma' => '',
-                // 'Progetto' => 'H79I25000030006',
-                // 'Punto' => 'Casa del Consumatore Cittadella'
             ]);
+            mtrace("Campi profilo completati");
+            
+            mtrace("Creazione utente completata con successo");
             
             // Invia email di benvenuto (senza credenziali, login tramite SPID)
             // $this->send_welcome_email($user);
@@ -300,19 +330,31 @@ class import_users extends \core\task\scheduled_task {
      * Assegna un ruolo di sistema all'utente
      */
     private function assign_system_role($userid, $roleshortname) {
-        global $DB;
+        global $DB, $CFG;
         
         try {
+            mtrace("Cercando ruolo: {$roleshortname}");
             $role = $DB->get_record('role', ['shortname' => $roleshortname]);
+            
             if ($role) {
-                $context = context_system::instance();
-                role_assign($role->id, $userid, $context->id);
+                mtrace("Ruolo trovato con ID: {$role->id}");
+                $systemcontext = \context_system::instance();
+                mtrace("Contesto sistema ottenuto: {$systemcontext->id}");
+                
+                role_assign($role->id, $userid, $systemcontext->id);
                 mtrace("Ruolo {$roleshortname} assegnato all'utente {$userid}");
             } else {
-                mtrace("ATTENZIONE: Ruolo {$roleshortname} non trovato");
+                // Lista tutti i ruoli disponibili per debug
+                $allroles = $DB->get_records('role', null, '', 'id, shortname, name');
+                $rolelist = [];
+                foreach ($allroles as $r) {
+                    $rolelist[] = $r->shortname;
+                }
+                mtrace("ATTENZIONE: Ruolo {$roleshortname} non trovato. Ruoli disponibili: " . implode(', ', $rolelist));
             }
         } catch (Exception $e) {
             mtrace("Errore nell'assegnazione del ruolo: " . $e->getMessage());
+            mtrace("Traceback: " . $e->getTraceAsString());
         }
     }
     
