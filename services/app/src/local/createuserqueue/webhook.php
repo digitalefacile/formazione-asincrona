@@ -11,41 +11,45 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Leggi il payload JSON o x-www-form-urlencoded
+// Leggi il payload JSON
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
-// Se non è JSON, prova da $_POST
-if (!$data) {
-    $data = $_POST;
-}
-
-// Valida i parametri richiesti
-$required = ['nome', 'cognome', 'cf', 'email'];
-$missing = array_filter($required, fn($f) => empty($data[$f]));
-
-if (!empty($missing)) {
+if (!$data || !isset($data['data'])) {
     http_response_code(400);
-    echo json_encode(['status' => 'error', 'message' => 'Parametri mancanti: ' . implode(', ', $missing)]);
+    echo json_encode(['status' => 'error', 'message' => 'Formato JSON non valido o campo "data" mancante']);
     exit;
 }
 
-// Prepara dati
-$record = (object)[
-    'firstname' => trim($data['nome']),
-    'lastname' => trim($data['cognome']),
-    'codicefiscale' => strtoupper(trim($data['cf'])),
-    'email' => trim($data['email']),
+// Estrai i dati richiesti dal campo "data"
+$requiredFields = [
+    'Nome' => 'firstname',
+    'Cognome' => 'lastname',
+    'Codice fiscale' => 'codicefiscale',
+    'Email' => 'email'
+];
+
+$record = [
     'status' => 'queued',
     'startedat' => null,
     'retries' => 0,
-    'timecreated' => time(),
+    'timecreated' => time()
 ];
+
+foreach ($requiredFields as $fieldName => $dbField) {
+    $fieldData = array_filter($data['data'], fn($item) => $item['name'] === $fieldName);
+    if (empty($fieldData)) {
+        http_response_code(400);
+        echo json_encode(['status' => 'error', 'message' => "Campo richiesto mancante: $fieldName"]);
+        exit;
+    }
+    $record[$dbField] = trim(reset($fieldData)['value']);
+}
 
 // Inserisci nella tabella
 global $DB;
 try {
-    $DB->insert_record('local_createuserqueue_queue', $record);
+    $DB->insert_record('local_createuserqueue_queue', (object)$record);
     echo json_encode(['status' => 'ok', 'message' => 'Utente messo in coda']);
 } catch (Exception $e) {
     http_response_code(500);
