@@ -141,5 +141,29 @@ function xmldb_local_createuserqueue_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2025062615, 'local', 'createuserqueue');
     }
 
+    // Upgrade to version 2025070301: aggiunta tabella utenti importati per debug
+    if ($oldversion < 2025070301) {
+        
+        // Tabella per tracciare gli utenti importati
+        $importedtable = new xmldb_table('local_createuserqueue_log');
+
+        if (!$dbman->table_exists($importedtable)) {
+            $importedtable->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+            $importedtable->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+            $importedtable->add_field('username', XMLDB_TYPE_CHAR, '100', null, XMLDB_NOTNULL, null, null);
+            $importedtable->add_field('firstname', XMLDB_TYPE_CHAR, '100', null, XMLDB_NOTNULL, null, null);
+            $importedtable->add_field('lastname', XMLDB_TYPE_CHAR, '100', null, XMLDB_NOTNULL, null, null);
+            $importedtable->add_field('email', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
+            $importedtable->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, 0);
+            
+            $importedtable->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+            $importedtable->add_key('userid', XMLDB_KEY_FOREIGN, ['userid'], 'user', ['id']);
+            
+            $dbman->create_table($importedtable);
+        }
+        
+        upgrade_plugin_savepoint(true, 2025070301, 'local', 'createuserqueue');
+    }
+
     return true;
 }

@@ -19,6 +19,13 @@ if ($hassiteconfig) {
         'local/createuserqueue:view'
     ));
 
+    $ADMIN->add('local_createuserqueue', new admin_externalpage(
+        'local_createuserqueue_imported',
+        'Utenti importati (Debug)',
+        new moodle_url('/local/createuserqueue/view_imported.php'),
+        'local/createuserqueue:view'
+    ));
+
     // Aggiunta della sezione impostazioni
     $settings = new admin_settingpage('local_createuserqueue_settings', get_string('settings', 'local_createuserqueue'));
 

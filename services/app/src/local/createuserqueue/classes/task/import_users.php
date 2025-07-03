@@ -95,6 +95,9 @@ class import_users extends \core\task\scheduled_task {
                 if ($newuser) {
                     mtrace("Utente creato con successo: {$newuser->username} (ID: {$newuser->id})");
                     
+                    // Registra l'utente importato per debug
+                    $this->log_imported_user($newuser);
+                    
                     // Rimuovi dalla coda se creato con successo
                     $deleted = $DB->delete_records('local_createuserqueue_queue', ['id' => $user->id]);
                     if ($deleted) {
@@ -425,6 +428,28 @@ class import_users extends \core\task\scheduled_task {
             } catch (Exception $e) {
                 mtrace("Errore nell'impostazione del campo profilo {$fieldname}: " . $e->getMessage());
             }
+        }
+    }
+    
+    /**
+     * Registra un utente importato nella tabella di debug
+     */
+    private function log_imported_user($user) {
+        global $DB;
+        
+        try {
+            $imported = new \stdClass();
+            $imported->userid = $user->id;
+            $imported->username = $user->username;
+            $imported->firstname = $user->firstname;
+            $imported->lastname = $user->lastname;
+            $imported->email = $user->email;
+            $imported->timecreated = time();
+            
+            $DB->insert_record('local_createuserqueue_log', $imported);
+            mtrace("Utente registrato nella tabella debug: {$user->username}");
+        } catch (Exception $e) {
+            mtrace("Errore nel registrare utente importato: " . $e->getMessage());
         }
     }
 }
