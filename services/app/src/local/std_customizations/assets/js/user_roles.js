@@ -1,26 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     const jsonDataElement = document.getElementById('user-roles-data');
 
-    // Check if the URL contains 'home-alt.php'
-    const urlContainsHomeAlt = window.location.href.includes('home-alt.php');
+    // Check if the URL contains 'home-std.php'
+    const urlContainsHomeAlt = window.location.href.includes('home-std.php') || window.location.href.includes('privacy-std.php');
 
-    let hasStd2 = false;
+    let hasstd = false;
 
     if (jsonDataElement) {
         try {
             const roles = JSON.parse(jsonDataElement.textContent);
             console.log('User roles:', roles);
 
-            // Check if roles contain 'std2'
-            hasStd2 = roles.includes('std2');
+            // Check if roles contain 'std'
+            hasstd = roles.includes('std');
         } catch (error) {
             console.error('Failed to parse user roles JSON:', error);
         }
     }
 
-    // Apply the same behavior if 'std2' is in roles or 'home-alt.php' is in the URL
-    if (hasStd2 || urlContainsHomeAlt) {
-        console.log("Condition met: 'std2' in roles or 'home-alt.php' in URL");
+    // Apply the same behavior if 'std' is in roles or 'home-std.php' is in the URL
+    if (hasstd || urlContainsHomeAlt) {
+        console.log("Condition met: 'std' in roles or 'home-std.php' in URL");
 
         // get element header_top home2
         const headerTop = document.querySelector('.header_top.home2');
@@ -45,8 +45,92 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Add your custom logic here
+        // get header.ccnHeader2
+        const headerCcnHeader2 = document.querySelector('header.ccnHeader2');
+        // console.log("headerCcnHeader2", headerCcnHeader2);
+        if (headerCcnHeader2) {
+            const ulElementsContainer = headerCcnHeader2.querySelector('ul.ace-responsive-menu');
+            // console.log("ulElementsContainer", ulElementsContainer);
+            if (ulElementsContainer ) {
+                // get li
+                const liElements = ulElementsContainer.querySelectorAll('li');
+                // loop through every li elements and in the loop get the A tag
+                liElements.forEach(li => {
+                    const aTag = li.querySelector('a');
+                    if (aTag) {
+                        // if the innerHTML of the A transofmred to strtolower contains 'facilita', make the element display none
+                        if (aTag.innerHTML.toLowerCase().includes('facilita')) {
+                            li.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        }
+
+        // mobile
+        // get nav id menu
+        const mobileMenu = document.querySelector('nav#menu');
+        if (mobileMenu) {
+            // div id mm-1
+            const mm1Div = mobileMenu.querySelector('div#mm-1');
+            if (mm1Div) {
+                // get every li.mm-listitem
+                const mmListItems = mm1Div.querySelectorAll('li.mm-listitem');
+                // loop through every li.mm-listitem and in the loop get the A tag
+                mmListItems.forEach(item => {
+                    const aTag = item.querySelector('a');
+                    if (aTag) {
+                        // if the innerHTML of the A transofmred to strtolower contains 'facilita', make the element display none
+                        if (aTag.innerHTML.toLowerCase().includes('facilita')) {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        }
+
+        // get div#page class stylehome1 home2 h0
+        const pageDiv = document.querySelector('div#page.stylehome1.home2.h0');
+        console.log("pageDiv", pageDiv);
+        // inside get div container-fluid and inside get the 2 divs
+        if (pageDiv) {
+            const containerFluid = pageDiv.querySelector('div.container-fluid');
+            if (containerFluid) {
+                const innerDivs = containerFluid.querySelectorAll('div');
+                // get div[0]
+                const firstInnerDiv = innerDivs[0];
+                if (firstInnerDiv) {
+                    // get the div inside and change the innerHTML to 'titolo'
+                    const innerDiv = firstInnerDiv.querySelector('div');
+                    if (innerDiv) {
+                        innerDiv.innerHTML = 'titolo';
+                    }
+                }
+            }
+        }
+
+        // footer
+        // section class footer_middle_area pt-5 pb-5  
+        const footerSection = document.querySelector('section.footer_middle_area.pt-5.pb-5');
+        if (footerSection) {
+            console.log("footerSection", footerSection);
+            // get a tags and loop, if a tag contains privacy change url to google.com new tab (for test)
+            const aTags = footerSection.querySelectorAll('a');
+            aTags.forEach(a => {
+                const text = a.innerHTML.trim().toLowerCase(); // Trim and convert to lowercase
+                console.log("a", text);
+                if (text.includes('privacy')) {
+                    console.log("Changing privacy link to /privacy-std.php");
+                    // setTimeout to avoid
+                    setTimeout(() => {
+                        a.href = '/privacy-std.php';
+                        a.target = '_self'; // open in the same tab
+                    }, 1000); // Delay to ensure the DOM is ready
+                }
+            });
+        }
+
     } else {
-        console.log("Condition not met");
+        // console.log("Condition not met");
     }
 });
