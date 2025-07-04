@@ -7,7 +7,7 @@ if (isloggedin() && !isguestuser()) {
 
 // Imposta il contesto e layout come frontpage
 $PAGE->set_context(context_system::instance());
-$PAGE->set_url('/home-alt.php');
+$PAGE->set_url('/privacy-std.php');
 $PAGE->set_pagelayout('frontpage'); // importante per mostrare i blocchi come block_cocoon_parallax_white
 $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading($SITE->fullname);
