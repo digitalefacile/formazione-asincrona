@@ -214,12 +214,12 @@ class import_users extends \core\task\scheduled_task {
             
             // Assegna ruolo di sistema fisso (rfd)
             mtrace("Inizio assegnazione ruolo...");
-            $this->assign_system_role($userid, 'rfd');
+            $this->assign_system_role($userid, 'std');
             mtrace("Ruolo completato");
             
             // Assegna alla coorte fissa
             mtrace("Inizio assegnazione coorte...");
-            $this->assign_to_cohort($userid, 'reti_2');
+            $this->assign_to_cohort($userid, 'std_1');
             mtrace("Coorte completata");
             
             // Imposta i campi profilo personalizzati
