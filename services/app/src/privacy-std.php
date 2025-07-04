@@ -329,12 +329,7 @@ echo $OUTPUT->header();
     </p>
 
 
-</div></div></div><div id="zendesk-modal-body" style="display:none;" rolename="guest"><div class="prebody-text">Assistenza</div><div class="modal-inner-body"><strong>Hai bisogno di assistenza?</strong><br>
-Effettua l'accesso per inviare una richiesta<br>
-<br>
-<strong>Non riesci a effettuare l'accesso?</strong><br>
-Scrivi all'indirizzo:<br>
-<a href="mailto:problema-accesso-formazione@repubblicadigitale.gov.it">problema-accesso-formazione@repubblicadigitale.gov.it</a></div><div class="afterbody-text alt">&nbsp;</div></div>
+</div></div></div></div>
                       
                     
               </div>
