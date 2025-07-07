@@ -65,7 +65,7 @@ echo $OUTPUT->header();
                         <div class="activity-header" data-for="page-activity-header"></div>
                     <div class="box py-3 generalbox center clearfix" id="yui_3_17_2_1_1751624470516_24"><div class="no-overflow" id="yui_3_17_2_1_1751624470516_23"><div style="color:#000000!important" id="yui_3_17_2_1_1751624470516_22">
 
-    <h1 id="yui_3_17_2_1_1751624470516_21">Informative sul trattamento dei dati personali e sui cookie</h1>
+    <h1 id="yui_3_17_2_1_1751624470516_21">PRIVACY PER STUDENTI</h1>
 
     <p><a href="#anchor1" aria-label="Vai alla sezione Informativa generale sulla navigazione del sito e sui cookie">Informativa generale sulla navigazione del sito e sui cookie</a></p>
     <p><a href="#anchor2" aria-label="Vai alla sezione Informativa sul trattamento dei dati personali per gli utenti afferenti alla Misura 1.7.1. - “Servizio civile digitale”">Informativa sul trattamento dei dati personali per gli utenti afferenti alla Misura 1.7.1. - “Servizio civile digitale”</a></p>
