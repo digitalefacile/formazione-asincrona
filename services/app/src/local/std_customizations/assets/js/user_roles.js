@@ -109,18 +109,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // page il mio percorso
+        // get div.container-fluid block-myoverview block-cards block-my-journey
+        const myJourneyDiv = document.querySelector('div.container-fluid.block-myoverview.block-cards.block-my-journey');
+        // console.log("myJourneyDiv", myJourneyDiv);
+        // get h2.subtitle and change text to lorem ipsum studenti
+        if (myJourneyDiv) {
+            const subtitle = myJourneyDiv.querySelector('h2.subtitle');
+            if (subtitle) {
+                subtitle.innerHTML = 'Lorem ipsum studenti';
+            }
+        }
+
         // footer
         // section class footer_middle_area pt-5 pb-5  
         const footerSection = document.querySelector('section.footer_middle_area.pt-5.pb-5');
         if (footerSection) {
-            console.log("footerSection", footerSection);
+            // console.log("footerSection", footerSection);
             // get a tags and loop, if a tag contains privacy change url to google.com new tab (for test)
             const aTags = footerSection.querySelectorAll('a');
             aTags.forEach(a => {
                 const text = a.innerHTML.trim().toLowerCase(); // Trim and convert to lowercase
-                console.log("a", text);
+                // console.log("a", text);
                 if (text.includes('privacy')) {
-                    console.log("Changing privacy link to /privacy-std.php");
+                    // console.log("Changing privacy link to /privacy-std.php");
                     // setTimeout to avoid
                     setTimeout(() => {
                         a.href = '/privacy-std.php';
