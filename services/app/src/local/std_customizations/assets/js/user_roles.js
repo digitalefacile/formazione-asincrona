@@ -109,6 +109,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // elemento tab
+        // get el class block_cocoon_tabs 
+        const tabElement = document.querySelector('.block_cocoon_tabs');
+        console.log("tabElement", tabElement);
+        // if ok get ul.nav nav-tabs
+        if (tabElement) {
+            // get ul.nav.nav-tabs
+            const navTabs = tabElement.querySelector('ul.nav.nav-tabs');
+            if (navTabs) {
+                // display none
+                navTabs.style.display = 'none';
+            }
+        }
+
         // page il mio percorso
         // get div.container-fluid block-myoverview block-cards block-my-journey
         const myJourneyDiv = document.querySelector('div.container-fluid.block-myoverview.block-cards.block-my-journey');

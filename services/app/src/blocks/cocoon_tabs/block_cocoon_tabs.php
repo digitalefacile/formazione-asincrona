@@ -71,7 +71,7 @@ class block_cocoon_tabs extends block_base
      */
     function get_content()
     {
-        global $CFG, $PAGE;
+        global $CFG, $PAGE, $DB, $USER;
 
         require_once($CFG->libdir . '/filelib.php');
 
@@ -209,6 +209,20 @@ class block_cocoon_tabs extends block_base
                   </div>
                 </div>
               </div>';
+
+            // get user role shortname and var dump
+            $userid = $USER->id;
+            $roleid = $DB->get_field('role_assignments', 'roleid', array('userid' => $userid));
+            if ($roleid) {
+                $rolename = $DB->get_field('role', 'shortname', array('id' => $roleid));
+                // var_dump($rolename);
+                // if rolename == std, title is placeholder, inputbutton is empty
+                if ($rolename && $rolename == 'std') {
+                    $titleOfAccordion = 'Lorem Ipsum';
+                    $inputButton = '';
+                }
+            }
+
         }
 
         $this->content = new stdClass;
