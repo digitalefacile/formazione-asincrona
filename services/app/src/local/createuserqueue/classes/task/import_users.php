@@ -69,21 +69,30 @@ class import_users extends \core\task\scheduled_task {
             
             try {
                 // Controlla se l'utente esiste già
-                if ($this->user_exists($user->email, $user->codicefiscale)) {
+                $exists = $this->user_exists($user->email, $user->codicefiscale);
+
+                if ($exists['email'] || $exists['codicefiscale']) {
                     // Utente già esistente - sposta direttamente negli errori
                     $error = new \stdClass();
                     $error->firstname = $user->firstname;
                     $error->lastname = $user->lastname;
                     $error->codicefiscale = $user->codicefiscale;
                     $error->email = $user->email;
-                    $error->errormessage = "Utente già esistente con email {$user->email} o username tinit-" . strtolower($user->codicefiscale);
+
+                    if ($exists['email'] && $exists['codicefiscale']) {
+                        $error->errormessage = "Utente già esistente con email {$user->email} e codice fiscale {$user->codicefiscale}";
+                    } elseif ($exists['email']) {
+                        $error->errormessage = "Utente già esistente con email {$user->email}";
+                    } elseif ($exists['codicefiscale']) {
+                        $error->errormessage = "Utente già esistente con codice fiscale {$user->codicefiscale}";
+                    }
+
                     $error->timecreated = time();
-                    
                     $DB->insert_record('local_createuserqueue_errors', $error);
-                    
+
                     // Rimuovi dalla coda
                     $DB->delete_records('local_createuserqueue_queue', ['id' => $user->id]);
-                    
+
                     mtrace("Utente già esistente - spostato direttamente negli errori e rimosso dalla coda");
                     $errors++;
                     continue;
@@ -160,19 +169,24 @@ class import_users extends \core\task\scheduled_task {
      */
     private function user_exists($email, $codicefiscale) {
         global $DB;
-        
+
+        $result = [
+            'email' => false,
+            'codicefiscale' => false
+        ];
+
         // Controlla per email
         if ($DB->record_exists('user', ['email' => $email, 'deleted' => 0])) {
-            return true;
+            $result['email'] = true;
         }
-        
+
         // Controlla per username nel formato tinit-codicefiscale
         $username = 'tinit-' . strtolower($codicefiscale);
         if ($DB->record_exists('user', ['username' => $username, 'deleted' => 0])) {
-            return true;
+            $result['codicefiscale'] = true;
         }
-        
-        return false;
+
+        return $result;
     }
 
     /**
@@ -212,7 +226,7 @@ class import_users extends \core\task\scheduled_task {
         if ($userid) {
             $user->id = $userid;
             
-            // Assegna ruolo di sistema fisso (rfd)
+            // Assegna ruolo di sistema fisso (std)
             mtrace("Inizio assegnazione ruolo...");
             $this->assign_system_role($userid, 'std');
             mtrace("Ruolo completato");
