@@ -77,7 +77,10 @@ echo $OUTPUT->header();
 if ($total_records > 0) {
     echo '<div style="margin-bottom: 15px; padding: 10px; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px;">';
     echo '<h4>📊 Statistiche</h4>';
-    echo '<p><strong>Totale errori registrati:</strong> ' . $total_records . '</p>';
+    echo '<p><strong>Totale errori registrati:</strong> ' . $DB->count_records('local_createuserqueue_errors') . '</p>';
+    if (!empty($search_conditions)) {
+        echo '<p><strong>Errori trovati nella ricerca:</strong> ' . $total_records . '</p>';
+    }
     echo '<p><strong>Scopo:</strong> Questa tabella ti permette di visualizzare e gestire facilmente gli errori di importazione degli utenti.</p>';
     echo '</div>';
 }
