@@ -9,28 +9,28 @@ $PAGE->set_title('Utenti importati');
 $PAGE->set_heading('Utenti importati');
 
 // Gestisci eliminazione di tutti gli utenti importati
-if (optional_param('delete_all_imported', false, PARAM_BOOL) && confirm_sesskey()) {
-    // Prima ottieni tutti gli userid da eliminare
-    $imported_users = $DB->get_records('local_createuserqueue_log', null, '', 'userid');
-    $userids = array_keys($imported_users);
+// if (optional_param('delete_all_imported', false, PARAM_BOOL) && confirm_sesskey()) {
+//     // Prima ottieni tutti gli userid da eliminare
+//     $imported_users = $DB->get_records('local_createuserqueue_log', null, '', 'userid');
+//     $userids = array_keys($imported_users);
     
-    $deleted_count = 0;
+//     $deleted_count = 0;
     
-    if (!empty($userids)) {
-        // Elimina gli utenti dalla tabella user
-        foreach ($userids as $userid) {
-            if ($DB->record_exists('user', ['id' => $userid])) {
-                delete_user($DB->get_record('user', ['id' => $userid]));
-                $deleted_count++;
-            }
-        }
+//     if (!empty($userids)) {
+//         // Elimina gli utenti dalla tabella user
+//         foreach ($userids as $userid) {
+//             if ($DB->record_exists('user', ['id' => $userid])) {
+//                 delete_user($DB->get_record('user', ['id' => $userid]));
+//                 $deleted_count++;
+//             }
+//         }
         
-        // Pulisci la tabella degli importati
-        $DB->delete_records('local_createuserqueue_log');
-    }
+//         // Pulisci la tabella degli importati
+//         $DB->delete_records('local_createuserqueue_log');
+//     }
     
-    redirect($PAGE->url, "Eliminati {$deleted_count} utenti importati e pulita la tabella di debug.", 2, \core\output\notification::NOTIFY_SUCCESS);
-}
+//     redirect($PAGE->url, "Eliminati {$deleted_count} utenti importati e pulita la tabella di debug.", 2, \core\output\notification::NOTIFY_SUCCESS);
+// }
 
 // Aggiungi gestione eliminazione singola riga
 if ($delete_userid = optional_param('delete_userid', 0, PARAM_INT)) {
@@ -207,13 +207,13 @@ if (!in_array($records_per_page, [20, 50, 100])) {
 
 if ($records) {
     // Pulsante per eliminare tutti
-    echo '<div style="margin-bottom: 15px;">';
-    echo '<form method="post" action="' . $PAGE->url . '" style="display: inline;">';
-    echo '<input type="hidden" name="sesskey" value="' . sesskey() . '">';
-    echo '<input type="submit" name="delete_all_imported" value="🗑️ Elimina TUTTI gli utenti importati" class="btn btn-danger" onclick="return confirm(\'ATTENZIONE: Questa azione eliminerà PERMANENTEMENTE tutti gli utenti importati dal sistema Moodle e pulirà la tabella di debug.\\n\\nSei ASSOLUTAMENTE sicuro di voler procedere?\');">';
-    echo '</form>';
-    echo '<p style="color: #dc3545; font-weight: bold; margin: 10px 0;">⚠️ Il pulsante sopra elimina definitivamente gli utenti da Moodle, non solo dalla tabella di debug!</p>';
-    echo '</div>';
+    // echo '<div style="margin-bottom: 15px;">';
+    // echo '<form method="post" action="' . $PAGE->url . '" style="display: inline;">';
+    // echo '<input type="hidden" name="sesskey" value="' . sesskey() . '">';
+    // echo '<input type="submit" name="delete_all_imported" value="🗑️ Elimina TUTTI gli utenti importati" class="btn btn-danger" onclick="return confirm(\'ATTENZIONE: Questa azione eliminerà PERMANENTEMENTE tutti gli utenti importati dal sistema Moodle e pulirà la tabella di debug.\\n\\nSei ASSOLUTAMENTE sicuro di voler procedere?\');">';
+    // echo '</form>';
+    // echo '<p style="color: #dc3545; font-weight: bold; margin: 10px 0;">⚠️ Il pulsante sopra elimina definitivamente gli utenti da Moodle, non solo dalla tabella di debug!</p>';
+    // echo '</div>';
     
     echo html_writer::start_tag('table', ['class' => 'generaltable']);
     echo html_writer::start_tag('tr');
