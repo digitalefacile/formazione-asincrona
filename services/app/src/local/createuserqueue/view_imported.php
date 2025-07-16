@@ -5,8 +5,8 @@ require_capability('local/createuserqueue:view', context_system::instance());
 
 $PAGE->set_url(new moodle_url('/local/createuserqueue/view_imported.php'));
 $PAGE->set_context(context_system::instance());
-$PAGE->set_title('Utenti importati (Debug)');
-$PAGE->set_heading('Utenti importati (Debug)');
+$PAGE->set_title('Utenti importati');
+$PAGE->set_heading('Utenti importati');
 
 // Gestisci eliminazione di tutti gli utenti importati
 if (optional_param('delete_all_imported', false, PARAM_BOOL) && confirm_sesskey()) {

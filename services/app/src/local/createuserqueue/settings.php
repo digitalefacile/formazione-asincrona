@@ -21,7 +21,7 @@ if ($hassiteconfig) {
 
     $ADMIN->add('local_createuserqueue', new admin_externalpage(
         'local_createuserqueue_imported',
-        'Utenti importati (Debug)',
+        'Utenti importati',
         new moodle_url('/local/createuserqueue/view_imported.php'),
         'local/createuserqueue:view'
     ));
