@@ -95,6 +95,7 @@ if ($total_pages > 1 || $records_per_page != 20 || !empty($search_conditions)) {
     echo '<input type="hidden" name="search_lastname" value="' . s($search_lastname) . '">';
     echo '<input type="hidden" name="search_email" value="' . s($search_email) . '">';
     echo '<input type="hidden" name="search_codicefiscale" value="' . s($search_codicefiscale) . '">';
+    echo '<input type="hidden" name="records_per_page" value="' . $records_per_page . '">';
     echo '<label for="records_per_page" class="form-label" style="margin-right: 10px;">Record per pagina:</label>';
     echo '<select id="records_per_page" name="records_per_page" class="form-select" style="width: auto; display: inline-block;" onchange="this.form.submit()">';
     foreach ([20, 50, 100] as $option) {

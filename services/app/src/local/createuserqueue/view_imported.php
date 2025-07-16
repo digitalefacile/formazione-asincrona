@@ -120,6 +120,7 @@ if ($total_records > 0) {
     echo '</div>';
 }
 
+// Aggiungi il parametro records_per_page al form di ricerca
 // Mostra il modulo di ricerca
 echo '<form method="get" action="' . $PAGE->url . '" style="margin-bottom: 15px;">';
 echo '<div class="row">';
@@ -144,6 +145,7 @@ echo '<div class="col-2">';
 echo '<a href="' . $PAGE->url . '" class="btn btn-secondary btn-lg w-100">Reset Ricerca</a>';
 echo '</div>';
 echo '</div>';
+echo '<input type="hidden" name="records_per_page" value="' . $records_per_page . '">';
 echo '</form>';
 
 // Mostra la paginazione in alto con una select per il numero di record per pagina
