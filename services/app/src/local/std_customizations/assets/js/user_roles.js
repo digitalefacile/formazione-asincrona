@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (jsonDataElement) {
         try {
             const roles = JSON.parse(jsonDataElement.textContent);
-            console.log('User roles:', roles);
+            // console.log('User roles:', roles);
 
             // Check if roles contain 'std'
             hasstd = roles.includes('std') && roles.length === 1;
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply the same behavior if 'std' is in roles or 'home-std.php' is in the URL
     if (hasstd || urlContainsHomeAlt) {
-        console.log("Condition met: 'std' in roles or 'home-std.php' in URL");
+        // console.log("Condition met: 'std' in roles or 'home-std.php' in URL");
 
         // get element header_top home2
         const headerTop = document.querySelector('.header_top.home2');
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // get div#page class stylehome1 home2 h0
         const pageDiv = document.querySelector('div#page.stylehome1.home2.h0');
-        console.log("pageDiv", pageDiv);
+        // console.log("pageDiv", pageDiv);
         // inside get div container-fluid and inside get the 2 divs
         if (pageDiv) {
             const containerFluid = pageDiv.querySelector('div.container-fluid');
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // elemento tab
         // get el class block_cocoon_tabs 
         const tabElement = document.querySelector('.block_cocoon_tabs');
-        console.log("tabElement", tabElement);
+        // console.log("tabElement", tabElement);
         // if ok get ul.nav nav-tabs
         if (tabElement) {
             // get ul.nav.nav-tabs
