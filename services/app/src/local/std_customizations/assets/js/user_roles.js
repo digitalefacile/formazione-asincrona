@@ -23,6 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply the same behavior if 'std' is in roles or 'home-std.php' is in the URL
     if (hasstd || urlContainsHomeAlt) {
+        // get every a with href that contains logout.php
+        const logoutLinks = document.querySelectorAll('a[href*="logout.php"]');
+        // console.log("logoutLinks", logoutLinks);
+        // loop and add &isstd=1 to the href
+        logoutLinks.forEach(link => {
+            const url = new URL(link.href);
+            url.searchParams.set('isstd', '1');
+            link.href = url.toString();
+        });
         // console.log("Condition met: 'std' in roles or 'home-std.php' in URL");
 
         // get element header_top home2
