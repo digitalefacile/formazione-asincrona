@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlContainsHomeAlt = window.location.href.includes('home-std.php') || window.location.href.includes('privacy-std.php');
 
     let hasstd = false;
+    let isAdmin = false;
 
     if (jsonDataElement) {
         try {
@@ -13,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Check if roles contain 'std'
             hasstd = roles.includes('std') && roles.length === 1;
+            // Check if roles contain 'admin'
+            isAdmin = roles.includes('editingteacher');
         } catch (error) {
             console.error('Failed to parse user roles JSON:', error);
         }
@@ -159,4 +162,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         // console.log("Condition not met");
     }
+
+    if (!isAdmin) {
+        // get li user_setting ccn-settings-nav
+        const userSettingLi = document.querySelector('li.user_setting.ccn-settings-nav');
+        if (userSettingLi) {
+            // remove the li element
+            userSettingLi.remove();
+        }
+    }
+
 });
