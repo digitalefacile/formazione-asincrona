@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('User roles:', roles);
 
             // Check if roles contain 'std'
-            hasstd = roles.includes('std');
+            hasstd = roles.includes('std') && roles.length === 1;
         } catch (error) {
             console.error('Failed to parse user roles JSON:', error);
         }

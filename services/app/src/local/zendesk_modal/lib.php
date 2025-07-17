@@ -88,7 +88,7 @@ function local_zendesk_modal_before_footer() {
         $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
         $rolename = 'teacher';
     }
-    if (in_array('std', $roles)) {
+    if (in_array('std', $roles) && count($roles) === 1) {
         $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextStd . "</div>";
         $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextStd) . "</div>";
         $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyTextStd . "</div>";
