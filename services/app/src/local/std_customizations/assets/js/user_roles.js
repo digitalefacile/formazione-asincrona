@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log('User roles:', roles);
 
             // Check if roles contain 'std'
-            hasstd = roles.includes('std') && roles.length === 1;
+            hasstd = roles.includes('std') && !roles.includes('editingteacher') && !roles.includes('coursecreator') && !roles.includes('rfd') && !roles.includes('scd');
             // Check if roles contain 'admin'
             isAdmin = roles.includes('editingteacher');
         } catch (error) {
