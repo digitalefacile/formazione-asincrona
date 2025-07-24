@@ -168,6 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // find item .section_availability.course-description-item
+        const availabilityItem = document.querySelectorAll('.section_availability.course-description-item');
+        if (availabilityItem) {
+            availabilityItem.forEach(item => {
+                // display none
+                item.style.display = 'none';
+            });
+        }
+
     } else {
         // console.log("Condition not met");
     }
