@@ -168,6 +168,20 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // get div.footer_one
+        const footerOneSection = document.querySelector('section.footer_one');
+        if (footerOneSection) {
+            // get every a tag, if text contains 'facilita' set to display none
+            const footerLinks = footerOneSection.querySelectorAll('a');
+            footerLinks.forEach(link => {
+                const text = link.innerHTML.trim().toLowerCase(); // Trim and convert to lowercase
+                if (text.includes('facilita')) {
+                    // console.log("Hiding facilità link in footer");
+                    link.style.display = 'none';
+                }
+            });
+        }
+
         // find item .section_availability.course-description-item
         const availabilityItem = document.querySelectorAll('.section_availability.course-description-item');
         if (availabilityItem) {
