@@ -80,6 +80,18 @@ document.addEventListener('DOMContentLoaded', function() {
                             modal.hide();
                         });
                         modal.show();
+
+                        // if viewport <= 768 then if there are 2 buttons, invert the order of the buttons
+                        if (window.innerWidth <= 768) {
+                            // get 3 buttons, cancel is always present, then there is confirm OR login, there are always 1 or 2 buttons
+                            var buttons = modal.getRoot()[0].querySelectorAll('.btn');
+                            if (buttons.length > 1) {
+                                // invert the order of the buttons
+                                var cancelButton = buttons[0];
+                                var confirmButton = buttons[1];
+                                modal.getRoot()[0].querySelector('.modal-footer').insertBefore(confirmButton, cancelButton);
+                            }
+                        }
                     });
                 });
             });
