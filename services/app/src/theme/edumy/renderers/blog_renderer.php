@@ -37,12 +37,12 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
 	  // Oppure default a Senza categoria
 
 	
-    $blockedRole = array("Volontario", "volontario", "Facilitatore", "facilitatore", "Studente", "studente");
+    $blockedRole = array("Volontario", "volontario", "Facilitatore", "facilitatore", "Studente", "studente", "Utente", "utente");
 
 foreach ($currentRoleNames as $role) {
     if (in_array($role, $blockedRole)) {
         foreach ( $currentTags as $id => $current_tag ) {
-          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' || $current_tag == 'Studente' ) {
+          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' || $current_tag == 'Studente' || $current_tag == 'Utente' ) {
             unset( $currentTags[ $id ] );
           }
         }
