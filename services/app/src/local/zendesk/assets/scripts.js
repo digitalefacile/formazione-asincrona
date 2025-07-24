@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const subjectInput = document.getElementById('subject');
         const fields = form.querySelectorAll('input, textarea, select');
 
+        makeLogoUnclickableAndRemoveMobileMenu();
+
         // description on change console log
         descriptionTextarea.addEventListener('change', function() {
             descriptionTextareaContent = descriptionTextarea.value.trim().replace(/<[^>]+>/g, '').trim();
@@ -421,6 +423,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     } else {
         console.error('Form not found in the DOM');
+    }
+
+    function makeLogoUnclickableAndRemoveMobileMenu() {
+        // remove href from logo
+        // get hreader div.header_top.home2
+        const header = document.querySelector('div.header_top.home2');
+        if (header) {
+            // get every img inside header
+            const logoImages = header.querySelectorAll('img');
+            // for each images check if parent is tag "a" and remove href attribute
+            logoImages.forEach(img => {
+                if (img.parentElement.tagName.toLowerCase() === 'a') {
+                    img.parentElement.removeAttribute('href');
+                }
+            });
+        }
+        // do the same with div.custom_mobile_header
+        const customMobileHeader = document.querySelector('div.custom_mobile_header');
+        if (customMobileHeader) {
+            const mobileLogoImages = customMobileHeader.querySelectorAll('img');
+            mobileLogoImages.forEach(img => {
+                if (img.parentElement.tagName.toLowerCase() === 'a') {
+                    img.parentElement.removeAttribute('href');
+                }
+            });
+            // get a data-hamburger="hamburger-menu" and display none
+            const hamburgerMenu = customMobileHeader.querySelector('a[data-hamburger="hamburger-menu"]');
+            if (hamburgerMenu) {
+                hamburgerMenu.style.display = 'none';
+            }
+        }
     }
 
 });
