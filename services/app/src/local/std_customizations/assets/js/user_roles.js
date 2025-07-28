@@ -164,6 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // get div container-fluid blog-header
+        const blogHeaderDiv = document.querySelector('div.container-fluid.blog-header');
+        // console.log("blogHeaderDiv", blogHeaderDiv);
+        // if ok get inside h2 blogDescription
+        if (blogHeaderDiv) {
+            const blogDescription = blogHeaderDiv.querySelector('h2.blogDescription');
+            // console.log("blogDescription", blogDescription);
+            if (blogDescription) {
+                // change innerHTML
+                blogDescription.innerHTML = 'Lo spazio dedicato alle <strong>comunicazioni da non perdere</strong> per gestire al meglio la tua formazione.</bold';
+            }
+        }
+
         // footer
         // section class footer_middle_area pt-5 pb-5  
         const footerSection = document.querySelector('section.footer_middle_area.pt-5.pb-5');
