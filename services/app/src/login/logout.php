@@ -41,7 +41,7 @@ if (!$login && !$isSTD) {
     $redirect = $CFG->wwwroot.'/';
 }
 if ($isSTD) {
-    $redirect = $CFG->wwwroot.'/home-std.php';
+    $redirect = $CFG->wwwroot.'/percorsi-digitali.php';
 }
 
 if (!isloggedin()) {

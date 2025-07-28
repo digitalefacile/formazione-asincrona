@@ -192,9 +192,16 @@ class block_cocoon_tabs extends block_base
                     // var_dump($rolename);
                     // if rolename == std, title is placeholder, inputbutton is empty
                     if ($rolename && $rolename == 'std') {
-                        $titleOfAccordion = 'Lorem Ipsum';
+                        $titleOfAccordion = 'Che cosa prevede il percorso formativo? ';
                         $inputButton = '';
-                        $standardTabText = 'Standard tab text for STD users.';
+                        $standardTabText = 'Hai a disposizione <strong>
+                        4 corsi di educazione digitale</strong> di base, 
+                        organizzati in <strong>videolezioni</strong>. <br>
+                        Puoi seguirli secondo <strong>l’ordine e i tempi che preferisci</strong>, 
+                        in base ai tuoi interessi e al tuo ritmo di apprendimento.<br> 
+                        I corsi non prevedono test iniziali né finali. 
+                        Per ogni corso, al completamento di tutti i contenuti previsti, 
+                        ti sarà rilasciato un <strong>attestato finale</strong>. ';
                     }
                 }
 

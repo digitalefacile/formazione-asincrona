@@ -11,13 +11,13 @@ $PAGE->set_heading($SITE->fullname);
 // Mostra intestazione
 echo $OUTPUT->header();
 ?>
-<!-- js script change .button_custom_torna_indietro href to /home-std.php after 1s -->
+<!-- js script change .button_custom_torna_indietro href to /percorsi-digitali.php after 1s -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             const button = document.querySelector('.button_custom_torna_indietro');
             if (button) {
-                button.setAttribute('href', '/home-std.php');
+                button.setAttribute('href', '/percorsi-digitali.php');
             }
         }, 1000);
     });
@@ -62,10 +62,10 @@ echo $OUTPUT->header();
               <div class="col-xl-12">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="/home-std.php">Home</a>
+                        <a href="/percorsi-digitali.php">Home</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="/home-std.php">Home</a>
+                        <a href="/percorsi-digitali.php">Home</a>
                     </li>
                     <li class="breadcrumb-item active ">Privacy</li>
                 </ol>
@@ -80,7 +80,7 @@ echo $OUTPUT->header();
 
     <div class="row">
         <div class="col-12 p-0">
-            <a href="/home-std.php" class="button_custom_torna_indietro" aria-label="Torna al corso Privacy Page">
+            <a href="/percorsi-digitali.php" class="button_custom_torna_indietro" aria-label="Torna al corso Privacy Page">
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M6.73333 12.6665L7.2 12.1998L3.66667 8.59984L14 8.59984L14 7.93317L3.66667 7.93317L7.2 4.33317L6.73333 3.8665L2.33333 8.2665L6.73333 12.6665Z" fill="#0065CC"></path>
                 </svg>

@@ -7,7 +7,7 @@ if (isloggedin() && !isguestuser()) {
 
 // Imposta il contesto e layout come frontpage
 $PAGE->set_context(context_system::instance());
-$PAGE->set_url('/home-std.php');
+$PAGE->set_url('/percorsi-digitali.php');
 $PAGE->set_pagelayout('frontpage'); // importante per mostrare i blocchi come block_cocoon_parallax_white
 $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading($SITE->fullname);
@@ -29,11 +29,11 @@ echo $OUTPUT->header();
                         <div class="parallax_white_first_div" id="yui_3_17_2_1_1751553669510_31">
                             <div id="yui_3_17_2_1_1751553669510_30">
                                 <h3 class="parallax_white_title" data-ccn="title">
-                                    Ti diamo il benvenuto sulla piattaforma per la formazione di facilitatori e volontari digitali
+                                    Inizia il tuo percorso di educazione digitale
                                 </h3>
                                 
                                 <p class="parallax_white_paragraph" data-ccn="subtitle" id="yui_3_17_2_1_1751553669510_29">
-                                    Scopri tutte le risorse formative dedicate ai facilitatori della rete dei Punti digitale facile e ai volontari del Servizio civile digitale. Segui i corsi, rispondi ai test e completa il tuo percorso.
+                                    Vuoi stare al passo con le tecnologie del futuro? Esplora i corsi, scegli i temi di tuo interesse e segui le videolezioni gratuite, sempre disponibili quando e dove vuoi. Accedi subito con la tua identità digitale! 
                                 </p>
                                 
                                 <a data-ccn="button_text" 

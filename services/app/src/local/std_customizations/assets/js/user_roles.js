@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const jsonDataElement = document.getElementById('user-roles-data');
 
-    // Check if the URL contains 'home-std.php'
-    const urlContainsHomeAlt = window.location.href.includes('home-std.php') || window.location.href.includes('privacy-std.php');
+    // Check if the URL contains 'percorsi-digitali.php'
+    const urlContainsHomeAlt = window.location.href.includes('percorsi-digitali.php') || window.location.href.includes('privacy-std.php');
 
     let hasstd = false;
     let isAdmin = false;
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Apply the same behavior if 'std' is in roles or 'home-std.php' is in the URL
+    // Apply the same behavior if 'std' is in roles or 'percorsi-digitali.php' is in the URL
     if (hasstd || urlContainsHomeAlt) {
         // get every a with href that contains logout.php
         const logoutLinks = document.querySelectorAll('a[href*="logout.php"]');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             url.searchParams.set('isstd', '1');
             link.href = url.toString();
         });
-        // console.log("Condition met: 'std' in roles or 'home-std.php' in URL");
+        // console.log("Condition met: 'std' in roles or 'percorsi-digitali.php' in URL");
 
         // get element header_top home2
         const headerTop = document.querySelector('.header_top.home2');
@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const innerDiv2 = innerDivs[1]; // get the second inner div
                     if (innerDiv1 && innerDiv2) {
                         // change innerhTML of the first inner div
-                        innerDiv1.innerHTML = 'titolo';
+                        innerDiv1.innerHTML = 'Percorsi digitali';
                         // change innerhTML of the second inner div
-                        innerDiv2.innerHTML = 'descrizione';
+                        innerDiv2.innerHTML = 'La tua educazione online sul mondo digitale';
                     }
                 }
             }
@@ -112,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // get div[0]
                 const firstInnerDiv = innerDivs[0];
                 if (firstInnerDiv) {
-                    // get the div inside and change the innerHTML to 'titolo'
+                    // get the div inside and change the innerHTML to 'Percorsi digitali'
                     const innerDiv = firstInnerDiv.querySelector('div');
                     if (innerDiv) {
-                        innerDiv.innerHTML = 'titolo';
+                        innerDiv.innerHTML = 'Percorsi digitali';
                     }
                 }
             }
@@ -141,9 +141,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // console.log("myJourneyDiv", myJourneyDiv);
         // get h2.subtitle and change text to lorem ipsum studenti
         if (myJourneyDiv) {
+            // const title h1.title
+            const title = myJourneyDiv.querySelector('h1.title');
+            if (title) {
+                title.innerHTML = 'Il mio percorso digitale';
+            }
             const subtitle = myJourneyDiv.querySelector('h2.subtitle');
             if (subtitle) {
-                subtitle.innerHTML = 'Lorem ipsum studenti';
+                subtitle.innerHTML = 'Gestisci la tua formazione e monitora i tuoi progressi passo dopo passo. Completa i corsi che hai attivato e scegli i nuovi corsi da seguire.';
+            }
+
+            const discoverCoursesSection = document.querySelector('div.container-fluid.discover-courses-section');
+            // console.log("discoverCoursesSection", discoverCoursesSection);
+            if (discoverCoursesSection) {
+                // get div container-fluid subtitle
+                const subtitleDiv = discoverCoursesSection.querySelector('div.container-fluid.subtitle');
+                // console.log("subtitleDiv", subtitleDiv);
+                if (subtitleDiv) {
+                    // change innerHTML
+                    subtitleDiv.innerHTML = 'Esplora le aree tematiche dei corsi e perfeziona le tue competenze in ogni ambito del digitale.';
+                }
             }
         }
 

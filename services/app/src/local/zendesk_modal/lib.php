@@ -95,8 +95,8 @@ function local_zendesk_modal_before_footer() {
         $rolename = 'std';
     }
 
-    // if roles empty AND page url contains home-std or privacy-std
-    if (empty($roles) && (strpos($PAGE->url->out(), 'home-std') !== false || strpos($PAGE->url->out(), 'privacy-std') !== false)) {
+    // if roles empty AND page url contains percorsi-digitali or privacy-std
+    if (empty($roles) && (strpos($PAGE->url->out(), 'percorsi-digitali') !== false || strpos($PAGE->url->out(), 'privacy-std') !== false)) {
         $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextStdGuest . "</div>";
         $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextStdGuest) . "</div>";
         $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyTextStdGuest . "</div>";
