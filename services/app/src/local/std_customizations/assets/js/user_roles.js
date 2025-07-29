@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const jsonDataElement = document.getElementById('user-roles-data');
 
     // Check if the URL contains 'percorsi-digitali.php'
-    const urlContainsHomeAlt = window.location.href.includes('percorsi-digitali.php') || window.location.href.includes('privacy-std.php');
+    const urlContainsHomeAlt = window.location.href.includes('percorsi-digitali.php') || window.location.href.includes('percorsi-digitali') || window.location.href.includes('informativa-percorsi-digitali.php') || window.location.href.includes('informativa-percorsi-digitali');
 
     let hasstd = false;
     let isAdmin = false;
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // console.log("Changing privacy link to /privacy-std.php");
                     // setTimeout to avoid
                     setTimeout(() => {
-                        a.href = '/privacy-std.php';
+                        a.href = '/informativa-percorsi-digitali.php';
                         a.target = '_self'; // open in the same tab
                     }, 1000); // Delay to ensure the DOM is ready
                 }

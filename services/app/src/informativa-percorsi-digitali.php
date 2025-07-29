@@ -3,7 +3,7 @@ require(__DIR__ . '/config.php');
 
 // Imposta il contesto e layout come frontpage
 $PAGE->set_context(context_system::instance());
-$PAGE->set_url('/privacy-std.php');
+$PAGE->set_url('/informativa-percorsi-digitali.php');
 $PAGE->set_pagelayout('frontpage');
 $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading($SITE->fullname);
