@@ -92,8 +92,16 @@ class block_cocoon_blog_recent extends block_base {
 
 
         global $CFG, $OUTPUT, $PAGE;
-        $bloglisting = new blog_listing();
-        $limit = 10;
+        
+        // Use the filtered blog listing if available (same as main blog page)
+        if (file_exists($CFG->dirroot . "/theme/edumy/classes/blog_listing_filtered.php")) {
+            require_once($CFG->dirroot . "/theme/edumy/classes/blog_listing_filtered.php");
+            $bloglisting = new theme_edumy_blog_listing_filtered();
+        } else {
+            $bloglisting = new blog_listing();
+        }
+        
+        $limit = 50; // Increase limit to ensure we get enough filtered entries
         $start = 0;
         $entries = $bloglisting->get_entries($start, $limit);
         if (!empty($entries)) {
@@ -181,41 +189,33 @@ $this->content->text .='</div>
             $tags = $OUTPUT->tag_list(core_tag_tag::get_item_tags('core', 'post', $entry->id));
             // print_object($tags);
 
-	          // Filter blog entry by tag
-	          $currentTags = core_tag_tag::get_item_tags_array( 'core', 'post', $entry->id );
-
-	          // retrieve current user's roles
-	          global $USER;
-	          $currentRoleNames = [];
-	          $context          = context_system::instance();
-	          $currentRoles     = get_user_roles( $context, $USER->id, true );
-	          foreach ( $currentRoles as $currentRole ) {
-		          $currentRoleNames[] = $currentRole->name;
-	          }
-
-	          // match roles with post tags
-	          if ( ! in_array( 'tutti', $currentTags )  // non c'è il tag tutti
-	               && empty( array_intersect( $currentRoleNames,
-	                                          $currentTags ) )   // non c'è il tag corrispondente al ruolo
-	               && ! is_siteadmin() ) {  // l'utente non può editare il post
-		          continue;
-	          }
-	          // END additions
-
-	          // Pulizia lista tag dai ruoli (tutti, Facilitatore, Volontario) ed estrazione primo tag rimanente per categoria
-	          // Oppure default a Senza categoria
-
-	          foreach ( $currentTags as $id => $current_tag ) {
-		          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' || $current_tag == 'Studente' || $current_tag == 'Utente' ) {
-			          unset( $currentTags[ $id ] );
-		          }
-	          }
-
-	          if ( empty( $currentTags ) ) {
-		          $currentCategory = array( 'Senza categoria' );
-	          } else {
-		          $currentCategory = array_slice( $currentTags, 0, 1 );
-	          }
+            // NOTE: Tag filtering is now handled by blog_listing_filtered class
+            // Get cleaned tags for display (removing role-based tags)
+            global $USER;
+            $currentRoleNames = [];
+            $context = context_system::instance();
+            $currentRoles = get_user_roles($context, $USER->id, true);
+            foreach ($currentRoles as $currentRole) {
+                $currentRoleNames[] = $currentRole->name;
+            }
+            
+            // Use the helper function for tag cleaning if available
+            if (class_exists('theme_edumy_blog_listing_filtered')) {
+                $currentCategory = theme_edumy_blog_listing_filtered::clean_display_tags($entry->id, $currentRoleNames);
+            } else {
+                // Fallback to original logic
+                $currentTags = core_tag_tag::get_item_tags_array('core', 'post', $entry->id);
+                foreach ($currentTags as $id => $current_tag) {
+                    if ($current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' || $current_tag == 'Studente' || $current_tag == 'Utente') {
+                        unset($currentTags[$id]);
+                    }
+                }
+                if (empty($currentTags)) {
+                    $currentCategory = array('Senza categoria');
+                } else {
+                    $currentCategory = array_slice($currentTags, 0, 1);
+                }
+            }
 
 
 	          // $this->content->text .= '
