@@ -3,6 +3,11 @@
 require_once($CFG->dirroot . "/blog/renderer.php");
 require_once($CFG->dirroot . "/theme/edumy/ccn/blog_handler/ccn_blog_handler.php");
 
+// Load the filtered blog listing class if available
+if (file_exists($CFG->dirroot . "/theme/edumy/classes/blog_listing_filtered.php")) {
+    require_once($CFG->dirroot . "/theme/edumy/classes/blog_listing_filtered.php");
+}
+
 class theme_edumy_core_blog_renderer extends core_blog_renderer {
 
   /**
@@ -13,10 +18,10 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
    */
   public function render_blog_entry(blog_entry $entry) {
 
-      // Filter blog entry by tag
-      $currentTags = core_tag_tag::get_item_tags_array('core', 'post', $entry->id);
+      // NOTE: Tag filtering is now handled in theme_edumy_blog_listing_filtered class
+      // This renderer only handles display formatting
 
-      // retrieve current user's roles
+      // retrieve current user's roles for category display
       global $USER;
       $currentRoleNames = [];
       $context = context_system::instance();
@@ -25,35 +30,32 @@ class theme_edumy_core_blog_renderer extends core_blog_renderer {
         $currentRoleNames[] = $currentRole->name;
       }
 
-      // match roles with post tags
-      if(!in_array('tutti',$currentTags)  // non c'è il tag tutti
-          && empty(array_intersect($currentRoleNames,$currentTags))   // non c'è il tag corrispondente al ruolo
-          && !$entry->renderable->usercanedit) {  // l'utente non può editare il post
-        return null;
-      }
-      // END additions
-
 	  // Pulizia lista tag dai ruoli (tutti, Facilitatore, Volontario) ed estrazione primo tag rimanente per categoria
 	  // Oppure default a Senza categoria
+      
+      // Use the helper function from the filtered class if available
+      if (class_exists('theme_edumy_blog_listing_filtered')) {
+          $currentCategory = theme_edumy_blog_listing_filtered::clean_display_tags($entry->id, $currentRoleNames);
+      } else {
+          // Fallback to original logic if class not available
+          $currentTags = core_tag_tag::get_item_tags_array('core', 'post', $entry->id);
+          $blockedRole = array("Volontario", "volontario", "Facilitatore", "facilitatore", "Studente", "studente", "Utente", "utente");
 
-	
-    $blockedRole = array("Volontario", "volontario", "Facilitatore", "facilitatore", "Studente", "studente", "Utente", "utente");
-
-foreach ($currentRoleNames as $role) {
-    if (in_array($role, $blockedRole)) {
-        foreach ( $currentTags as $id => $current_tag ) {
-          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' || $current_tag == 'Studente' || $current_tag == 'Utente' ) {
-            unset( $currentTags[ $id ] );
+          foreach ($currentRoleNames as $role) {
+              if (in_array($role, $blockedRole)) {
+                  foreach ( $currentTags as $id => $current_tag ) {
+                    if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' || $current_tag == 'Studente' || $current_tag == 'Utente' ) {
+                      unset( $currentTags[ $id ] );
+                    }
+                  }
+              }
           }
-        }
-    }
-}
-	  if ( empty( $currentTags ) ) {
-		  $currentCategory = array( 'Senza categoria' );
-	  } else {
-		  $currentCategory =  $currentTags;
-
-	  }
+          if ( empty( $currentTags ) ) {
+            $currentCategory = array( 'Senza categoria' );
+          } else {
+            $currentCategory =  $currentTags;
+          }
+      }
 	  global $CFG, $PAGE;
 
       $ccnBlogHandler = new ccnBlogHandler();
