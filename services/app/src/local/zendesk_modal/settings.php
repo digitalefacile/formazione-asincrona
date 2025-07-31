@@ -83,4 +83,52 @@ if ($hassiteconfig) {
         '', 
         'This is the body of the modal.'
     ));
+
+    // pre-body text standard
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/prebody_text_std', 
+        get_string('prebody_text_std', 'local_zendesk_modal'), 
+        '', 
+        'This is the pre-body text standard.'
+    ));
+
+    // after-body text standard
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/afterbody_text_std', 
+        get_string('afterbody_text_std', 'local_zendesk_modal'), 
+        '', 
+        'This is the after-body text standard.'
+    ));
+
+    // modalbody standard
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/modalbody_std', 
+        get_string('modalbody_std', 'local_zendesk_modal'), 
+        '', 
+        'This is the body of the modal standard.'
+    ));
+
+    // pre-body text standard for guest
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/prebody_text_std_guest', 
+        get_string('prebody_text_std_guest', 'local_zendesk_modal'), 
+        '', 
+        'This is the pre-body text standard for guest.'
+    ));
+
+    // after-body text standard for guest
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/afterbody_text_std_guest', 
+        get_string('afterbody_text_std_guest', 'local_zendesk_modal'), 
+        '', 
+        'This is the after-body text standard for guest.'
+    ));
+
+    // modalbody standard for guest
+    $settings->add(new admin_setting_configtextarea(
+        'local_zendesk_modal/modalbody_std_guest', 
+        get_string('modalbody_std_guest', 'local_zendesk_modal'), 
+        '', 
+        'This is the body of the modal standard for guest.'
+    ));
 }

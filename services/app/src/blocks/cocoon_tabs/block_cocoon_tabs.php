@@ -71,7 +71,7 @@ class block_cocoon_tabs extends block_base
      */
     function get_content()
     {
-        global $CFG, $PAGE;
+        global $CFG, $PAGE, $DB, $USER;
 
         require_once($CFG->libdir . '/filelib.php');
 
@@ -183,6 +183,28 @@ class block_cocoon_tabs extends block_base
                     $ccnBodyClass .= ' show active';
                 }
 
+                $standardTabText = $data->$ccnTabBody['text']; 
+                // get user role shortname
+                $userid = $USER->id;
+                $roleid = $DB->get_field('role_assignments', 'roleid', array('userid' => $userid));
+                if ($roleid) {
+                    $rolename = $DB->get_field('role', 'shortname', array('id' => $roleid));
+                    // var_dump($rolename);
+                    // if rolename == std, title is placeholder, inputbutton is empty
+                    if ($rolename && $rolename == 'std') {
+                        $titleOfAccordion = 'Che cosa prevede il percorso formativo? ';
+                        $inputButton = '';
+                        $standardTabText = 'Hai a disposizione <strong>
+                        4 corsi di educazione digitale</strong> di base, 
+                        organizzati in <strong>videolezioni</strong>. <br>
+                        Puoi seguirli secondo <strong>l’ordine e i tempi che preferisci</strong>, 
+                        in base ai tuoi interessi e al tuo ritmo di apprendimento.<br> 
+                        I corsi non prevedono test iniziali né finali. 
+                        Per ogni corso, al completamento di tutti i contenuti previsti, 
+                        ti sarà rilasciato un <strong>attestato finale</strong>. ';
+                    }
+                }
+
                 $text .=
                     '<div data-ccn="'.$ccnTabBody.'" class="'.$ccnBodyClass.'" id="'.$ccnTabLink.'" role="tabpanel" aria-labelledby="'.$ccnTabLink.'-tab">
                       <div class="single-card single_card_tabs" >
@@ -196,7 +218,7 @@ class block_cocoon_tabs extends block_base
                         <div class="text-content">
                           <div class="title">' . $titleOfAccordion . ' </div>
                           <div class="description">
-                            ' . format_text($data->$ccnTabBody['text'], FORMAT_HTML, array('filter' => true, 'noclean' => true)) . '
+                            ' . format_text($standardTabText, FORMAT_HTML, array('filter' => true, 'noclean' => true)) . '
                           </div>
                         </div>
                               ' . $inputButton . '
@@ -209,6 +231,7 @@ class block_cocoon_tabs extends block_base
                   </div>
                 </div>
               </div>';
+
         }
 
         $this->content = new stdClass;

@@ -31,12 +31,17 @@ $PAGE->set_context(context_system::instance());
 
 $sesskey = optional_param('sesskey', '__notpresent__', PARAM_RAW); // we want not null default to prevent required sesskey warning
 $login   = optional_param('loginpage', 0, PARAM_BOOL);
+$isSTD = optional_param('isstd', 0, PARAM_BOOL);
 
 // can be overridden by auth plugins
-if ($login) {
+if ($login && !$isSTD) {
     $redirect = get_login_url();
-} else {
+}
+if (!$login && !$isSTD) {
     $redirect = $CFG->wwwroot.'/';
+}
+if ($isSTD) {
+    $redirect = $CFG->wwwroot.'/percorsi-digitali.php';
 }
 
 if (!isloggedin()) {

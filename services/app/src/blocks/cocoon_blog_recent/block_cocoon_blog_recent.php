@@ -206,7 +206,7 @@ $this->content->text .='</div>
 	          // Oppure default a Senza categoria
 
 	          foreach ( $currentTags as $id => $current_tag ) {
-		          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' ) {
+		          if ( $current_tag == 'tutti' || $current_tag == 'Facilitatore' || $current_tag == 'Volontario' || $current_tag == 'Studente' || $current_tag == 'Utente' ) {
 			          unset( $currentTags[ $id ] );
 		          }
 	          }

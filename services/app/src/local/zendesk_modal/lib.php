@@ -44,6 +44,12 @@ function local_zendesk_modal_before_footer() {
     $modalbodyTextGuest = get_config('local_zendesk_modal', 'modalbody_guest');
     $modalbodyTextSCD = get_config('local_zendesk_modal', 'modalbody_scd');
     $modalbodyTextRFD = get_config('local_zendesk_modal', 'modalbody_rfd');
+    $modalbodyTextStd = get_config('local_zendesk_modal', 'modalbody_std');
+    $modalbodyTextStdGuest = get_config('local_zendesk_modal', 'modalbody_std_guest');
+    $prebodyTextStd = get_config('local_zendesk_modal', 'prebody_text_std');
+    $prebodyTextStdGuest = get_config('local_zendesk_modal', 'prebody_text_std_guest');
+    $afterbodyTextStd = get_config('local_zendesk_modal', 'afterbody_text_std');
+    $afterbodyTextStdGuest = get_config('local_zendesk_modal', 'afterbody_text_std_guest');
 
     // Default (guest) logic
     $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextAlt . "</div>";
@@ -82,6 +88,21 @@ function local_zendesk_modal_before_footer() {
         $afterbodyHTML = "<div class='afterbody-text alt'>&nbsp;</div>";
         $rolename = 'teacher';
     }
+    if (in_array('std', $roles) && !in_array('editingteacher', $roles) && !in_array('coursecreator', $roles) && !in_array('rfd', $roles) && !in_array('scd', $roles)) {
+        $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextStd . "</div>";
+        $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextStd) . "</div>";
+        $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyTextStd . "</div>";
+        $rolename = 'std';
+    }
+
+    // if roles empty AND page url contains percorsi-digitali or privacy-std
+    if (empty($roles) && (strpos($PAGE->url->out(), 'percorsi-digitali') !== false || strpos($PAGE->url->out(), 'privacy-std') !== false || strpos($PAGE->url->out(), 'informativa-percorsi-digitali') !== false)) {
+        $prebodyHTML = "<div class='prebody-text'>" . $prebodyTextStdGuest . "</div>";
+        $modalbodyHTML = "<div class='modal-inner-body'>" . nl2br($modalbodyTextStdGuest) . "</div>";
+        $afterbodyHTML = "<div class='afterbody-text'>" . $afterbodyTextStdGuest . "</div>";
+        $rolename = 'guest';
+    }
+
 
     $totalbody = $prebodyHTML . $modalbodyHTML . $afterbodyHTML;
 

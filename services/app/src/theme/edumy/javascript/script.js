@@ -804,6 +804,13 @@
             // find the last dot FROM THE CURRENT EVENT ITEM and add the active class
             $(event.target).find('.owl-dots .owl-dot').last().addClass('active');
           }
+
+          // if item count is 4, page size is 3, and index is 0, then we are on the last item, change the active dot
+          if (event.item.count == 4 && event.page.size == 3 && event.property.name == 'position' && event.property.value == 1) {
+            $(event.target).find('.owl-dots .owl-dot').removeClass('active');
+            // find the last dot FROM THE CURRENT EVENT ITEM and add the active class
+            $(event.target).find('.owl-dots .owl-dot').last().addClass('active');
+          }
         });
       }
       /*  Team-Slider-Owl-carousel  */
