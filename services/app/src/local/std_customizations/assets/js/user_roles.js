@@ -21,6 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // if urlContainsHomeAlt, change logo url to percorsi-digitali.php
+    if (urlContainsHomeAlt) {
+        // get header, div class header_top home2
+        const headerTop = document.querySelector('.header_top.home2');
+        if (headerTop) {
+            // find A tag, change href to percorsi-digitali.php
+            const logoLink = headerTop.querySelector('a');
+            if (logoLink) {
+                logoLink.href = '/percorsi-digitali.php';
+                // console.log("Logo link updated to /percorsi-digitali.php");
+            }
+        }
+        // get div custom_mobile_header, change the second A tag href to percorsi-digitali.php
+        const customMobileHeader = document.querySelector('div.custom_mobile_header');
+        if (customMobileHeader) {
+            const mobileLogoLink = customMobileHeader.querySelectorAll('a')[1]; // Get the second A tag
+            if (mobileLogoLink) {
+                mobileLogoLink.href = '/percorsi-digitali.php';
+                // console.log("Mobile logo link updated to /percorsi-digitali.php");
+            }
+        }
+    }
+
     // Apply the same behavior if 'std' is in roles or 'percorsi-digitali.php' is in the URL
     if (hasstd || urlContainsHomeAlt) {
         // get every a with href that contains logout.php
