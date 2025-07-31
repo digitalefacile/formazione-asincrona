@@ -49,7 +49,7 @@ echo $OUTPUT->header();
                         <div class="parallax_white_second_div" id="yui_3_17_2_1_1751553669510_21">
                             <div class="about_thumb_home3 text-right">
                                 <img class="img-fluid" 
-                                     src="/pluginfile.php/16/block_cocoon_parallax_white/content/img4.png" 
+                                     src="/pluginfile.php/16/block_cocoon_parallax_white/content/unsplash_YRMWVcdyhmI.jpg" 
                                      alt="">
                             </div>
                         </div>
