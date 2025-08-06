@@ -118,7 +118,8 @@ class theme_edumy_blog_listing_filtered extends blog_listing {
         if (empty($currentTags)) {
             $currentCategory = array('Senza categoria');
         } else {
-            $currentCategory = $currentTags;
+            // Convert associative array to numeric array and get first tag
+            $currentCategory = array_values($currentTags);
         }
         
         return $currentCategory;
