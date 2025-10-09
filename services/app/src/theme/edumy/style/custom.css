@@ -2337,3 +2337,8 @@ body.pagelayout-course #ccn-course-breadcrumb-page-wrapper #ccn-page-wrapper #cc
 #page-enrol-index .continuebutton {
   display: none;
 }
+
+.course-blue {
+  background-color: #0026ff!important;
+  color: #FFFFFF!important;
+}

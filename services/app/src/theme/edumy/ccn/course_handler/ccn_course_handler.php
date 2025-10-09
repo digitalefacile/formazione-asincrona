@@ -22,7 +22,6 @@ class ccnCourseHandler {
 
       $courseRecord = $DB->get_record('course', array('id' => $courseId));
       $courseElement = new core_course_list_element($courseRecord);
-
       /* @ccnBreak */
       $courseId = $courseRecord->id;
       $courseShortName = $courseRecord->shortname;
@@ -41,6 +40,7 @@ class ccnCourseHandler {
       $ccnCountActivities = count($ccnCourseActivities);
       /* @ccnBreak */
       $categoryId = $courseRecord->category;
+      $idNumber = $courseRecord->idnumber;
 
       try {
         $courseCategory = core_course_category::get($categoryId);
@@ -319,6 +319,7 @@ class ccnCourseHandler {
       $ccnCourse->priceFormats = $ccnCoursePrice;
       $ccnCourse->overallRating = $ccnProcessRatingCountFunction;
       $ccnCourse->numberOfRatings = $ccnProcessRatingCountTotalFunction;
+      $ccnCourse->idNumber = $idNumber;
 
       /* Render object */
       $ccnRender = new \stdClass();
