@@ -2338,7 +2338,17 @@ body.pagelayout-course #ccn-course-breadcrumb-page-wrapper #ccn-page-wrapper #cc
   display: none;
 }
 
-.course-blue {
-  background-color: #0026ff!important;
-  color: #FFFFFF!important;
+.course-skyblue {
+  background-color: #00bfff!important;
+  color: #000000!important;
+}
+
+.course-orange {
+  background-color: #ff8c00!important;
+  color: #000000!important;
+}
+
+.course-green {
+  background-color: #32cd32!important;
+  color: #000000!important;
 }
