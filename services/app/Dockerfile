@@ -16,7 +16,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         locales \
         default-mysql-client \
         ghostscript \
-        libaio1 \
+        libaio1t64 \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
