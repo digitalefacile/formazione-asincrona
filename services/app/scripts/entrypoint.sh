@@ -23,7 +23,7 @@ if [[ -n "$*" && "${1}" ]]; then
   exit
 fi
 
-while ! mysqladmin ping -h"${MOODLE_DATABASE_HOST}" --silent; do
+while ! mysqladmin ping --skip-ssl -h"${MOODLE_DATABASE_HOST}" --silent; do
   echo "[$(basename "${0}")] Waiting on database connection.."
   sleep 2
 done
