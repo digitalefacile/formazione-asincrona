@@ -23,6 +23,7 @@
  */
 
 require_once(__DIR__ . '/../../config.php');
+require_once($CFG->dirroot . '/theme/edumy/ccn/course_handler/ccn_course_handler.php');
 
 require_login();
 
@@ -31,6 +32,7 @@ $PAGE->set_url(new moodle_url('/local/corsi/index.php'));
 $PAGE->set_pagelayout('frontpage');
 $PAGE->set_title(get_string('pagetitle', 'local_corsi') . ' - ' . $SITE->fullname);
 $PAGE->set_heading($SITE->fullname);
+$PAGE->blocks->add_region('corsi-content');
 echo $OUTPUT->header();
 ?>
 
@@ -39,38 +41,74 @@ echo $OUTPUT->header();
     <!-- Header -->
     <section class="corsi-header">
         <div class="container">
-            <h1 class="title"><?php echo get_string('pagetitle', 'local_corsi'); ?></h1>
-            <h2 class="subtitle"><?php echo get_string('pagesubtitle', 'local_corsi'); ?></h2>
-        </div>
-    </section>
-
-    <!-- Featured Content Strip -->
-    <section class="corsi-featured-strip">
-        <div class="container">
-            <h3><?php echo get_string('featured', 'local_corsi'); ?></h3>
-            <div class="corsi-featured-cards">
-                <a href="#sezione-digcomp" class="corsi-featured-card">
-                    <span><?php echo get_string('digcomp', 'local_corsi'); ?></span>
-                </a>
-                <a href="#sezione-trasversali" class="corsi-featured-card">
-                    <span><?php echo get_string('trasversali', 'local_corsi'); ?></span>
-                </a>
-                <a href="#sezione-altri" class="corsi-featured-card">
-                    <span><?php echo get_string('altri', 'local_corsi'); ?></span>
-                </a>
+            <div class="main-title text-center">
+                <h2 class="mb0 mt0"><?php echo get_string('pagetitle', 'local_corsi'); ?></h2>
+                <p><?php echo get_string('pagesubtitle', 'local_corsi'); ?></p>
             </div>
         </div>
     </section>
 
-    <!-- Course sections are rendered via cocoon_courses_grid block instances -->
-    <!-- Add them via "Turn editing on" in the fullwidth-top / content regions -->
+    <!-- Featured Content Strip: 3 most recently added visible courses -->
+    <section class="corsi-featured-strip">
+        <div class="container">
+            <div class="main-title text-center">
+                <h2 class="mb0 mt0"><?php echo get_string('featured', 'local_corsi'); ?></h2>
+            </div>
+            <div class="ccn-courses-grid">
+                <div class="row">
+                    <?php
+                    $recentcourses = $DB->get_records_sql(
+                        'SELECT id FROM {course} WHERE id != :siteid AND visible = 1 ORDER BY timecreated DESC',
+                        ['siteid' => SITEID],
+                        0,
+                        3
+                    );
+                    $ccnCourseHandler = new ccnCourseHandler();
+                    foreach ($recentcourses as $rc) {
+                        $ccnCourse = $ccnCourseHandler->ccnGetCourseDetails($rc->id);
+                        ?>
+                        <div class="col-md-4 ccn_grid_card">
+                            <div class="top_courses ccnWithFoot">
+                                <span class="sr-only">Inizio card corso</span>
+                                <div class="thumb">
+                                    <?php echo $ccnCourse->ccnRender->coverImage; ?>
+                                </div>
+                                <div class="details">
+                                    <div class="tc_content">
+                                        <div class="container_cip_category">
+                                            <div class="cip_category <?php echo $ccnCourse->idNumber; ?>">
+                                                <?php echo $ccnCourse->categoryName; ?>
+                                            </div>
+                                        </div>
+                                        <div class="content_title_card_slider">
+                                            <?php echo $ccnCourse->fullName; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer_card_slider">
+                                    <a href="<?php echo $ccnCourse->url; ?>" class="btn btn-primary btn-lg"
+                                       aria-label="Vai al corso <?php echo $ccnCourse->fullName; ?>">Vai al corso</a>
+                                </div>
+                                <span class="sr-only">Fine card corso</span>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course sections: cocoon_courses_grid block instances in corsi-content region -->
+    <?php echo $OUTPUT->blocks_for_region('corsi-content'); ?>
 
     <!-- Final CTA Banner -->
-    <section class="corsi-cta-banner">
-        <div class="container text-center">
-            <h3><?php echo get_string('cta_title', 'local_corsi'); ?></h3>
-            <p><?php echo get_string('cta_subtitle', 'local_corsi'); ?></p>
-            <a href="<?php echo new moodle_url('/my/'); ?>" class="btn btn-primary btn-lg">
+    <section class="discover-courses-section">
+        <div class="title"><?php echo get_string('cta_title', 'local_corsi'); ?></div>
+        <div class="subtitle"><?php echo get_string('cta_subtitle', 'local_corsi'); ?></div>
+        <div class="cta">
+            <a href="<?php echo new moodle_url('/my/courses.php'); ?>">
                 <?php echo get_string('cta_button', 'local_corsi'); ?>
             </a>
         </div>

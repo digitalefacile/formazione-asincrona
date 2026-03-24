@@ -2,6 +2,8 @@
 
 .corsi-page {
     padding-bottom: 0;
+    width: 880px;
+    margin: 0 auto;
 }
 
 .corsi-header {
@@ -9,35 +11,9 @@
     padding: 60px 0 40px;
 }
 
-.corsi-header .title {
-    color: rgb(32, 51, 103);
-    font-family: "Titillium Web", sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
-.corsi-header .subtitle {
-    color: rgb(111, 112, 116);
-    font-family: "Titillium Web", sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
 .corsi-featured-strip {
     padding: 40px 0;
     background-color: #fff;
-}
-
-.corsi-featured-strip h3 {
-    color: rgb(32, 51, 103);
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    text-align: center;
 }
 
 .corsi-featured-cards {
@@ -71,44 +47,6 @@
 
 .corsi-section {
     padding: 60px 0;
-}
-
-.corsi-cta-banner {
-    background-color: #e8f4fd;
-    padding: 60px 0;
-}
-
-.corsi-cta-banner h3 {
-    color: rgb(32, 51, 103);
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.corsi-cta-banner p {
-    color: rgb(111, 112, 116);
-    font-size: 18px;
-    margin-bottom: 24px;
-}
-
-@media (max-width: 768px) {
-    .corsi-header .title {
-        font-size: 28px;
-    }
-
-    .corsi-header .subtitle {
-        font-size: 16px;
-    }
-
-    .corsi-featured-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .corsi-featured-card {
-        width: 100%;
-        max-width: 320px;
-    }
 }
 
 /* Announcements grey background on frontpage */

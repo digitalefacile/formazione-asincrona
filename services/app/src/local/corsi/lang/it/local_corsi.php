@@ -24,16 +24,9 @@
 
 $string['pluginname'] = 'Pagina catalogo Corsi';
 $string['pagetitle'] = 'Corsi';
-$string['pagesubtitle'] = 'Esplora tutti i corsi disponibili sulla piattaforma.<br>Scegli i temi di tuo interesse e segui le videolezioni gratuite,<br>sempre disponibili quando e dove vuoi.';
+$string['pagesubtitle'] = 'Esplora le aree tematiche disponibili e accresci le tue competenze<br />in tutti gli ambiti della facilitazione digitale.';
 $string['featured'] = 'In evidenza';
-$string['digcomp'] = 'I corsi DigComp';
-$string['digcomp_subtitle'] = 'Sviluppa le tue competenze digitali seguendo il framework europeo DigComp.';
-$string['digcomp_pdf'] = 'Scarica il <a href="/pluginfile.php/1/block_html/content/DigComp_2.2.pdf" target="_blank">PDF del framework DigComp 2.2</a>.';
-$string['trasversali'] = 'I corsi sulle competenze trasversali';
-$string['trasversali_subtitle'] = 'Perfeziona la tua formazione nell\'ambito della facilitazione digitale: rafforza le tue <strong>competenze metodologiche</strong> e le tue conoscenze <strong>sulla Pubblica Amministrazione del futuro.</strong>';
-$string['altri'] = 'Tutti i corsi disponibili';
-$string['altri_subtitle'] = 'Scopri tutti gli altri corsi disponibili sulla piattaforma.';
-$string['cta_title'] = 'Hai già iniziato un percorso?';
-$string['cta_subtitle'] = 'Monitora i tuoi progressi e completa i corsi attivi.';
+$string['cta_title'] = 'A che punto è il tuo percorso formativo?';
+$string['cta_subtitle'] = 'Gestisci la tua formazione e monitora i tuoi progressi passo dopo passo.';
 $string['cta_button'] = 'Vai al mio percorso';
 $string['navlabel'] = 'Corsi';
