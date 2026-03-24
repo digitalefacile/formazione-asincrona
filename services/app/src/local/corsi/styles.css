@@ -1,0 +1,117 @@
+/* local_corsi - Corsi catalog page styles */
+
+.corsi-page {
+    padding-bottom: 0;
+}
+
+.corsi-header {
+    text-align: center;
+    padding: 60px 0 40px;
+}
+
+.corsi-header .title {
+    color: rgb(32, 51, 103);
+    font-family: "Titillium Web", sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.corsi-header .subtitle {
+    color: rgb(111, 112, 116);
+    font-family: "Titillium Web", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.corsi-featured-strip {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+.corsi-featured-strip h3 {
+    color: rgb(32, 51, 103);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.corsi-featured-cards {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.corsi-featured-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f5f7;
+    border-radius: 8px;
+    padding: 20px 32px;
+    min-width: 220px;
+    text-decoration: none;
+    color: rgb(32, 51, 103);
+    font-weight: 600;
+    font-size: 16px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.corsi-featured-card:hover {
+    background-color: #e8eaf0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: rgb(32, 51, 103);
+}
+
+.corsi-section {
+    padding: 60px 0;
+}
+
+.corsi-cta-banner {
+    background-color: #e8f4fd;
+    padding: 60px 0;
+}
+
+.corsi-cta-banner h3 {
+    color: rgb(32, 51, 103);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.corsi-cta-banner p {
+    color: rgb(111, 112, 116);
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .corsi-header .title {
+        font-size: 28px;
+    }
+
+    .corsi-header .subtitle {
+        font-size: 16px;
+    }
+
+    .corsi-featured-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .corsi-featured-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+/* Announcements grey background on frontpage */
+.pagelayout-frontpage .block_cocoon_blog_recent {
+    background-color: #f4f5f7;
+}
