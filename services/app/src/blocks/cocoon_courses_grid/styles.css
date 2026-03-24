@@ -1,0 +1,24 @@
+.ccn-courses-grid {
+    width: 900px;
+    margin: 0 auto;
+}
+.ccn-courses-grid .top_courses {
+    border: none;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.15);
+}
+.ccn-courses-grid .top_courses .thumb {
+    height: 160px !important;
+}
+.ccn-courses-grid .ccn_grid_card {
+    margin-bottom: 30px;
+}
+.ccn-courses-grid .top_courses.ccnWithFoot:not(.list) {
+    padding-bottom: 50px;
+}
+.ccn-courses-grid .footer_card_slider {
+    padding: 17px 0 0px;
+}
+.ccn-courses-grid .footer_card_slider a {
+    font-size: 18px;
+    font-weight: 700;
+}
