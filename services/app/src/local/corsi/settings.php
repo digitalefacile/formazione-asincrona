@@ -15,20 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Italian strings for local_corsi.
+ * Plugin settings.
  *
  * @package    local_corsi
  * @copyright  2026 DTD
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Pagina catalogo Corsi';
-$string['pagetitle'] = 'Corsi';
-$string['pagesubtitle'] = 'Esplora le aree tematiche disponibili e accresci le tue competenze<br />in tutti gli ambiti della facilitazione digitale.';
-$string['featured'] = 'In evidenza';
-$string['cta_title'] = 'A che punto è il tuo percorso formativo?';
-$string['cta_subtitle'] = 'Gestisci la tua formazione e monitora i tuoi progressi passo dopo passo.';
-$string['cta_button'] = 'Vai al mio percorso';
-$string['navlabel'] = 'Corsi';
-$string['excludedcourses'] = 'Corsi esclusi';
-$string['excludedcourses_desc'] = 'Elenco di ID dei corsi da escludere dalla sezione in evidenza, separati da virgola (es. 2,5,12).';
+defined('MOODLE_INTERNAL') || die();
+
+if ($hassiteconfig) {
+    $settings = new admin_settingpage('local_corsi', get_string('pluginname', 'local_corsi'));
+
+    $setting = new admin_setting_configtext(
+        'local_corsi/excludedcourses',
+        get_string('excludedcourses', 'local_corsi'),
+        get_string('excludedcourses_desc', 'local_corsi'),
+        '',
+        '/^(\d+(,\d+)*)?$/'
+    );
+    $settings->add($setting);
+
+    $ADMIN->add('localplugins', $settings);
+}

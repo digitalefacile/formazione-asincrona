@@ -1,14 +1,21 @@
 /* local_corsi - Corsi catalog page styles */
 
+#page-local-corsi-index #ccn-main-region > .container {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+}
+
 .corsi-page {
     padding-bottom: 0;
-    width: 880px;
+    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
 }
 
 .corsi-header {
     text-align: center;
-    padding: 60px 0 40px;
+    padding: 60px 0 0;
 }
 
 .corsi-featured-strip {
@@ -49,7 +56,34 @@
     padding: 60px 0;
 }
 
-/* Announcements grey background on frontpage */
-.pagelayout-frontpage .block_cocoon_blog_recent {
-    background-color: #f4f5f7;
+.block_cocoon_courses_grid .main-title {
+    max-width: 930px;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+#page-local-corsi-index .ccn-courses-grid .row {
+    justify-content: center;
+}
+
+  .subtitle-external-link .main-title a:visited  {
+    color: #0065CC;
+  }
+  .subtitle-external-link .main-title a::after {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 30px;
+      margin-left: 6px;
+      vertical-align: middle;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='24' viewBox='0 0 25 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M19.5 4H14C13.7239 4 13.5 4.22386 13.5 4.5C13.5 4.77614 13.7239 5 14 5H18.6996L10.3307 13.3689C10.1355 13.5642 10.1355 13.8808 10.3307 14.076C10.526 14.2713 10.8426 14.2713 11.0378 14.076L19.5 5.61385V10.5C19.5 10.7761 19.7239 11 20 11C20.2761 11 20.5 10.7761 20.5 10.5V5C20.5 4.44772 20.0523 4 19.5 4ZM17.51 12.5C17.51 12.2239 17.7339 12 18.01 12C18.2784 12.0053 18.4947 12.2216 18.5 12.49V18C18.5 19.6569 17.1569 21 15.5 21H6.5C4.84315 21 3.5 19.6569 3.5 18V9C3.5 7.34315 4.84315 6 6.5 6H11.5C11.7739 6.00532 11.9947 6.22609 12 6.5C12 6.77614 11.7761 7 11.5 7H6.5C5.39543 7 4.5 7.89543 4.5 9V18C4.5 19.1046 5.39543 20 6.5 20H15.51C16.6146 20 17.51 19.1046 17.51 18V12.5Z' fill='%230065CC'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+  }
+
+  /* Questa classe non è specifica del plugin, ma deve essere applicata solo alla pag. corsi */
+  .discover-courses-section {
+    max-width: 880px;
+    margin: 0 auto;
+  }

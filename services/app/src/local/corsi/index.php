@@ -57,9 +57,20 @@ echo $OUTPUT->header();
             <div class="ccn-courses-grid">
                 <div class="row">
                     <?php
+                    $params = ['siteid' => SITEID];
+                    $excludesql = '';
+                    $excludeconfig = get_config('local_corsi', 'excludedcourses');
+                    if (!empty($excludeconfig)) {
+                        $excludeids = array_filter(array_map('intval', explode(',', $excludeconfig)));
+                        if (!empty($excludeids)) {
+                            list($insql, $inparams) = $DB->get_in_or_equal($excludeids, SQL_PARAMS_NAMED, 'excl', false);
+                            $excludesql = " AND id $insql";
+                            $params = array_merge($params, $inparams);
+                        }
+                    }
                     $recentcourses = $DB->get_records_sql(
-                        'SELECT id FROM {course} WHERE id != :siteid AND visible = 1 ORDER BY timecreated DESC',
-                        ['siteid' => SITEID],
+                        "SELECT id FROM {course} WHERE id != :siteid AND visible = 1{$excludesql} ORDER BY timecreated DESC",
+                        $params,
                         0,
                         3
                     );

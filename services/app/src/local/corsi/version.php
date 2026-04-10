@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2026031800;
+$plugin->version   = 2026040200;
 $plugin->requires  = 2022112800;
 $plugin->component = 'local_corsi';
 $plugin->maturity  = MATURITY_ALPHA;

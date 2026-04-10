@@ -30,3 +30,5 @@ $string['cta_title'] = 'Already started a path?';
 $string['cta_subtitle'] = 'Track your progress and complete active courses.';
 $string['cta_button'] = 'Go to my path';
 $string['navlabel'] = 'Corsi';
+$string['excludedcourses'] = 'Excluded courses';
+$string['excludedcourses_desc'] = 'Comma-separated list of course IDs to exclude from the featured content strip (e.g. 2,5,12).';
