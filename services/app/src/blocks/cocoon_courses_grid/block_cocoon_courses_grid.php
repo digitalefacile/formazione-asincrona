@@ -152,7 +152,7 @@ class block_cocoon_courses_grid extends block_base {
             <section class="popular-courses bgc-thm2">
           		<div class="container-fluid style2">
           			<div class="row">
-          				<div class="col-lg-6 offset-lg-3">
+          				<div class="col-lg-12">
           					<div class="main-title text-center">';
                     $this->content->text .='<h3 class="mt0 color-white" data-ccn="title">'.format_text($this->content->title, FORMAT_HTML, array('filter' => true)).'</h3>';
                     if(!empty($this->content->subtitle)){
@@ -233,7 +233,7 @@ class block_cocoon_courses_grid extends block_base {
         <section class="features-course pb20">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 offset-lg-3">
+      <div class="col-lg-12">
         <div class="main-title text-center" id="sezione-1">';
         if(!empty($this->content->title)){
           $this->content->text .='<h2 class="mb0 mt0" style="width:100%;" data-ccn="title">'. format_text($this->content->title, FORMAT_HTML, array('filter' => true)) .'</h2>';
