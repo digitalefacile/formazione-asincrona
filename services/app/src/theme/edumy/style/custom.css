@@ -962,11 +962,9 @@ justify-content: space-between;
 
 /* dstf styles for homepage blog recent */
 #page-site-index .block.block_cocoon_blog_recent {
-    background-color: #0065cc;
+    background-color: rgb(244, 245, 247);
 }
-#page-site-index .block.block_cocoon_blog_recent .main-title > h3 {
-    color: #fff !important;
-}
+
 #page-site-index .block.block_cocoon_blog_recent .blog_recent_card {
     width: 100%;
     height: 100%;
@@ -1752,6 +1750,60 @@ span [data-initial="initial"]{
     padding-bottom: 40px;
 }
 
+.container_custom_block_white {
+    background: #FFF;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.container_custom_block_white .ccn-custom-title {
+    color: #0065CC;
+    font-family: "Titillium Web";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    max-width: 654px;
+}
+.container_custom_block_white .ccn-custom-body {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+}
+.container_custom_block_white .ccn-custom-body p {
+    color: #333;
+    font-family: "Titillium Web";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    max-width: 780px;
+}
+.container_custom_block_white .ccn-custom-body p strong {
+    color: #333;
+    font-family: "Titillium Web";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+}
+.container_custom_block_white .ccn-custom-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+}
+.container_custom_block_white .ccn-custom-cta a {
+    color: #0065CC;
+    font-family: "Titillium Web";
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
 
 .stylehome1 .mm-navbar {
 	height: 75px;
@@ -2352,3 +2404,14 @@ body.pagelayout-course #ccn-course-breadcrumb-page-wrapper #ccn-page-wrapper #cc
   background-color: #7da866!important;
   color: #000000!important;
 }
+
+/* No margin under tabs block "Come completare la tua formazione" in homepage */
+#page-site-index #inst9 .shortcode_widget_tab {
+  margin-bottom: 0;
+}
+
+/* Announcements grey background on frontpage */
+.pagelayout-frontpage .block_cocoon_blog_recent {
+    background-color: #f4f5f7;
+}
+
