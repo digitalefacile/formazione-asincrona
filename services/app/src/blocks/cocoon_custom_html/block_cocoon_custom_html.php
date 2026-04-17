@@ -30,6 +30,12 @@ class block_cocoon_custom_html extends block_base
 
     public function get_content()
     {
+      if (!$this->content) {
+          $this->content = new stdClass();
+          $this->content->text = '';
+          $this->content->footer = '';
+      }
+
       $div="display: flex;
       justify-content: center;";
       $title="    max-width: 654px;
@@ -70,7 +76,7 @@ class block_cocoon_custom_html extends block_base
       font-weight: 700;
       min-width: 190px;
       ";
-      $this->content->text .= '
+      $this->content->text = '
       <div class="container-fluid container_custom_block">
         <div style="'.$div.'">
           <h2 style="'.$title.'">Scopri tutti i corsi disponibili</h2>
