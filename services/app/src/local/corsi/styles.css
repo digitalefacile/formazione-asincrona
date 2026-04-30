@@ -87,3 +87,7 @@
     max-width: 880px;
     margin: 0 auto;
   }
+
+  .corsi-header > *:nth-child(2) {
+    margin-top: 16px;
+}
