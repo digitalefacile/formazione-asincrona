@@ -177,7 +177,13 @@ $blogheaders['heading'] = [
 //echo $OUTPUT->heading( $blogheaders['heading'], 2, 'blogheading' );
 //echo $OUTPUT->mlab_heading( $blogheaders['heading'] );
 
-$bloglisting = new blog_listing($blogheaders['filters']);
+// Use custom filtered blog listing if using edumy theme
+if ($PAGE->theme->name === 'edumy') {
+    require_once($CFG->dirroot . '/theme/edumy/classes/blog_listing_filtered.php');
+    $bloglisting = new theme_edumy_blog_listing_filtered($blogheaders['filters']);
+} else {
+    $bloglisting = new blog_listing($blogheaders['filters']);
+}
 $bloglisting->print_entries();
 
 if ($CFG->enablerssfeeds) {

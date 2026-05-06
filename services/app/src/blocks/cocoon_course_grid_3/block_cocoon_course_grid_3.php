@@ -248,7 +248,7 @@ class block_cocoon_course_grid_3 extends block_base {
                   <div class="details">
                     <div class="tc_content">
                       <div class="container_cip_category">
-                        <div class="cip_category">
+                        <div class="cip_category '.$ccnCourse->idNumber.'">
                           '.$ccnCourse->categoryName.'
                         </div>
                       </div>
